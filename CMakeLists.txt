@@ -22,4 +22,18 @@ else()
     )
 endif()
 
+# CRT Compile Option for Windows
+set(DEAR_MY_PROF_FLAGS
+    CMAKE_CXX_FLAGS
+    CMAKE_CXX_FLAGS_DEBUG
+    CMAKE_CXX_FLAGS_RELEASE
+    CMAKE_C_FLAGS
+    CMAKE_C_FLAGS_DEBUG
+    CMAKE_C_FLAGS_RELEASE
+)
+foreach(DEAR_MY_PROF_FLAG ${DEAR_MY_PROF_FLAGS})
+    string(REPLACE "/MD" "/MT" ${DEAR_MY_PROF_FLAG} "${${DEAR_MY_PROF_FLAG}}")
+endforeach()
+
 add_subdirectory(core)
+add_subdirectory(bind)
