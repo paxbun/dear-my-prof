@@ -1,9 +1,9 @@
 # CMake Configuration Files
-Build/**
-build/**
-.vscode/**
-.vs/**
-out/**
+**/Build/**
+**/build/**
+**/.vscode/**
+**/.vs/**
+**/out/**
 CMakeSettings.json
 cmake-build-debug
 
