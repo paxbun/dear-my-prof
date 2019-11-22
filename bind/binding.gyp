@@ -17,12 +17,12 @@
         'conditions': [
             ['OS=="win"', {
                 'libraries': [
-                    "../../core/build/dear-my-prof-core.lib"
+                    "<(PRODUCT_DIR)/../../../core/build/dear-my-prof-core.lib"
                 ]
             }],
             ['OS!="win"', {
                 'libraries': [
-                    "../../core/build/libdear-my-prof-core.a"
+                    "<(PRODUCT_DIR)/../../../core/build/libdear-my-prof-core.a"
                 ],
                 'cflags': [
                     '-Wl,--whole-archive'
