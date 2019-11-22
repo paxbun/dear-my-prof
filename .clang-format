@@ -68,7 +68,6 @@ SpaceAfterTemplateKeyword: true
 SpaceBeforeCpp11BracedList: true
 SpaceBeforeCtorInitializerColon: true
 SpaceBeforeInheritanceColon: true
-SpaceBeforeParens: Never
 SpaceBeforeParens: ControlStatements
 SpaceBeforeAssignmentOperators: true
 SpaceBeforeRangeBasedForLoopColon: true
@@ -77,4 +76,4 @@ SpacesInCStyleCastParentheses: false
 SpacesInParentheses: false
 SpacesInSquareBrackets: false
 TabWidth: 4
-UseTab: false
+UseTab: Never
