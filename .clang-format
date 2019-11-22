@@ -1,6 +1,6 @@
 # Copyright (c) KIM Chanjung (paxbun). All rights reserved.
 # See https://clang.llvm.org/docs/ClangFormatStyleOptions.html for more details.
-# 2019-09-11
+# 2019-11-23
 
 BasedOnStyle: LLVM
 AccessModifierOffset: -2
