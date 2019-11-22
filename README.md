@@ -36,3 +36,10 @@ Dear My Professor는 다음과 같은 환경에서 구동되는 것을 목표로
 ```
 Windows 10, Version 1903 or higher, x64-based PC
 ```
+
+## 개발 준비하기
+
+Dear My Professor의 개발 언어는 C++17이며, 다음 도구들을 기반으로 개발됩니다.
+
+* CMake 3.13
+* Node.js 13.2.0
