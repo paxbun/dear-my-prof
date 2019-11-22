@@ -1,0 +1,17 @@
+{
+    "configurations": [
+        {
+            "inheritEnvironments": [
+                "msvc_x64"
+            ],
+            "name": "x64-Debug",
+            "includePath": [
+                "${env.INCLUDE}",
+                "${workspaceRoot}\\**",
+                "${workspaceRoot}\\..\\core\\Public"
+            ],
+            "defines": [],
+            "intelliSenseMode": "windows-msvc-x64"
+        }
+    ]
+}
