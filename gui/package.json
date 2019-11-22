@@ -1,0 +1,16 @@
+{
+  "name": "gui",
+  "version": "1.0.0",
+  "description": "Dear My Professor GUI",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "Dear My Professor Authors",
+  "license": "MIT",
+  "dependencies": {
+    "electron": "^7.1.2",
+    "electron-packager": "^14.1.1",
+    "node-gyp": "^6.0.1"
+  }
+}
