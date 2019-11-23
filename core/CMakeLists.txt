@@ -13,6 +13,6 @@ target_include_directories(dear-my-prof-core
 )
 # Output Directories
 set_target_properties(dear-my-prof-core PROPERTIES
-    ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/build
+    ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/core
     POSITION_INDEPENDENT_CODE ON
 )
