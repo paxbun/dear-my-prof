@@ -20,6 +20,9 @@ else()
     set(DEAR_MY_PROF_BIND_NPM "npm")
 endif()
 execute_process(
+    COMMAND ${DEAR_MY_PROF_BIND_NPM} "install" "-g" "node-gyp"
+)
+execute_process(
     COMMAND ${DEAR_MY_PROF_BIND_NPM} "install" "node-addon-api"
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}    
 )
