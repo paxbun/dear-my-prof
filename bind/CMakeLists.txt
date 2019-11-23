@@ -11,7 +11,7 @@ set(DEAR_MY_PROF_BIND_SOURCES
 )
 
 # Build Script Output Path
-set(DEAR_MY_PROF_BIND_OUTPUT ${CMAKE_BINARY_DIR}/bind)
+set(DEAR_MY_PROF_BIND_OUTPUT ${CMAKE_BINARY_DIR}/bind_out)
 
 # Copy package.json
 file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/package.json
@@ -68,7 +68,7 @@ set(DEAR_MY_PROF_BIND_CONFIGURE_COMMAND
 )
 if(CMAKE_BUILD_TYPE MATCHES "Debug")
     set(DEAR_MY_PROF_BIND_BUILD_COMMAND
-        "node-gyp" "build" "--debug" "--python" ${Python_EXECUTABLE}
+        "node-gyp" "build" "--verbose" "--debug" "--python" ${Python_EXECUTABLE}
     )
     set(DEAR_MY_PROF_BIND_OUTPUT_FILE
         ${DEAR_MY_PROF_BIND_OUTPUT}/build/Debug/dear-my-prof-bind.node
@@ -102,9 +102,7 @@ set(DEAR_MY_PROF_BIND_INCLUDE_DIRS
     ${PROJECT_SOURCE_DIR}/core/Public
     ${DEAR_MY_PROF_BIND_INCLUDE_DIR}
 )
-get_target_property(DEAR_MY_PROF_BIND_LIBRARY_DIR dear-my-prof-core
-    ARCHIVE_OUTPUT_DIRECTORY
-)
+set(DEAR_MY_PROF_BIND_LIBRARY_DIR ${CMAKE_BINARY_DIR}/core_out)
 string(
     REPLACE "\\" "/"
     DEAR_MY_PROF_BIND_LIBRARY_DIR ${DEAR_MY_PROF_BIND_LIBRARY_DIR}

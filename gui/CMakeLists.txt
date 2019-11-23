@@ -2,7 +2,7 @@
 # Author: paxbun
 
 # Output Path
-set(DEAR_MY_PROF_GUI_OUTPUT ${CMAKE_BINARY_DIR}/bin)
+set(DEAR_MY_PROF_GUI_OUTPUT ${CMAKE_BINARY_DIR}/gui_out)
 
 # Copy package.json
 file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/package.json
@@ -36,7 +36,7 @@ add_custom_command(
             ${CMAKE_CURRENT_SOURCE_DIR}/View
             ${DEAR_MY_PROF_GUI_OUTPUT}/View
     COMMAND ${CMAKE_COMMAND} -E copy
-            ${CMAKE_BINARY_DIR}/bind/dear-my-prof-bind.node
+            ${CMAKE_BINARY_DIR}/bind_out/dear-my-prof-bind.node
             ${DEAR_MY_PROF_GUI_OUTPUT}/Script/dear-my-prof-bind.node
     COMMAND "npm" "run" "export"
     WORKING_DIRECTORY ${DEAR_MY_PROF_GUI_OUTPUT}
