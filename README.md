@@ -39,7 +39,14 @@ Windows 10, Version 1903 or higher, x64-based PC
 
 ## 개발 준비하기
 
-Dear My Professor의 개발 언어는 C++17이며, 다음 도구들을 기반으로 개발됩니다.
+Dear My Professor의 개발 언어는 C++17이며, 다음 프로그램이 전부 필요합니다.
 
 * CMake 3.13
-* Node.js 13.2.0
+* Node.js 13
+* Python 2.7
+
+Node.js를 설치한 후, 콘솔에서 다음 명령어를 입력해주세요.
+
+```
+npm install -g node-gyp
+```
