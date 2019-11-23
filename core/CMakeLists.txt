@@ -12,7 +12,8 @@ target_include_directories(dear-my-prof-core
     PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/Private
 )
 # Output Directories
-set_target_properties(dear-my-prof-core PROPERTIES
-    ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/core
-    POSITION_INDEPENDENT_CODE ON
+add_custom_command(TARGET dear-my-prof-core POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy
+            $<TARGET_FILE:dear-my-prof-core>
+            ${CMAKE_BINARY_DIR}/core_out/$<TARGET_FILE_NAME:dear-my-prof-core>
 )
