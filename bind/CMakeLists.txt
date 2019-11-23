@@ -14,8 +14,13 @@ set(DEAR_MY_PROF_BIND_SOURCES
 set(DEAR_MY_PROF_BIND_OUTPUT ${CMAKE_BINARY_DIR}/bind)
 
 # Configure node-gyp
+if(WIN32)
+    set(DEAR_MY_PROF_BIND_NPM "npm.cmd")
+else()
+    set(DEAR_MY_PROF_BIND_NPM "npm")
+endif()
 execute_process(
-    COMMAND "npm" "install" "node-addon-api"
+    COMMAND ${DEAR_MY_PROF_BIND_NPM} "install" "node-addon-api"
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}    
 )
 execute_process(
