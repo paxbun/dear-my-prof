@@ -41,9 +41,9 @@ Windows 10, Version 1903 or higher, x64-based PC
 
 Dear My Professor의 개발 언어는 C++17이며, 다음 프로그램이 전부 필요합니다.
 
-* CMake 3.13
-* Node.js 13
-* Python 2.7
+* [CMake 3.13](https://cmake.org/download/)
+* [Node.js 13](https://nodejs.org/)
+* [Python 2.7](https://www.python.org/downloads/release/python-2716/)
 
 Node.js를 설치한 후, 콘솔에서 다음 명령어를 입력해주세요.
 
