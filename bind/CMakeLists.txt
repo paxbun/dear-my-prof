@@ -13,27 +13,32 @@ set(DEAR_MY_PROF_BIND_SOURCES
 # Build Script Output Path
 set(DEAR_MY_PROF_BIND_OUTPUT ${CMAKE_BINARY_DIR}/bind)
 
+# Copy package.json
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/package.json
+    DESTINATION ${DEAR_MY_PROF_BIND_OUTPUT}
+)
+
 # Configure node-gyp
 if(WIN32)
     set(DEAR_MY_PROF_BIND_NPM "npm.cmd")
 else()
     set(DEAR_MY_PROF_BIND_NPM "npm")
 endif()
-execute_process(
-    COMMAND ${DEAR_MY_PROF_BIND_NPM} "install" "-g" "node-gyp"
-)
+# execute_process(
+#     COMMAND ${DEAR_MY_PROF_BIND_NPM} "install" "-g" "node-gyp"
+# )
 execute_process(
     COMMAND ${DEAR_MY_PROF_BIND_NPM} "install" "node-addon-api"
-    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}    
+    WORKING_DIRECTORY ${DEAR_MY_PROF_BIND_OUTPUT}    
 )
 execute_process(
     COMMAND "node" "-p" "require('node-addon-api').include"
-    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+    WORKING_DIRECTORY ${DEAR_MY_PROF_BIND_OUTPUT}
     OUTPUT_VARIABLE DEAR_MY_PROF_BIND_INCLUDE_DIR
 )
 execute_process(
     COMMAND "node" "-p" "require('node-addon-api').gyp"
-    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+    WORKING_DIRECTORY ${DEAR_MY_PROF_BIND_OUTPUT}
     OUTPUT_VARIABLE DEAR_MY_PROF_BIND_GYP
 )
 string(
