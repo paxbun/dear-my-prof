@@ -1,11 +1,6 @@
 {
     "name": "dear-my-prof-bind",
     "version": "1.0.0",
-    "scripts": {
-        "build": "node-gyp rebuild",
-        "dbuild": "node-gyp rebuild -d",
-        "clean": "node-gyp clean"
-    },
     "author": "Dear My Professor Authors",
     "license": "MIT",
     "dependencies": {
