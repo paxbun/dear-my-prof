@@ -1,28 +1,27 @@
 {
-    "targets": [{
-        "target_name": "dear-my-prof-bind",
-        "cflags!": [ "-fno-exceptions" ],
-        "cflags_cc!": [ "-fno-exceptions" ],
-        "sources": [
-            "Source/Bind.cpp"
+    'targets': [{
+        'target_name': 'dear-my-prof-bind',
+        'cflags!': [ '-fno-exceptions' ],
+        'cflags_cc!': [ '-fno-exceptions' ],
+        'sources': [
+            $SOURCES$
         ],
         'include_dirs': [
-            "<!@(node -p \"require('node-addon-api').include\")",
-            "../core/Public"
+            $INCLUDE_DIRS$
         ],
         'dependencies': [
-            "<!(node -p \"require('node-addon-api').gyp\")"
+            $DEP_GYP$
         ],
         'defines': [ 'NAPI_DISABLE_CPP_EXCEPTIONS' ],
         'conditions': [
             ['OS=="win"', {
                 'libraries': [
-                    "<(PRODUCT_DIR)/../../../core/build/dear-my-prof-core.lib"
+                    "$LIBRARY_DIR$/dear-my-prof-core.lib"
                 ]
             }],
             ['OS!="win"', {
                 'libraries': [
-                    "<(PRODUCT_DIR)/../../../core/build/libdear-my-prof-core.a"
+                    "$LIBRARY_DIR$/libdear-my-prof-core.a"
                 ],
                 'cflags': [
                     '-Wl,--whole-archive'
