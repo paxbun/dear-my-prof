@@ -2,9 +2,10 @@
   "name": "gui",
   "version": "1.0.0",
   "description": "Dear My Professor GUI",
-  "main": "main.js",
+  "main": "./Script/main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "export": "electron-packager . \"Dear My Professor\""
   },
   "author": "Dear My Professor Authors",
   "license": "MIT",
