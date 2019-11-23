@@ -41,3 +41,4 @@ endforeach()
 
 add_subdirectory(core)
 add_subdirectory(bind)
+add_subdirectory(gui)
