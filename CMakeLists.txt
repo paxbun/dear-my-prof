@@ -5,6 +5,11 @@ cmake_minimum_required(VERSION 3.13)
 project(dear-my-prof VERSION 1.0)
 enable_testing()
 
+# Use Release for default
+if(NOT DEFINED CMAKE_BUILD_TYPE)
+    set(CMAKE_BUILD_TYPE "Release")
+endif()
+
 # C++ Standard
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
