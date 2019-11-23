@@ -32,7 +32,8 @@ Dear My Professor는 교수님들과 소통할 때 보내게 될 이메일들을
 
 ## 개발 준비하기
 
-Dear My Professor의 개발 언어는 C++17이며, 다음 프로그램이 전부 필요합니다.
+Dear My Professor의 개발 언어는 C++17이며, 다음 프로그램이 전부 필요합니다. Windows에서
+CMake는 Visual Studio의 Extension을 활용하는 것이 편합니다.
 
 * [CMake 3.13](https://cmake.org/download/)
 * [Node.js 13](https://nodejs.org/)
