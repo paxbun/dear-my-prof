@@ -18,11 +18,13 @@ file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/package.json
     DESTINATION ${DEAR_MY_PROF_BIND_OUTPUT}
 )
 
-# Configure node-gyp
+# Configure node-addon-api
 if(WIN32)
     set(DEAR_MY_PROF_BIND_NPM "npm.cmd")
+    set(DEAR_MY_PROF_BIND_NODE_GYP "node-gyp.cmd")
 else()
     set(DEAR_MY_PROF_BIND_NPM "npm")
+    set(DEAR_MY_PROF_BIND_NODE_GYP "node-gyp")
 endif()
 # execute_process(
 #     COMMAND ${DEAR_MY_PROF_BIND_NPM} "install" "-g" "node-gyp"
@@ -63,19 +65,16 @@ string(
 )
 
 # Define Build Commands
-set(DEAR_MY_PROF_BIND_CONFIGURE_COMMAND
-    "node-gyp" "configure" "--python" ${Python_EXECUTABLE}
-)
 if(CMAKE_BUILD_TYPE MATCHES "Debug")
     set(DEAR_MY_PROF_BIND_BUILD_COMMAND
-        "node-gyp" "build" "--verbose" "--debug" "--python" ${Python_EXECUTABLE}
+        ${DEAR_MY_PROF_BIND_NODE_GYP} "build" "--verbose" "--debug" "--python" ${Python_EXECUTABLE}
     )
     set(DEAR_MY_PROF_BIND_OUTPUT_FILE
         ${DEAR_MY_PROF_BIND_OUTPUT}/build/Debug/dear-my-prof-bind.node
     )
 else()
     set(DEAR_MY_PROF_BIND_BUILD_COMMAND
-        "node-gyp" "build" "--python" ${Python_EXECUTABLE}
+        ${DEAR_MY_PROF_BIND_NODE_GYP} "build" "--python" ${Python_EXECUTABLE}
     )
     set(DEAR_MY_PROF_BIND_OUTPUT_FILE
         ${DEAR_MY_PROF_BIND_OUTPUT}/build/Release/dear-my-prof-bind.node
@@ -84,7 +83,6 @@ endif()
 add_custom_command(
     OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/__fake__
            ${DEAR_MY_PROF_BIND_OUTPUT_FILE}
-    COMMAND ${DEAR_MY_PROF_BIND_CONFIGURE_COMMAND}
     COMMAND ${DEAR_MY_PROF_BIND_BUILD_COMMAND}
     COMMAND ${CMAKE_COMMAND} -E copy ${DEAR_MY_PROF_BIND_OUTPUT_FILE}
             ${DEAR_MY_PROF_BIND_OUTPUT}/dear-my-prof-bind.node
@@ -153,4 +151,11 @@ string(
 # Write result to binding.gyp
 file(WRITE ${DEAR_MY_PROF_BIND_OUTPUT}/binding.gyp
     ${DEAR_MY_PROF_BIND_TEMPLATE}
+)
+
+# Configure GYP
+execute_process(
+    COMMAND ${DEAR_MY_PROF_BIND_NODE_GYP} "configure" "--python" ${Python_EXECUTABLE}
+    WORKING_DIRECTORY ${DEAR_MY_PROF_BIND_OUTPUT}
+    RESULT_VARIABLE TESTTEST
 )
