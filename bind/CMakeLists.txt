@@ -1,7 +1,7 @@
 # Copyright (c) 2019 Dear My Professor Authors
 # Author: paxbun
 
-find_package(Python 2.7 EXACT REQUIRED COMPONENTS
+find_package(Python 3 EXACT REQUIRED COMPONENTS
     Interpreter
 )
 
