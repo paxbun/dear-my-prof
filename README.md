@@ -39,7 +39,8 @@ CMake는 Visual Studio의 Extension을 활용하는 것이 편합니다.
 * [Node.js 13](https://nodejs.org/)
 * [Python 2.7](https://www.python.org/downloads/release/python-2716/)
 
-Node.js를 설치한 후, 콘솔에서 다음 명령어를 입력해주세요.
+Node.js를 설치한 후, 콘솔에서 다음 명령어를 입력해주세요. 리눅스에선 루트 권한이 필요할
+수도 있습니다.
 
 ```
 npm install -g node-gyp
@@ -53,26 +54,27 @@ git clone https://github.com/paxbun/dear-my-prof
 
 ## 콘솔에서 빌드하기
 
-빌드 용 디렉토리를 만듭니다.
+빌드용 디렉토리를 만듭니다.
 
 ```
 cd dear-my-prof
 mkdir build
+cd build
 ```
 
-### 디버그 용으로 빌드하기
+### 디버그용으로 빌드하기
 
 ```
 cmake .. -DCMAKE_BUILD_TYPE=Debug
 cmake --build . --config Debug
 ```
 
-### 릴리즈 용으로 빌드하기
+### 릴리즈용으로 빌드하기
 
 ```
 cmake ..
 cmake --build . --config Release
 ```
 
-빌드가 끝나면 빌드 용 디렉토리에서 `gui_out` 디렉토리 안에 `Dear My Professor-*` 라는
+빌드가 끝나면 빌드용 디렉토리에서 `gui_out` 디렉토리 안에 `Dear My Professor-*` 라는
 이름의 디렉토리가 생성됩니다. 이 디렉토리 안에 실행 파일이 있습니다. 
