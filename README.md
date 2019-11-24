@@ -69,6 +69,9 @@ cmake .. -DCMAKE_BUILD_TYPE=Debug
 cmake --build . --config Debug
 ```
 
+디버그 빌드가 끝나면 소스 폴더에 링크가 완료된 네이티브 모듈이 복사됩니다. 이를 통해 소스
+폴더에서 바로 디버그를 할 수 있습니다.
+
 ### 릴리즈용으로 빌드하기
 
 ```
@@ -76,5 +79,5 @@ cmake ..
 cmake --build . --config Release
 ```
 
-빌드가 끝나면 빌드용 디렉토리에서 `gui_out` 디렉토리 안에 `Dear My Professor-*` 라는
-이름의 디렉토리가 생성됩니다. 이 디렉토리 안에 실행 파일이 있습니다. 
+릴리즈 빌드가 끝나면 빌드용 디렉토리에서 `gui_out` 디렉토리 안에 `Dear My Professor-*`
+라는 이름의 디렉토리가 생성됩니다. 이 디렉토리 안에 실행 파일이 있습니다. 
