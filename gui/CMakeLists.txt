@@ -37,6 +37,11 @@ else()
     file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/package.json
         DESTINATION ${DEAR_MY_PROF_GUI_OUTPUT}
     )
+
+    # Copy prepare_asset.py
+    file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/prepare_asset.py
+        DESTINATION ${DEAR_MY_PROF_GUI_OUTPUT}
+    )
     
     # Configure node
     execute_process(
@@ -62,6 +67,7 @@ else()
         COMMAND ${CMAKE_COMMAND} -E copy
                 ${CMAKE_BINARY_DIR}/bind_out/dear-my-prof-bind.node
                 ${DEAR_MY_PROF_GUI_OUTPUT}/Script/dear-my-prof-bind.node
+        COMMAND ${Python_EXECUTABLE} "prepare_asset.py"
         COMMAND ${DEAR_MY_PROF_GUI_NPM} "run" "export"
         WORKING_DIRECTORY ${DEAR_MY_PROF_GUI_OUTPUT}
     )

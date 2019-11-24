@@ -5,7 +5,7 @@
     "main": "./Script/main.js",
     "scripts": {
         "start": "electron .",
-        "export": "electron-packager . \"Dear My Professor\""
+        "export": "electron-packager . \"Dear My Professor\" --icon ./Asset/Icon.ico"
     },
     "author": "Dear My Professor Authors",
     "license": "MIT",
