@@ -19,7 +19,12 @@ if(CMAKE_BUILD_TYPE MATCHES "Debug")
         WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
     )
 
-    # Copy native module from output folder
+    # Copy launch.json to VS Code Settings directory
+    file(COPY ${CMAKE_CURRENT_BINARY_DIR}/launch.json
+        DESTINATION ${PROJECT_SOURCE_DIR}/.vscode/launch.json
+    )
+
+    # Copy native module from output directory
     add_custom_command(
         OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/__fake__
         COMMAND ${CMAKE_COMMAND} -E copy
