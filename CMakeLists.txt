@@ -44,6 +44,11 @@ foreach(DEAR_MY_PROF_FLAG ${DEAR_MY_PROF_FLAGS})
     string(REPLACE "/MD" "/MT" ${DEAR_MY_PROF_FLAG} "${${DEAR_MY_PROF_FLAG}}")
 endforeach()
 
+# Find Python 3
+find_package(Python 3 EXACT REQUIRED COMPONENTS
+    Interpreter
+)
+
 add_subdirectory(core)
 add_subdirectory(bind)
 add_subdirectory(gui)

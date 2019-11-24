@@ -1,10 +1,6 @@
 # Copyright (c) 2019 Dear My Professor Authors
 # Author: paxbun
 
-find_package(Python 3 EXACT REQUIRED COMPONENTS
-    Interpreter
-)
-
 # Sources
 set(DEAR_MY_PROF_BIND_SOURCES
     Source/Bind.cpp
