@@ -1,6 +1,6 @@
 # Dear My Professor
 
-![Logo](./gui/Asset/Icon.png) {style=text-align:center}
+![Logo](./gui/Asset/Icon.png)
 
 Dear My Professor는 교수님들께 이메일을 보내는데 어려움을 겪는 학생들을 위한
 프로그램입니다.
