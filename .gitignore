@@ -7,6 +7,11 @@
 CMakeSettings.json
 cmake-build-debug
 
+# Output Files
+dear-my-prof-core.lib
+libdear-my-prof-core.a
+dear-my-prof-bind.node
+
 # Logs
 logs
 *.log
