@@ -37,7 +37,7 @@ CMake는 Visual Studio의 Extension을 활용하는 것이 편합니다.
 
 * [CMake 3.13](https://cmake.org/download/)
 * [Node.js 13](https://nodejs.org/)
-* [Python 2.7](https://www.python.org/downloads/release/python-2716/)
+* [Python 3](https://www.python.org/downloads/release)
 
 Node.js를 설치한 후, 콘솔에서 다음 명령어를 입력해주세요. 리눅스에선 루트 권한이 필요할
 수도 있습니다.
