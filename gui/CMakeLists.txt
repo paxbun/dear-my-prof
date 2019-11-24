@@ -20,7 +20,7 @@ if(CMAKE_BUILD_TYPE MATCHES "Debug")
     )
 
     # Copy launch.json to VS Code Settings directory
-    file(COPY ${CMAKE_CURRENT_BINARY_DIR}/launch.json
+    file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/launch.json
         DESTINATION ${PROJECT_SOURCE_DIR}/.vscode/launch.json
     )
 
