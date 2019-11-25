@@ -38,9 +38,25 @@ if(CMAKE_BUILD_TYPE MATCHES "Debug")
 
 else()
 
-    # Copy package.json
-    file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/package.json
-        DESTINATION ${DEAR_MY_PROF_GUI_OUTPUT}
+    # Read template from package.json
+    file(READ ${CMAKE_CURRENT_SOURCE_DIR}/package.json
+        DEAR_MY_PROF_GUI_PACKAGE_TEMPLATE
+    )
+    
+    # Change Icon File Extension
+    if(WIN32)
+        string(REPLACE "$ICON_EXT$" ".ico"
+            DEAR_MY_PROF_GUI_PACKAGE_TEMPLATE ${DEAR_MY_PROF_GUI_PACKAGE_TEMPLATE}
+        )
+    else()
+        string(REPLACE "$ICON_EXT$" ".png"
+            DEAR_MY_PROF_GUI_PACKAGE_TEMPLATE ${DEAR_MY_PROF_GUI_PACKAGE_TEMPLATE}
+        )
+    endif()
+
+    # Write result to package.json
+    file(WRITE ${DEAR_MY_PROF_GUI_OUTPUT}/package.json
+        ${DEAR_MY_PROF_GUI_PACKAGE_TEMPLATE}
     )
 
     # Copy prepare_asset.py
