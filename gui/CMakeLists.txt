@@ -21,7 +21,7 @@ if(CMAKE_BUILD_TYPE MATCHES "Debug")
 
     # Copy launch.json to VS Code Settings directory
     file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/launch.json
-        DESTINATION ${PROJECT_SOURCE_DIR}/.vscode/launch.json
+        DESTINATION ${PROJECT_SOURCE_DIR}/.vscode
     )
 
     # Copy native module from output directory
