@@ -5,7 +5,7 @@ function newPosition() {
     return { x : pos[0] + 22, y : pos[1] + 22 };
 }
 
-let rootWindow;
+let rootWindow = null;
 function createRootWindow() {
     rootWindow = new BrowserWindow({
         webPreferences: {
@@ -42,8 +42,34 @@ function createDetailWindow(dataId) {
     }
 }
 
+let newEmailWindow = null;
+function createNewEmailWindow() {
+    if (newEmailWindow != null) {
+        newEmailWindow.focus();
+    } else {
+        let pos = newPosition();
+        newEmailWindow = new BrowserWindow({
+            webPreferences: {
+                devTools: false,
+                nodeIntegration: true
+            },
+            x: pos.x,
+            y: pos.y,
+            frame: false
+        });
+        newWindow.loadFile('./View/newemail.html');
+        newWindow.on('close', function() {
+            newEmailWindow = null;
+        });
+    }
+}
+
 app.on('ready', createRootWindow);
 
 ipcMain.on('create-detail-window', function(event, arg) {
     createDetailWindow(arg.dataId);
+});
+
+ipcMain.on('cretae-new-email-window', function(event, arg) {
+    createNewEmailWindow();
 });
