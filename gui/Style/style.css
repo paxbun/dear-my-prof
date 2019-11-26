@@ -8,6 +8,7 @@
     box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
     transition: background-color 0.2s, transform 0.1s, box-shadow 0.1s;
     cursor: pointer;
+    -webkit-app-region: no-drag;
 }
 
 .button:hover {
@@ -39,6 +40,7 @@ body {
 #action-bar {
     margin-top: 20px;
     padding-left: 7px;
+    -webkit-app-region: drag;
 }
 
 #title-bar {
