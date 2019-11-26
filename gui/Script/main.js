@@ -14,23 +14,25 @@ function createRootWindow() {
 
 let detailWindows = {};
 function createDetailWindow(dataId) {
-    if (detailWindows.hasOwnProperty(dataId))
-        return;
-    
-    let newWindow = new BrowserWindow({
-        webPreferences: {
-            devTools: false,
-            nodeIntegration: true,
-            additionalArguments: [`---data-id=${dataId}`]
-        },
-        frame: false
-    });
-    newWindow.loadFile('./View/detail.html');
-    newWindow.on('close', function() {
-        delete detailWindows[dataId];
-    });
+    if (detailWindows.hasOwnProperty(dataId)) {
+        detailWindows[dataId].focus();
+    } else {
+        let newWindow = new BrowserWindow({
+            webPreferences: {
+                devTools: false,
+                nodeIntegration: true,
+                additionalArguments: [`---data-id=${dataId}`]
+            },
+            
+            frame: false
+        });
+        newWindow.loadFile('./View/detail.html');
+        newWindow.on('close', function() {
+            delete detailWindows[dataId];
+        });
 
-    detailWindows[dataId] = newWindow;
+        detailWindows[dataId] = newWindow;
+    }
 }
 
 app.on('ready', createRootWindow);
