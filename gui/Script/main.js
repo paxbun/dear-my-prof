@@ -1,5 +1,10 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
 
+function newPosition() {
+    let pos = BrowserWindow.getFocusedWindow().getPosition();
+    return { x : pos[0] + 22, y : pos[1] + 22 };
+}
+
 let rootWindow;
 function createRootWindow() {
     rootWindow = new BrowserWindow({
@@ -17,13 +22,15 @@ function createDetailWindow(dataId) {
     if (detailWindows.hasOwnProperty(dataId)) {
         detailWindows[dataId].focus();
     } else {
+        let pos = newPosition();
         let newWindow = new BrowserWindow({
             webPreferences: {
                 devTools: false,
                 nodeIntegration: true,
                 additionalArguments: [`---data-id=${dataId}`]
             },
-            
+            x: pos.x,
+            y: pos.y,
             frame: false
         });
         newWindow.loadFile('./View/detail.html');
