@@ -1,3 +1,5 @@
+const { ipcRenderer } = require('electron');
+
 var contentList;
 
 function createDivWithClass(data, className) {
@@ -31,7 +33,12 @@ function addElement(title, subtitle, body) {
     liDom.appendChild(innerDom);
     liDom.setAttribute('data-id', dataId);
     liDom.onclick = function() {
-        alert(dataId);
+        ipcRenderer.send('new-window', {
+            dataId: dataId,
+            title: title,
+            subtitle: subtitle,
+            body: body
+        });
     }
 
     contentList.appendChild(liDom);
