@@ -1,3 +1,7 @@
+* {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
 .button {
     width: 56px;
     height: 56px;
@@ -46,7 +50,7 @@ body {
 #title-bar {
     font-size: 48px;
     padding-left: 14px;
-    font-weight: bold;
+    font-weight: bolder;
 }
 
 #content {
@@ -93,13 +97,12 @@ body {
 .content-list-item .subtitle {
     margin: 3px 0px 0px 3px;
     font-size: 14px;
-    font-weight: normal;
 }
 
 .content-list-item .body {
     margin: 3px 0px 0px 3px;
     font-size: 12px;
-    font-weight: lighter;
     white-space: nowrap;
     overflow: hidden;
+    font-weight: lighter;
 }
