@@ -6,10 +6,12 @@ function createWindow() {
         width: 800,
         height: 600,
         webPreferences: {
+            devTools: false,
             nodeIntegration: true
-        }
+        },
+        frame: false
     });
-    win.loadFile('./View/index.html');
+    win.loadFile('./View/inbox.html');
 }
 
 app.on('ready', createWindow);
