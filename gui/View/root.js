@@ -55,6 +55,10 @@ function removeElement(dataId) {
     }
 }
 
+function newEmail() {
+    ipcRenderer.send('create-new-email-window');
+}
+
 function onReady() {
     contentList = document.getElementById('content-list');
 }

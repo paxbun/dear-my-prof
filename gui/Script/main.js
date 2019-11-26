@@ -57,8 +57,8 @@ function createNewEmailWindow() {
             y: pos.y,
             frame: false
         });
-        newWindow.loadFile('./View/newemail.html');
-        newWindow.on('close', function() {
+        newEmailWindow.loadFile('./View/newemail.html');
+        newEmailWindow.on('close', function() {
             newEmailWindow = null;
         });
     }
@@ -70,6 +70,6 @@ ipcMain.on('create-detail-window', function(event, arg) {
     createDetailWindow(arg.dataId);
 });
 
-ipcMain.on('cretae-new-email-window', function(event, arg) {
+ipcMain.on('create-new-email-window', function(event, arg) {
     createNewEmailWindow();
 });
