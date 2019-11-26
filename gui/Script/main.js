@@ -1,25 +1,40 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
 
-let win;
-function createWindow() {
-    let win = new BrowserWindow({
-        width: 800,
-        height: 600,
+let rootWindow;
+function createRootWindow() {
+    rootWindow = new BrowserWindow({
         webPreferences: {
             devTools: false,
             nodeIntegration: true
         },
         frame: false
     });
-    win.loadFile('./View/inbox.html');
+    rootWindow.loadFile('./View/root.html');
 }
 
-let win2 = [];
-app.on('ready', createWindow);
-ipcMain.on('new-window', function(event, arg) {
-    win2.push(new BrowserWindow({
-        width: 800,
-        height: 600,
-        title: arg.title + ': ' + arg.subtitle
-    }));
+let detailWindows = {};
+function createDetailWindow(dataId) {
+    if (detailWindows.hasOwnProperty(dataId))
+        return;
+    
+    let newWindow = new BrowserWindow({
+        webPreferences: {
+            devTools: false,
+            nodeIntegration: true,
+            additionalArguments: [`---data-id=${dataId}`]
+        },
+        frame: false
+    });
+    newWindow.loadFile('./View/detail.html');
+    newWindow.on('close', function() {
+        delete detailWindows[dataId];
+    });
+
+    detailWindows[dataId] = newWindow;
+}
+
+app.on('ready', createRootWindow);
+
+ipcMain.on('create-detail-window', function(event, arg) {
+    createDetailWindow(arg.dataId);
 });

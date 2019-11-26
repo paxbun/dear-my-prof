@@ -33,7 +33,7 @@ function addElement(title, subtitle, body) {
     liDom.appendChild(innerDom);
     liDom.setAttribute('data-id', dataId);
     liDom.onclick = function() {
-        ipcRenderer.send('new-window', {
+        ipcRenderer.send('create-detail-window', {
             dataId: dataId,
             title: title,
             subtitle: subtitle,
