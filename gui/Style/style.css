@@ -77,9 +77,15 @@ body {
 }
 
 .content-list-item:hover {
-    transform: translate(-1px, -1px);
+    transform: translate(-2px, -2px);
     background-image: linear-gradient(90deg, white, white);
     box-shadow: 4px 4px 13px rgba(0, 0, 0, 0.3);
+}
+
+.content-list-item:active {
+    transform: translate(-1px, -1px);
+    background-image: linear-gradient(90deg, white, white);
+    box-shadow: 3px 3px 12px rgba(0, 0, 0, 0.3);
 }
 
 .content-list-item .inner {
