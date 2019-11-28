@@ -87,7 +87,8 @@ cmake --build . --config Release
 
 ## 소스 구조
 
-소스는 `core`, `bind`, [`gui`](./gui) 세 부분으로 나눠져 있습니다.
+소스는 [`core`](./core), [`bind`](./bind), [`gui`](./gui) 세 부분으로 나눠져
+있습니다.
 
 * `core`: 프로그램의 로직을 구현합니다.
 * `bind`: `core`를 Node.js 네이티브 모듈로 랩핑합니다.
