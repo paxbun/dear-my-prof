@@ -48,6 +48,10 @@ else()
         string(REPLACE "$ICON_EXT$" ".ico"
             DEAR_MY_PROF_GUI_PACKAGE_TEMPLATE ${DEAR_MY_PROF_GUI_PACKAGE_TEMPLATE}
         )
+    elseif(APPLE)
+        string(REPLACE "$ICON_EXT$" ".icns"
+                DEAR_MY_PROF_GUI_PACKAGE_TEMPLATE ${DEAR_MY_PROF_GUI_PACKAGE_TEMPLATE}
+                )
     else()
         string(REPLACE "$ICON_EXT$" ".png"
             DEAR_MY_PROF_GUI_PACKAGE_TEMPLATE ${DEAR_MY_PROF_GUI_PACKAGE_TEMPLATE}
@@ -57,11 +61,6 @@ else()
     # Write result to package.json
     file(WRITE ${DEAR_MY_PROF_GUI_OUTPUT}/package.json
         ${DEAR_MY_PROF_GUI_PACKAGE_TEMPLATE}
-    )
-
-    # Copy prepare_asset.py
-    file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/prepare_asset.py
-        DESTINATION ${DEAR_MY_PROF_GUI_OUTPUT}
     )
     
     # Configure node
@@ -88,7 +87,6 @@ else()
         COMMAND ${CMAKE_COMMAND} -E copy
                 ${CMAKE_BINARY_DIR}/bind_out/dear-my-prof-bind.node
                 ${DEAR_MY_PROF_GUI_OUTPUT}/Script/dear-my-prof-bind.node
-        COMMAND ${Python_EXECUTABLE} "prepare_asset.py"
         COMMAND ${DEAR_MY_PROF_GUI_NPM} "run" "export"
         WORKING_DIRECTORY ${DEAR_MY_PROF_GUI_OUTPUT}
     )
