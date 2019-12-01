@@ -16,12 +16,29 @@ body {
   padding: 0px;
 }
 
+#title-bar {
+  display: inline-block;
+  height: 28px;
+  width: 100%;
+  -webkit-app-region: drag;
+}
+
+#title-bar-body {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  line-height: 28px;
+  font-size: 14px;
+  transition: background-color 0.5s;
+  color: white;
+}
+
 #container-outer {
   display: table;
   position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
+  top: 28px;
+  left: 0px;
+  height: calc(100% - 28px);
   width: 100%;
 }
 
@@ -32,7 +49,6 @@ body {
 }
 
 #container-inner {
-  display: inline-block;
   margin-left: auto;
   margin-right: auto;
 }
@@ -70,7 +86,7 @@ body {
 
 #content>.body {
   display: block;
-  height: calc(100% - 80px);
+  height: calc(100% - 140px);
   overflow-y: scroll;
   padding: 15px;
 }
@@ -194,7 +210,7 @@ body {
 
 .content-list .item * {
   display: block;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 .content-list .item .inner {
@@ -222,6 +238,11 @@ body {
 }
 
 @media all and (min-width: 800px) {
+  
+  .big {
+    height: calc(100vh - 100px);
+  }
+  
   #action {
     width: 100px;
     min-width: 100px;
@@ -254,6 +275,7 @@ body {
   .content-list .item .body {
     width: calc(60% - 48px);
   }
+
 }
 
 .asset-icon {
@@ -262,4 +284,9 @@ body {
 
 .asset-plus {
   background-image: url('../Asset/Plus.png');
+}
+
+.asset-background {
+  background: url('../Asset/Background.jpg') no-repeat center center fixed;
+  background-size: cover;
 }
