@@ -128,6 +128,11 @@ body {
   margin: 0px;
   padding: 5px 10px 5px 10px;
   background-color: white;
+  background-image: linear-gradient(90deg, white, transparent 5%, transparent 95%, white);
+}
+
+.form .field .transition {
+  transition: background-color 0.5s ease;
 }
 
 .form .field .inner .desc {
@@ -142,7 +147,15 @@ body {
 }
 
 .form .field .inner:focus-within {
-  background-image: linear-gradient(90deg, white, azure 5%, azure 95%, white);
+  background-color: azure;
+}
+
+.form .value-error .inner {
+  background-color: pink;
+}
+
+.form .value-error .inner:focus-within {
+  background-color: pink;
 }
 
 .form .field .inner .value:focus {
