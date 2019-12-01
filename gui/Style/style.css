@@ -58,13 +58,26 @@ body {
   padding: 10px 10px 10px 10px;
   box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
   text-align: left;
-  overflow-y: scroll;
 }
 
 #content>.title {
+  display: block;
   font-size: 40px;
   font-weight: bold;
-  margin-left: 10px;
+  padding: 15px;
+  margin-left: 5px;
+}
+
+#content>.body {
+  display: block;
+  height: calc(100% - 80px);
+  overflow-y: scroll;
+  padding: 15px;
+}
+
+#content>.body::-webkit-scrollbar {
+  width: 0px;
+  display: hidden;
 }
 
 .icon {
