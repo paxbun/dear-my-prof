@@ -1,4 +1,5 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
+const bind = require('./dear-my-prof-bind.node');
 
 function newPosition() {
     let pos = BrowserWindow.getFocusedWindow().getPosition();
@@ -16,6 +17,10 @@ function createRootWindow() {
         minHeight: 600,
         frame: false
     });
+    rootWindow.loadFile('./View/login.html');
+}
+
+function login(id, pw) {
     rootWindow.loadFile('./View/root.html');
 }
 
@@ -68,10 +73,10 @@ function createNewEmailWindow() {
 
 app.on('ready', createRootWindow);
 
-ipcMain.on('create-detail-window', function(event, arg) {
+ipcMain.on('login', function(event, arg) {
+    login(arg.id, arg.pw);
+}).on('create-detail-window', function(event, arg) {
     createDetailWindow(arg.dataId);
-});
-
-ipcMain.on('create-new-email-window', function(event, arg) {
+}).on('create-new-email-window', function(event, arg) {
     createNewEmailWindow();
 });
