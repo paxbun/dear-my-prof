@@ -1,23 +1,37 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>받은 메일함</title>
-    <script src="root.js"></script>
-    <link rel="stylesheet" type="text/css" href="../Style/style.css">
+  <title>메일함</title>
+  <script src="root.js"></script>
+  <link rel="stylesheet" type="text/css" href="../Style/style.css">
 </head>
 <body>
-    <div id="container">
-        <div id="action-bar">
-            <div class="button" onclick="newEmail()"></div>
-            <div class="button" onclick="foo()"></div>
-            <div class="button"></div>
+<div id="container-outer">
+  <div id="container-middle">
+    <div id="container-inner">
+      <div id="action">
+        <div class="button">
+          <div class="icon asset-plus"></div>
         </div>
-        <div id="title-bar">
-            받은 메일함
+        <div class="button">
+          <div class="icon asset-plus"></div>
         </div>
-        <div id="content">
-            <li id="content-list"></li>
-        </div>
+      </div>
+      <div class="big" id="content">
+        <div class="title">메일함</div>
+        <ul class="content-list">
+          <li class="item">
+            <div class="inner">
+              <span class="title">Title</span>
+              <span class="subtitle">Subtitle</span>
+              <span class="body">Body</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div id="right-margin"></div>
     </div>
+  </div>
+</div>
 </body>
 </html>
