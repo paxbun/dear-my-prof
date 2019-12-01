@@ -12,6 +12,8 @@ function createRootWindow() {
             devTools: false,
             nodeIntegration: true
         },
+        minWidth: 500,
+        minHeight: 600,
         frame: false
     });
     rootWindow.loadFile('./View/root.html');
