@@ -2,21 +2,39 @@ const { app, BrowserWindow, ipcMain } = require('electron');
 const bind = require('./dear-my-prof-bind.node');
 
 function newPosition() {
-    let pos = BrowserWindow.getFocusedWindow().getPosition();
-    return { x : pos[0] + 22, y : pos[1] + 22 };
+    let focused = BrowserWindow.getFocusedWindow();
+    if (focused == null)
+        return { x: null, y: null};
+    else {
+        let pos = focused.getPosition();
+        return { x : pos[0] + 22, y : pos[1] + 22 };
+    }
+}
+
+function createWindow(args) {
+    let addArgs = args;
+    if (addArgs === undefined)
+        addArgs = [];
+
+    let pos = newPosition();
+    
+    return new BrowserWindow({
+        webPreferences: {
+            devTools: false,
+            nodeIntegration: true,
+            additionalArguments: addArgs
+        },
+        minWidth: 500,
+        minHeight: 600,
+        x: pos.x,
+        y: pos.y,
+        frame: false
+    });
 }
 
 let rootWindow = null;
 function createRootWindow() {
-    rootWindow = new BrowserWindow({
-        webPreferences: {
-            devTools: false,
-            nodeIntegration: true
-        },
-        minWidth: 500,
-        minHeight: 600,
-        frame: false
-    });
+    rootWindow = createWindow();
     rootWindow.loadFile('./View/login.html');
 }
 
@@ -29,17 +47,7 @@ function createDetailWindow(dataId) {
     if (detailWindows.hasOwnProperty(dataId)) {
         detailWindows[dataId].focus();
     } else {
-        let pos = newPosition();
-        let newWindow = new BrowserWindow({
-            webPreferences: {
-                devTools: false,
-                nodeIntegration: true,
-                additionalArguments: [`---data-id=${dataId}`]
-            },
-            x: pos.x,
-            y: pos.y,
-            frame: false
-        });
+        let newWindow = createWindow([`---data-id=${dataId}`]);
         newWindow.loadFile('./View/detail.html');
         newWindow.on('close', function() {
             delete detailWindows[dataId];
@@ -54,16 +62,7 @@ function createNewEmailWindow() {
     if (newEmailWindow != null) {
         newEmailWindow.focus();
     } else {
-        let pos = newPosition();
-        newEmailWindow = new BrowserWindow({
-            webPreferences: {
-                devTools: false,
-                nodeIntegration: true
-            },
-            x: pos.x,
-            y: pos.y,
-            frame: false
-        });
+        newEmailWindow = createWindow();
         newEmailWindow.loadFile('./View/newemail.html');
         newEmailWindow.on('close', function() {
             newEmailWindow = null;
