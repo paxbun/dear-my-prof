@@ -74,7 +74,16 @@ function createNewEmailWindow() {
 app.on('ready', createRootWindow);
 
 ipcMain.on('login', function(event, arg) {
-    login(arg.id, arg.pw);
+    setTimeout(() => {
+        login(arg.id, arg.pw);
+    }, 1000);
+}).on('mail-refresh', function(event, arg) {
+    setTimeout(() => {
+        event.reply('mail-refresh-reply', [
+            { title: 'Title', subtitle: 'Subtitle', body: 'Body' },
+            { title: '제목', subtitle: '부제목', body: '본문' }
+        ]);
+    }, 1000);
 }).on('create-detail-window', function(event, arg) {
     createDetailWindow(arg.dataId);
 }).on('create-new-email-window', function(event, arg) {
