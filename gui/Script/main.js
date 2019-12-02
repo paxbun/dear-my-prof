@@ -80,8 +80,8 @@ ipcMain.on('login', function(event, arg) {
 }).on('mail-refresh', function(event, arg) {
     setTimeout(() => {
         event.reply('mail-refresh-reply', [
-            { title: 'Title', subtitle: 'Subtitle', body: 'Body' },
-            { title: '제목', subtitle: '부제목', body: '본문' }
+            { title: 'Title', subtitle: 'Subtitle', body: 'Body', dataId: 'test1' },
+            { title: '제목', subtitle: '부제목', body: '본문', dataId: 'test2' }
         ]);
     }, 1000);
 }).on('create-detail-window', function(event, arg) {
