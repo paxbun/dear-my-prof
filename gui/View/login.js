@@ -32,4 +32,6 @@ window.onload = function() {
 
     common.Field_invokeWithEnter(loginId_dom, login);
     common.Field_invokeWithEnter(loginPw_dom, login);
+
+    common.setTitle('Dear My Professor - 로그인');
 }
