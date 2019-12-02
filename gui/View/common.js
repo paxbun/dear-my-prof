@@ -34,6 +34,15 @@ function Field_preventMultiline(field) {
 }
 module.exports.Field_preventMultiline = Field_preventMultiline;
 
+function Field_preventInput(field) {
+    Field_getValueDom(field).addEventListener('keydown',
+        (event) => {
+            event.preventDefault();
+        }
+    );
+}
+module.exports.Field_preventInput = Field_preventInput;
+
 function Field_invokeWithEnter(field, func) {
     Field_getValueDom(field).addEventListener('keydown',
         (event) => {
