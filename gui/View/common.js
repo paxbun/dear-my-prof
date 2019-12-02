@@ -45,3 +45,29 @@ function Field_setInvalid(field) {
     );
 }
 module.exports.Field_setInvalid = Field_setInvalid;
+
+function newElemWithClass(tagName, className, data) {
+    let dom = document.createElement(tagName);
+    dom.className = className;
+
+    if (typeof(data) === 'string') {
+        let domText = document.createTextNode(data);
+        dom.appendChild(domText);
+    } else {
+        for (let i in data) dom.appendChild(data[i]);
+    }
+
+    return dom;
+}
+module.exports.newElemWithClass = newElemWithClass;
+
+function ItemThree_new(title, subtitle, body) {
+    return newElemWithClass('li', 'item-three',
+        newElemWithClass('div', 'inner', [
+            newElemWithClass('span', 'title', title),
+            newElemWithClass('span', 'subtitle', subtitle),
+            newElemWithClass('span', 'body', body)
+        ])
+    );
+}
+module.exports.ItemThree_new = ItemThree_new;
