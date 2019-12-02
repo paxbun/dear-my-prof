@@ -71,3 +71,9 @@ function ItemThree_new(title, subtitle, body) {
     );
 }
 module.exports.ItemThree_new = ItemThree_new;
+
+function setTitle(new_title) {
+    document.title = new_title;
+    document.getElementById('title-bar-body').innerText = new_title;
+}
+module.exports.setTitle = setTitle;
