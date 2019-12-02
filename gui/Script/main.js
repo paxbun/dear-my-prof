@@ -71,6 +71,11 @@ function createNewEmailWindow() {
     }
 }
 
+const emailData = {
+    'test1': { title: 'Title', subtitle: 'Subtitle', body: 'Body' },
+    'test2': { title: '제목', subtitle: '부제목', body: '본문' }
+};
+
 app.on('ready', createRootWindow);
 
 ipcMain.on('login', function(event, arg) {
@@ -79,13 +84,18 @@ ipcMain.on('login', function(event, arg) {
     }, 1000);
 }).on('mail-refresh', function(event, arg) {
     setTimeout(() => {
-        event.reply('mail-refresh-reply', [
-            { title: 'Title', subtitle: 'Subtitle', body: 'Body', dataId: 'test1' },
-            { title: '제목', subtitle: '부제목', body: '본문', dataId: 'test2' }
-        ]);
+        let arg = [];
+        for (let dataId in emailData) {
+            let data = emailData[dataId];
+            data.dataId = dataId;
+            arg.push(data);
+        }
+        event.reply('mail-refresh-reply', arg);
     }, 1000);
 }).on('create-detail-window', function(event, arg) {
     createDetailWindow(arg.dataId);
 }).on('create-new-email-window', function(event, arg) {
     createNewEmailWindow();
-});
+}).on('detail-refresh', function(event, arg) {
+    event.reply('detail-refresh-reply', emailData[arg.dataId]);
+})
