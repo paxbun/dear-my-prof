@@ -1,74 +1,25 @@
 const { ipcRenderer } = require('electron');
+const common = require('./common.js');
 
-var contentList;
+let mailList_dom = null;
 
-function createDivWithClass(data, className) {
-    
-    let dom = document.createElement('div');
-    dom.className = className;
-    
-    if (typeof(data) === 'string') {
-        let domText = document.createTextNode(data);
-        dom.appendChild(domText);
-    } else {
-        for (let i in data) dom.appendChild(data[i]);
+function refreshMailList() {
+    common.setLoading();
+    ipcRenderer.send('mail-refresh');
+}
+
+window.onload = function () {
+    mailList_dom = document.getElementById('mail-list');
+    common.setTitle('Dear My Professor - 메일함');
+    refreshMailList();
+}
+
+ipcRenderer.on('mail-refresh-reply', (event, arg) => {
+    for (let i in arg) {
+        mailList_dom.appendChild(
+            common.ItemThree_new(arg[i].title, arg[i].subtitle, arg[i].body)
+        );
     }
 
-    return dom;
-}
-
-function addElement(title, subtitle, body) {
-
-    let innerDom = createDivWithClass([
-        createDivWithClass(title, 'title'),
-        createDivWithClass(subtitle, 'subtitle'),
-        createDivWithClass(body, 'body')],
-        'inner'
-    );
-    
-    let dataId = Math.random().toString(36).substring(2);
-
-    let liDom = document.createElement('li');
-    liDom.className = 'content-list-item';
-    liDom.appendChild(innerDom);
-    liDom.setAttribute('data-id', dataId);
-    liDom.onclick = function() {
-        ipcRenderer.send('create-detail-window', {
-            dataId: dataId,
-            title: title,
-            subtitle: subtitle,
-            body: body
-        });
-    }
-
-    contentList.appendChild(liDom);
-
-    return dataId;
-}
-
-function removeElement(dataId) {
-    for (let i = 0; i < contentList.children.length; ++i) {
-        if (contentList.children[i].getAttribute('data-id') == dataId) {
-            contentList.removeChild(contentList.children[i]);
-            break;
-        }
-    }
-}
-
-function newEmail() {
-    ipcRenderer.send('create-new-email-window');
-}
-
-function onReady() {
-    contentList = document.getElementById('content-list');
-}
-
-window.onload = onReady;
-
-function foo() {
-    return addElement(
-        '홍길동',
-        '이번 과제 공지',
-        '안녕하세요, 홍길동 교수입니다. 이번 프로젝트 과제를 공지합니다.'
-    );
-}
+    common.unsetLoading();
+});
