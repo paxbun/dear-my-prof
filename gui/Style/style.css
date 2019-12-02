@@ -118,19 +118,25 @@ body {
   text-align: left;
 }
 
-#content-only {
+#content {
   display: inline-block;
   background-color: white;
   padding: 10px 10px 10px 10px;
   box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
 }
 
-#content {
-  display: inline-block;
-  background-color: white;
-  padding: 10px 10px 10px 10px;
-  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+#content.left {
   text-align: left;
+}
+
+#content.middle {
+  min-width: 400px;
+}
+
+#content.big {
+  width: calc(100vw - 300px);
+  min-width: 400px;
+  height: calc(100vh - 200px);
 }
 
 #content>.title {
@@ -157,16 +163,6 @@ body {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-}
-
-.middle {
-  min-width: 400px;
-}
-
-.big {
-  width: calc(100vw - 300px);
-  min-width: 400px;
-  height: calc(100vh - 200px);
 }
 
 .form .title {
@@ -323,7 +319,7 @@ body {
     min-width: 100px;
   }
 
-  #content {
+  #content.with-menu {
     margin-right: 50px;
   }
 
