@@ -88,11 +88,11 @@ module.exports.newElemWithClass = newElemWithClass;
 
 function ItemThree_new(title, subtitle, body) {
     return newElemWithClass('li', 'item-three',
-        newElemWithClass('div', 'inner', [
+        [newElemWithClass('div', 'inner', [
             newElemWithClass('span', 'title', title),
             newElemWithClass('span', 'subtitle', subtitle),
             newElemWithClass('span', 'body', body)
-        ])
+        ])]
     );
 }
 module.exports.ItemThree_new = ItemThree_new;
