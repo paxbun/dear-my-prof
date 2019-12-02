@@ -1,9 +1,15 @@
+function documentPreventInput(event) {
+    event.preventDefault();
+}
+
 function setLoading() {
+    document.addEventListener('keydown', documentPreventInput);
     document.getElementById('loading').classList.add('loading');
 }
 module.exports.setLoading = setLoading;
 
 function unsetLoading() {
+    document.removeEventListener('keydown', documentPreventInput);
     document.getElementById('loading').classList.remove('loading');
 }
 module.exports.unsetLoading = unsetLoading;
