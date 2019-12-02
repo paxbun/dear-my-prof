@@ -1,3 +1,13 @@
+function setLoading() {
+    document.getElementById('loading').classList.add('loading');
+}
+module.exports.setLoading = setLoading;
+
+function unsetLoading() {
+    document.getElementById('loading').classList.remove('loading');
+}
+module.exports.unsetLoading = unsetLoading;
+
 function Field_addTransition(field) {
     field.firstElementChild.classList.add('transition');
 }
