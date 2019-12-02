@@ -35,3 +35,8 @@ window.onload = function() {
 
     common.setTitle('Dear My Professor - 로그인');
 }
+
+ipcRenderer.on('login-failed', (event, arg) => {
+    common.Field_setInvalid(loginId_dom);
+    common.Field_setInvalid(loginPw_dom);
+});
