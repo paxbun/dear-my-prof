@@ -16,6 +16,7 @@ function login() {
             common.Field_setInvalid(loginPw_dom);
         }
     } else {
+        common.setLoading();
         ipcRenderer.send('login', {
             id: common.Field_getValue(loginId_dom),
             pw: common.Field_getValue(loginPw_dom)
@@ -39,4 +40,5 @@ window.onload = function() {
 ipcRenderer.on('login-failed', (event, arg) => {
     common.Field_setInvalid(loginId_dom);
     common.Field_setInvalid(loginPw_dom);
+    common.unsetLoading();
 });
