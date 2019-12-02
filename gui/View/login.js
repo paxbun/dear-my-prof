@@ -1,35 +1,35 @@
 const { ipcRenderer } = require('electron');
 const common = require('./common.js');
 
-let loginID_dom = null;
-let loginPW_dom = null;
+let loginId_dom = null;
+let loginPw_dom = null;
 
 function login() {
-    let id = common.Field_getValue(loginID_dom);
-    let pw = common.Field_getValue(loginPW_dom);
+    let id = common.Field_getValue(loginId_dom);
+    let pw = common.Field_getValue(loginPw_dom);
 
     if (!id || !pw) {
         if (!id) {
-            common.Field_setInvalid(loginID_dom);
+            common.Field_setInvalid(loginId_dom);
         }
         if (!pw) {
-            common.Field_setInvalid(loginPW_dom);
+            common.Field_setInvalid(loginPw_dom);
         }
     } else {
         ipcRenderer.send('login', {
-            id: common.Field_getValue(loginID_dom),
-            pw: common.Field_getValue(loginPW_dom)
+            id: common.Field_getValue(loginId_dom),
+            pw: common.Field_getValue(loginPw_dom)
         });
     }
 }
 
 window.onload = function() {
-    loginID_dom = document.getElementById('login-id');
-    loginPW_dom = document.getElementById('login-pw');
+    loginId_dom = document.getElementById('login-id');
+    loginPw_dom = document.getElementById('login-pw');
 
-    common.Field_addTransition(loginID_dom);
-    common.Field_addTransition(loginPW_dom);
+    common.Field_addTransition(loginId_dom);
+    common.Field_addTransition(loginPw_dom);
 
-    common.Field_invokeWithEnter(loginID_dom, login);
-    common.Field_invokeWithEnter(loginPW_dom, login);
+    common.Field_invokeWithEnter(loginId_dom, login);
+    common.Field_invokeWithEnter(loginPw_dom, login);
 }
