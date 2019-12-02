@@ -147,6 +147,14 @@ body {
   margin-left: 5px;
 }
 
+#content>.subtitle {
+  display: block;
+  font-size: 24px;
+  font-weight: medium;
+  padding: 15px;
+  margin-left: 5px;
+}
+
 #content>.body {
   display: block;
   height: calc(100% - 140px);
