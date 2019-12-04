@@ -1,0 +1,131 @@
+* Project Description
+* Function List
+* Class Design
+
+* 개요
+
+- 교수님께 이메일을 쓰는 걸 어려워 하는 학생들이 많음
+- 이런 학생들을 위해 템플릿에 빈칸을 채워 이메일을 자동완성해주는 이메일 클라이언트를 만들고자 함
+
+* 세부 기능
+
+- 이메일 클라이언트 (이메일 보내고 받는다는 소리이므로 자세히 나갈 필요 없음)
+- 템플릿
+1. 템플릿은 제목 내용으로 이루어져 있음
+2. 템플릿 곳곳에는 빈 칸이 있고, 각각에 빈 칸에는 이름이 부여되어있음
+3. "학생 이름", "교수님 성함", "오늘 날짜" 같은 빈 칸은 프로그램이 빈 칸을 자동으로 채워줌
+4. "사유" 같은 빈 칸은 사용자가 직접 채워야 함
+5. 각각에 빈칸엔 "빈칸이름.변환함수" 같은 방식으로 문자열 변환 함수를 지정할 수 있음
+   "빈칸.이" 에 "가방"을 넣으면 "가방이"가 되고, "먹기"를 넣으면 "먹기가"가 됨
+6. 사용자가 직접 템플릿을 만들 수도 있음
+
+제목: ${질문내용}에 대해
+내용: ${교수님 성함} 교수님께
+     안녕하세요 교수님, ${수업 이름.을} 수강 중인 ${학생 학번}학번 ${학생 이름.이}라고 합니다.
+=>
+제목: ${질문내용}에 대해
+내용: 홍길동 교수님께
+     안녕하세요 교수님, 객체지향 프로그래밍을 수강 중인 19학번 김찬중이라고 합니다.
+
+* 추가 사용 기술
+
+- Electron 사용
+1. Electron은 웹으로 GUI 애플리케이션을 만들 수 있게 해주는 Node.js 패키지이다.
+(Optional) 2. Atom, Visual Studio Code, Skype 등 다양한 애플리케이션이 Electron으로 개발되었다.
+(Optional) 3. Electron은 Main Process와 Renderer Process로 이루어져있다.
+
+* 프로그램 구조 디자인
+
+- MVP 패턴을 사용한다.
+1. View
+ a. Electron 런타임에서 웹페이지가 돌아가고 있기 때문에, 입출력을 HTML에서 처리하여야 한다. (Electron Renderer Process)
+ b. 각각의 HTML 파일을 C++ 쪽에서 처리하기 위해 HTML 파일에 대응되는 클래스 View를 만든다.
+ c. App은 Electron 런타임에서 이벤트를 받아 적절한 C++ View 인스턴스로 넘겨주고,
+   C++ View 인스턴스에서 보낸 정보를 적절한 HTML 파일로 넘겨준다. (Electron Main Process)
+2. Process
+ a. 이제 View는 JS 이벤트를 처리할 수 있다. 각각에 View 인스턴스는 여러 개의 Presenter를 가진다.
+ b. View는 특정한 이벤트에 특정한 Presenter를 바인딩하고, Presenter에 자신을 바인딩한다.
+ c. 이를 통해 특정한 View Element의 변경에 Presenter가 반응하고, Presenter의 신호에 View Element가 반응하게 할 수 있다.
+ d. Presenter는 Child Window를 만들 수 있다.
+3. Model
+ a. 이메일 보내기, 템플릿 관리 처럼 데이터에 관련된 처리는 Model에서 이루어진다.
+ b. Presenter는 Model들의 메소드를 호출하여 Model을 조작하고, Model의 메소드를 호출하여 Model의 변경된 데이터를 가져와
+    View로 보낸다.
+
+- Singleton 패턴을 사용한다.
+1. 로그인 정보, 이메일 목록, 템플릿 목록 등은 프로그램 내에서 여러개를 만들지 않을 것이다.
+
+- Observer 패턴을 사용한다.
+1. 이 프로그램은 멀티 윈도우 프로그램이다.
+2. 어떤 View에서 사용하는 값이 다른 View에서도 사용하는 값이라고 하자.
+3. 사용자가 어떤 View를 값을 변경하였을 때, 다른 View에도 그 값이 반영되도록 다른 View의 Presenter를 호출하여야 한다.
+4. 그런데 다른 View의 Presenter를 호출하도록 하는 건 프로그램의 구조를 복잡하게 만들고, Presenter간 coupling을 높인다.
+5. 값이 다른 윈도우에서도 변경될 수 있는 경우, 그 Presenter가 Observer가 되도록 하고 그 값을 Subject로 만든다.
+
+   V1      V2
+    |      |
+   P1      P2(Observer)
+    |      |
+    \      /
+     \    /
+      \  /
+      Value(Subject)
+
+ a. V1에 대응된 html에서 값 변경 버튼을 누른다.
+ b. V1에 신호가 간다.
+ c. V1은 그 신호가 바인딩된 P1으로 신호를 보낸다.
+ d. P1는 Value의 수정 함수를 호출하여 값을 변경하고, 그 값을 V1으로 보낸다.
+ e. Value의 수정 함수가 호출되었을 때, Value는 Observer로 등록된 P2에게 자신의 변경을 알린다.
+ f. P2는 변경된 값을 V2로 보낸다.
+ g. 이런 방식으로 여러 윈도우에 사용되는 값이 모든 윈도우에서 동일하게 반영되도록 한다.
+
+* 클래스 소개
+
+- View, Presenter
+1. LoginView (login.html)
+ a. ID, PW, 학번, 이름 입력 (LoginPresenter)
+
+2. RootView (root.html)
+ a. 이메일 목록 (EmailListPresenter)
+ b. 목록의 아이템을 클릭하면 DetailView 자식 윈도우에 표시 (OpenDetailPresenter)
+ c. 새 이메일 버튼 누르면 NewEmailView 자식 윈도우에 표시 (OpenNewEmailPresenter)
+ d. 템플릿 목록 버튼 누르면 TemplateListView 자식 윈도우에 표시 (OpenTemplatePresenter)
+
+3. DetailView (detail.html)
+ a. 이메일 세부 정보 표시 (DetailEmailPresenter)
+
+4. NewEmailView (newemail.html)
+ a. 템플릿을 선택할 수 있음 (TemplateListPresenter)
+ b. 템플릿에 빈칸을 채울 수 있음 (TemplatePresenter, TemplateListPresenter)
+ c. 이메일을 보낼 수 있음 (SendEmailPresenter)
+
+5. TemplateListView (template.html)
+ a. 템플릿 목록 (TemplateListPresenter)
+ b. 목록의 아이템을 클릭하면 DetailTemplateView 자식 윈도우에 표시 (OpenDetailTemplatePresenter)
+ c. 새 템플릿 버튼 누르면 NewTemplateView 자식 윈도우에 표시 (OpenNewTemplatePresenter)
+
+6. DetailTemplateView (detailtemplate.html)
+ a. 템플릿 세부 정보 표시 (DetailTemplatePresenter)
+
+7. NewTemplateView (newtemplate.html)
+ a. 템플릿을 만들 수 있음 (SaveTemplatePresenter)
+
+- Model
+1. ConnectionManager: 로그인 정보, 학번 정보 저장
+2. Email: 하나의 이메일 정보 저장
+3. EmailList: 모든 이메일 정보 저장
+4. Template: 하나의 템플릿 정보 저장
+5. TemplateList: 모든 템플릿 정보 저장
+
+- Miscellaneous
+1. App: 윈도우 생성, 뷰 전환, 뷰 아이디 반환, HTML로 정보 전송 등을 추상화
+2. ElectronApp: App 인터페이스 구현
+3. HasApp: App 인스턴스 레퍼런스 Getter 제공
+4. Observer/Subject: 설명 생략
+5. Args: HTML에서 View/Presenter로 전달되는 데이터를 저장하는 클래스
+   a. string을 키로 하고, value로 int, bool, string 사용 가능
+6. TemplateString: 빈칸이 뚫려 있고 채울 수 있는 문자열 클래스 (Template에서 사용)
+7. StringTransform: 문자열 변환 함수 추상화
+8. StringTransformFactory: 문자열 변환 함수의 이름을 넣으면 변환 함수 반환
+   e.g. "은", "는" -> ThemeStringTransformFactory
+        "이", "가" -> SubjectStringTransformFactory
