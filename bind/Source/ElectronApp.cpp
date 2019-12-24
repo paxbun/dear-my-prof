@@ -4,6 +4,8 @@
 #include <bind/Conversions.hpp>
 #include <bind/ElectronApp.hpp>
 
+Napi::FunctionReference ElectronApp::_ctor;
+
 void ElectronApp::Navigate(View* current_view, View* new_view)
 {
     auto it = _view2id.find(current_view);
