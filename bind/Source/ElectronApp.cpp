@@ -19,6 +19,9 @@ void ElectronApp::Navigate(View* current_view, View* new_view)
         it2->second = new_view;
         delete current_view;
 
+        UseApp(new_view);
+        new_view->Start();
+
         _navigate.Call({ Napi::Number::New(_env, id),
                          Napi::String::New(_env, new_view->viewName()) });
     }
