@@ -80,12 +80,9 @@ class App
 
     /*
         애플리케이션이 실행되었을 때, 초기 뷰를 설정하기 위해 실행됩니다. 이
-        함수는 초기에 표시될 뷰 객체를 만들어 반환하여야 합니다.
-
-        Return Value
-        초기 뷰를 반환합니다.
+        함수는 NewWindow 함수를 통해 표시될 뷰 객체를 등록하여야합니다.
     */
-    virtual View* Start() = 0;
+    virtual void Start() = 0;
 
     /*
         주어진 HasApp 객체에 이 객체를 등록합니다. App이 필요한 객체가 잘못된
