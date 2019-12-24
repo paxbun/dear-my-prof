@@ -3,6 +3,13 @@ const bind = require('./dear-my-prof-bind.node');
 
 let windows = {}
 
+let binding = new bind.CppImpl({
+    "navigate": navigate,
+    "newWindow": newWindow,
+    "close": close,
+    "output": output
+});
+
 function newPosition() {
     let focused = BrowserWindow.getFocusedWindow();
     if (focused === null)
@@ -33,10 +40,11 @@ function newWindow(newViewName, args, parent) {
         frame: false
     });
     let id = win.webContents.id;
+    win.webContents.on('ipc-message', function (event, channel, arg) {
+        binding.input(id, channel, arg);
+    });
     windows[id] = win;
-    
     navigate(id, newViewName);
-
     return id;
 }
 
@@ -47,13 +55,6 @@ function close(currentWin) {
 function output(currentWin, responseName, responseArgs) {
     windows[currentWin].webContents.send(responseName, responseArgs);
 }
-
-let binding = new bind.CppImpl({
-    "navigate": navigate,
-    "newWindow": newWindow,
-    "close": close,
-    "output": output
-});
 
 app.on('ready', function (event, arg) {
     binding.start(newWindow);
