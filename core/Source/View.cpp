@@ -1,6 +1,7 @@
 // Copyright (c) 2019 Dear My Professor Authors
 // Author: paxbun
 
+#include <core/App.hpp>
 #include <core/View.hpp>
 
 void View::Input(std::string const& event_name, Args const& event_args)
