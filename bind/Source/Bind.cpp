@@ -1,13 +1,10 @@
 #include <bind/Bind.hpp>
+#include <bind/ElectronApp.hpp>
 
 Napi::Object InitAll(Napi::Env env, Napi::Object exports)
 {
-    exports.Set("hello",
-                Napi::Function::New(
-                    env, [](const Napi::CallbackInfo& info) -> Napi::String {
-                        return Napi::String::New(info.Env(), "Hello, world!");
-                    }));
+    ElectronApp::Init(env, exports);
     return exports;
 }
 
-NODE_API_MODULE(foo, InitAll)
+NODE_API_MODULE(bind, InitAll)
