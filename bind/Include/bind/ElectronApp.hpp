@@ -61,12 +61,12 @@ class ElectronApp : public App, public Napi::ObjectWrap<ElectronApp>
     /*
         자바스크립트에서 App::Start를 호출하기 위한 함수입니다.
     */
-    Napi::Value Start(Napi::CallbackInfo const& info);
+    Napi::Value _Start(Napi::CallbackInfo const& info);
 
     /*
         자바스크립트에서 이벤트가 발생했을 때 호출하는 함수입니다.
     */
-    Napi::Value Input(Napi::CallbackInfo const& info);
+    Napi::Value _Input(Napi::CallbackInfo const& info);
 };
 
 #endif

@@ -130,13 +130,13 @@ ElectronApp::ElectronApp(Napi::CallbackInfo const& info)
     _output    = obj.Get("output").As<Napi::Function>();
 }
 
-Napi::Value ElectronApp::Start(Napi::CallbackInfo const& info)
+Napi::Value ElectronApp::_Start(Napi::CallbackInfo const& info)
 {
     App::Start();
     return Napi::Value();
 }
 
-Napi::Value ElectronApp::Input(Napi::CallbackInfo const& info)
+Napi::Value ElectronApp::_Input(Napi::CallbackInfo const& info)
 {
     // TODO
     return Napi::Value();
