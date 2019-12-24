@@ -3,6 +3,7 @@
 
 add_library(dear-my-prof-core STATIC
     Source/Core.cpp
+    Source/StringTransformFactory.cpp
 )
 target_link_libraries(dear-my-prof-core
     PUBLIC dear-my-prof-plat-defs
