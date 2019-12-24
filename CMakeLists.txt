@@ -49,6 +49,9 @@ find_package(Python 3 EXACT REQUIRED COMPONENTS
     Interpreter
 )
 
+# Find nlohmann-json
+find_package(nlohmann_json CONFIG REQUIRED)
+
 add_subdirectory(core)
 add_subdirectory(bind)
 add_subdirectory(gui)

@@ -8,6 +8,7 @@ add_library(dear-my-prof-core STATIC
 )
 target_link_libraries(dear-my-prof-core
     PUBLIC dear-my-prof-plat-defs
+    PUBLIC nlohmann_json nlohmann_json::nlohmann_json
 )
 target_include_directories(dear-my-prof-core
     PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/Public
