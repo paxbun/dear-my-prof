@@ -14,6 +14,11 @@
 */
 class Presenter
 {
+    /*
+        View 클래스는 Presenter 클래스의 _view 멤버 변수에 접근할 수 있습니다.
+    */
+    friend class View;
+
   private:
     View* _view;
 
@@ -27,11 +32,7 @@ class Presenter
     }
 
   public:
-    /*
-        Parameters
-        view: Presenter에 바인딩될 뷰입니다.
-    */
-    Presenter(View* view) : _view(view) {}
+    Presenter() : _view(nullptr) {}
 
   public:
     /*
