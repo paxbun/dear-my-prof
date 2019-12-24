@@ -12,7 +12,12 @@ void View::Input(std::string const& event_name, Args const& event_args)
 
 void View::Bind(std::string const& event_name, Presenter* presenter)
 {
-    _bindMap.insert(std::make_pair(event_name, presenter));
+    if (auto h_app = app(); h_app)
+    {
+        _bindMap.insert(std::make_pair(event_name, presenter));
+        h_app->UseApp(presenter);
+        presenter->_view = this;
+    }
 }
 
 void View::Output(std::string const& response_name, Args const& response_args)
