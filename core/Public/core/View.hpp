@@ -23,6 +23,17 @@ class View : public HasApp
     Args                              _creationArgs;
 
   public:
+    std::string const& viewName()
+    {
+        return _viewName;
+    }
+
+    Args const& creationFlags()
+    {
+        return _creationArgs;
+    }
+
+  public:
     /*
         Parameters
         view_name: 사용할 뷰의 이름입니다.
