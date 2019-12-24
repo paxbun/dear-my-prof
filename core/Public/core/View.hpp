@@ -43,7 +43,9 @@ class View : public HasApp
     View(std::string&&                       view_name,
          std::map<std::string, Presenter*>&& bind_map,
          Args&&                              creation_args = Args())
-        : _viewName(view_name), _bindMap(bind_map), _creationArgs(creation_args)
+        : _viewName(std::move(view_name)),
+          _bindMap(std::move(bind_map)),
+          _creationArgs(std::move(creation_args))
     {}
 
     virtual ~View() {}
