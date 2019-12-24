@@ -18,7 +18,7 @@ function createWindow(args) {
 
     let pos = newPosition();
     
-    return new BrowserWindow({
+    let win = new BrowserWindow({
         webPreferences: {
             devTools: false,
             nodeIntegration: true,
@@ -30,6 +30,8 @@ function createWindow(args) {
         y: pos.y,
         frame: false
     });
+
+    return win;
 }
 
 let rootWindow = null;

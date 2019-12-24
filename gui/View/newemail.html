@@ -1,23 +1,36 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>새 메일</title>
-    <script src="newemail.js"></script>
-    <link rel="stylesheet" type="text/css" href="../Style/style.css">
+  <title></title>
+  <script src="newemail.js"></script>
+  <link rel="stylesheet" type="text/css" href="../Style/style.css">
 </head>
-<body>
-    <div id="container">
-        <div id="action-bar">
-            <div class="button"></div>
-            <div class="button"></div>
-            <div class="button"></div>
+<body class="asset-background" >
+<div id="container-outer">
+  <div id="container-middle">
+    <div id="container-inner">
+      <div id="action">
+        <div class="button" onclick="sendEmail();">
+          <div class="icon asset-send"></div>
         </div>
-        <div id="title-bar">
-            새 메일
+      </div>
+      <div class="big left with-menu" id="content">
+        <span class="title">메일함</span>
+        <div class="body">
+          <ul class="content-list" id="mail-list">
+          </ul>
         </div>
-        <div id="content">
-            <li id="content-list"></li>
-        </div>
+      </div>
     </div>
+  </div>
+</div>
+<div id="loading">
+  <div id="loading-middle">
+    <div class="lds-ripple"><div></div><div></div></div>
+  </div>
+</div>
+<div id="title-bar">
+  <div id="title-bar-body"></div>
+</div>
 </body>
 </html>
