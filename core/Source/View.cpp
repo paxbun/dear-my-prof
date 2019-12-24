@@ -4,20 +4,19 @@
 #include <core/App.hpp>
 #include <core/View.hpp>
 
+void View::Start()
+{
+    for (auto const& binding : _bindMap)
+    {
+        app()->UseApp(binding.second);
+        binding.second->_view = this;
+    }
+}
+
 void View::Input(std::string const& event_name, Args const& event_args)
 {
     if (auto it = _bindMap.find(event_name); it != _bindMap.end())
         it->second->Input(event_name, event_args);
-}
-
-void View::Bind(std::string const& event_name, Presenter* presenter)
-{
-    if (auto h_app = app(); h_app)
-    {
-        _bindMap.insert(std::make_pair(event_name, presenter));
-        h_app->UseApp(presenter);
-        presenter->_view = this;
-    }
 }
 
 void View::Output(std::string const& response_name, Args const& response_args)

@@ -12,8 +12,8 @@
 #include <string>
 
 /*
-    View 인터페이스는 하나의 뷰를 표현합니다. 주어진 이벤트를 알맞은
-   Presenter에게 전달해주는 역할을 합니다.
+    View 클래스는 하나의 뷰를 표현합니다. 주어진 이벤트를 알맞은
+    Presenter에게 전달해주는 역할을 합니다.
 */
 class View : public HasApp
 {
@@ -26,10 +26,13 @@ class View : public HasApp
     /*
         Parameters
         view_name: 사용할 뷰의 이름입니다.
+        bind_map: 이벤트와 프레젠터 바인딩 정보입니다.
         creation_args: 뷰를 생성할 때 추가로 넘길 인자입니다.
     */
-    View(std::string const& view_name, Args const& creation_args)
-        : _viewName(view_name), _creationArgs(creation_args)
+    View(std::string&&                       view_name,
+         std::map<std::string, Presenter*>&& bind_map,
+         Args&&                              creation_args = Args())
+        : _viewName(view_name), _bindMap(bind_map), _creationArgs(creation_args)
     {}
 
     virtual ~View() {}
@@ -37,11 +40,10 @@ class View : public HasApp
   public:
     /*
         Start는 App이 뷰를 표시하기 시작했을 때 호출합니다. Presenter의 바인딩은
-        이 함수의 구현에서 이루어져야 합니다.
+        이 함수의 구현에서 이루어집니다.
     */
-    virtual void Start() = 0;
+    void Start();
 
-  public:
     /*
         Input은 뷰에서 이벤트가 발생되었을 때 호출됩니다. 이 함수는 알맞은
         Presenter에게 이벤트를 전달해주어야 합니다.
@@ -51,15 +53,6 @@ class View : public HasApp
         event_args: 이벤트와 함께 전달받은 인자입니다.
     */
     void Input(std::string const& event_name, Args const& event_args);
-
-    /*
-        주어진 이벤트를 해당 Presenter에 바인딩합니다.
-
-        Parameters
-        event_name: 이벤트의 이름입니다.
-        presenter: 바인딩할 Presenter입니다.
-    */
-    void Bind(std::string const& event_name, Presenter* presenter);
 
     /*
         뷰에게 답변을 전달합니다.
