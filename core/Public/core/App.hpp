@@ -28,7 +28,9 @@ class App
 
   public:
     /*
-        열려있는 창의 뷰를 전환합니다.
+        열려있는 창의 뷰를 전환합니다. App 인터페이스의 구현은 new_view를 계속
+        참조하고있어야 합니다. 이 함수의 호출자는 새 뷰를 동적 할당하여야
+        합니다. current_view는 해제됩니다.
 
         Parameters
         current_view: 현재 열려있는 창에 표시되고 있는 뷰입니다.
@@ -38,7 +40,9 @@ class App
     virtual void Navigate(View* current_view, View* new_view) = 0;
 
     /*
-        새 창을 열고 주어진 뷰를 엽니다.
+        새 창을 열고 주어진 뷰를 엽니다. App 인터페이스의 구현은 new_view를 계속
+        참조하고있어야 합니다. 이 함수의 호출자는 새 뷰를 동적 할당하여야
+        합니다.
 
         Parameters
         new_view: 새로 표시하고 싶은 뷰입니다. 이 뷰는 다른 창에 표시된
@@ -48,7 +52,7 @@ class App
     virtual void NewWindow(View* new_view, View* parent_view = nullptr) = 0;
 
     /*
-        주어진 뷰를 닫습니다.
+        주어진 뷰를 닫습니다. current_view는 해제됩니다.
 
         Parameters
         current_view: 닫고 싶은 창에 표시되고 있는 뷰입니다.
