@@ -92,7 +92,7 @@ class App
     */
     virtual void Output(View*              view,
                         std::string const& response_name,
-                        Args const&        response_args)
+                        Args const&        response_args = Args())
         = 0;
 
   public:

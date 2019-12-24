@@ -52,7 +52,7 @@ class View : public HasApp
         event_name: 이벤트의 이름입니다.
         event_args: 이벤트와 함께 전달받은 인자입니다.
     */
-    void Input(std::string const& event_name, Args const& event_args);
+    void Input(std::string const& event_name, Args const& event_args = Args());
 
     /*
         뷰에게 답변을 전달합니다.
@@ -61,7 +61,8 @@ class View : public HasApp
         response_name: 답변의 이름입니다.
         response_args: 답변과 함께 전달할 인자입니다.
     */
-    void Output(std::string const& response_name, Args const& response_args);
+    void Output(std::string const& response_name,
+                Args const&        response_args = Args());
 };
 
 #endif

@@ -43,7 +43,8 @@ class Presenter : public HasApp
         event_name: 이벤트의 이름입니다.
         event_args: 이벤트와 함께 전달받은 인자입니다.
     */
-    virtual void Input(std::string const& event_name, Args const& args) = 0;
+    virtual void Input(std::string const& event_name, Args const& args = Args())
+        = 0;
 };
 
 #endif
