@@ -9,6 +9,7 @@
 #include <core/View.hpp>
 
 #include <cstddef>
+#include <limits>
 #include <memory>
 #include <string>
 #include <unordered_map>
@@ -27,6 +28,9 @@ class App
         고유한 ID를 가지고 있으며, 표시 중이 아닌 View는 ID가 없습니다.
     */
     using ViewId = size_t;
+
+  public:
+    static constexpr ViewId InvalidId = std::numeric_limits<ViewId>::max();
 
   public:
     /*
@@ -76,7 +80,7 @@ class App
         view: 뷰입니다.
 
         Return Value
-        뷰의 ID를 반환합니다.
+        뷰의 ID를 반환합니다. 뷰의 ID가 없을 경우, InvalidId를 반환합니다.
     */
     virtual ViewId GetIdByView(View* view) = 0;
 
