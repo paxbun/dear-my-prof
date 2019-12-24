@@ -135,6 +135,12 @@ Napi::Value ElectronApp::_Start(Napi::CallbackInfo const& info)
 
 Napi::Value ElectronApp::_Input(Napi::CallbackInfo const& info)
 {
-    // TODO
+    auto id   = static_cast<ViewId>(info[0].ToNumber().Int64Value());
+    auto view = _id2view.at(id);
+
+    auto event_name = std::string(info[1].ToString());
+    auto event_args = Conversions::ConvertObject(_env, info[2].ToObject());
+
+    view->Input(event_name, event_args);
     return Napi::Value();
 }
