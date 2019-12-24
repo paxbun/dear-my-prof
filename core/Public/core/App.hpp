@@ -35,9 +35,7 @@ class App
         new_view: 새로 표시하고 싶은 뷰입니다. 이 뷰는 다른 창에 표시된
         상태여서는 안됩니다.
     */
-    virtual void Navigate(std::weak_ptr<View> current_view,
-                          std::weak_ptr<View> new_view)
-        = 0;
+    virtual void Navigate(View* current_view, View* new_view) = 0;
 
     /*
         새 창을 열고 주어진 뷰를 엽니다.
@@ -47,9 +45,7 @@ class App
         상태여서는 안됩니다.
         parent_view[optional]: 부모 창으로 등록할 이미 열려있는 창입니다.
     */
-    virtual void NewWindow(std::weak_ptr<View> new_view,
-                           std::weak_ptr<View> parent_view = nullptr)
-        = 0;
+    virtual void NewWindow(View* new_view, View* parent_view = nullptr) = 0;
 
     /*
         Parameters
@@ -59,7 +55,7 @@ class App
         주어진 ID를 가진 뷰를 반환합니다. 그런 뷰가 없을 경우, nullptr를
         반환합니다.
     */
-    virtual std::weak_ptr<View> GetViewById(ViewId view_id) = 0;
+    virtual View* GetViewById(ViewId view_id) = 0;
 
     /*
         Parameters
@@ -68,7 +64,7 @@ class App
         Return Value
         뷰의 ID를 반환합니다.
     */
-    virtual ViewId GetIdByView(std::weak_ptr<View> view) = 0;
+    virtual ViewId GetIdByView(View* view) = 0;
 
     /*
         애플리케이션이 실행되었을 때, 초기 뷰를 설정하기 위해 실행됩니다. 이
@@ -77,7 +73,7 @@ class App
         Return Value
         초기 뷰를 반환합니다.
     */
-    virtual std::shared_ptr<View> Start() = 0;
+    virtual View* Start() = 0;
 
     /*
         주어진 HasApp 객체에 이 객체를 등록합니다. App이 필요한 객체가 잘못된
