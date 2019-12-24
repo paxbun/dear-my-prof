@@ -43,15 +43,14 @@ class ElectronApp : public App, public Napi::ObjectWrap<ElectronApp>
                           Args const&        response_args) override;
 
   private:
-    Napi::Function _navigate;
-    Napi::Function _newWindow;
-    Napi::Function _close;
-    Napi::Function _output;
+    Napi::FunctionReference _navigate;
+    Napi::FunctionReference _newWindow;
+    Napi::FunctionReference _close;
+    Napi::FunctionReference _output;
 
     Napi::Env _env;
 
     std::unordered_map<ViewId, View*>        _id2view;
-    std::unordered_map<ViewId, Napi::Object> _id2win;
     std::unordered_map<View*, ViewId>        _view2id;
 
   public:

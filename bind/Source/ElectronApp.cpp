@@ -19,8 +19,8 @@ void ElectronApp::Navigate(View* current_view, View* new_view)
         it2->second = new_view;
         delete current_view;
 
-        _navigate.Call(
-            { _id2win.at(id), Napi::String::New(_env, new_view->viewName()) });
+        _navigate.Call({ Napi::Number::New(_env, id),
+                         Napi::String::New(_env, new_view->viewName()) });
     }
 }
 
@@ -29,31 +29,24 @@ void ElectronApp::NewWindow(View* new_view, View* parent_view)
     auto it = _view2id.find(new_view);
     if (it == _view2id.end())
     {
-        Napi::Object new_win = [&]() {
-            auto it = _view2id.find(parent_view);
-            if (it == _view2id.end())
-                return _newWindow
-                    .Call({ Napi::String::New(_env, new_view->viewName()),
-                            Conversions::ConvertArgs(
-                                _env, new_view->creationArgs()) })
-                    .ToObject();
-            else
-                return _newWindow
-                    .Call({ Napi::String::New(_env, new_view->viewName()),
-                            Conversions::ConvertArgs(_env,
-                                                     new_view->creationArgs()),
-                            _id2win.at(it->second) })
-                    .ToObject();
-        }();
+        Napi::Value new_win;
 
-        auto new_id = static_cast<ViewId>(new_win.Get("webContents")
-                                              .ToObject()
-                                              .Get("id")
-                                              .ToNumber()
-                                              .Int64Value());
+        auto it = _view2id.find(parent_view);
+        if (it == _view2id.end())
+        {
+            new_win = _newWindow.Call(
+                { Napi::String::New(_env, new_view->viewName()),
+                  Conversions::ConvertArgs(_env, new_view->creationArgs()) });
+        }
+        else
+            new_win = _newWindow.Call(
+                { Napi::String::New(_env, new_view->viewName()),
+                  Conversions::ConvertArgs(_env, new_view->creationArgs()),
+                  Napi::Number::New(_env, it->second) });
+
+        auto new_id = static_cast<ViewId>(new_win.ToNumber().Int64Value());
 
         _id2view.insert(std::make_pair(new_id, new_view));
-        _id2win.insert(std::make_pair(new_id, new_win));
         _view2id.insert(std::make_pair(new_view, new_id));
     }
 }
@@ -68,8 +61,7 @@ void ElectronApp::Close(View* current_view)
         _id2view.erase(id);
         delete current_view;
 
-        _navigate.Call({ _id2win.at(id) });
-        _id2win.erase(id);
+        _navigate.Call({ Napi::Number::New(_env, id) });
     }
 }
 
@@ -98,7 +90,7 @@ void ElectronApp::Output(View*              view,
     auto it = _view2id.find(view);
     if (it != _view2id.end())
     {
-        auto win = _id2win.at(it->second);
+        auto win = Napi::Number::New(_env, it->second);
         _output.Call({ win,
                        Napi::String::New(_env, response_name),
                        Conversions::ConvertArgs(_env, response_args) });
@@ -128,12 +120,11 @@ ElectronApp::ElectronApp(Napi::CallbackInfo const& info)
 {
     Napi::HandleScope scope(_env);
 
-    auto obj = info[0].ToObject();
-
-    _navigate  = obj.Get("navigate").As<Napi::Function>();
-    _newWindow = obj.Get("newWindow").As<Napi::Function>();
-    _close     = obj.Get("close").As<Napi::Function>();
-    _output    = obj.Get("output").As<Napi::Function>();
+    auto obj   = info[0].ToObject();
+    _navigate  = Napi::Persistent(obj.Get("navigate").As<Napi::Function>());
+    _newWindow = Napi::Persistent(obj.Get("newWindow").As<Napi::Function>());
+    _close     = Napi::Persistent(obj.Get("close").As<Napi::Function>());
+    _output    = Napi::Persistent(obj.Get("output").As<Napi::Function>());
 }
 
 Napi::Value ElectronApp::_Start(Napi::CallbackInfo const& info)
