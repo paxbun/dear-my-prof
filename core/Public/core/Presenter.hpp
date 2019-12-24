@@ -12,7 +12,7 @@
     Presenter 인터페이스는 하나의 프레젠터를 추상화합니다. 주어진 데이터를
     알맞은 서식으로 가공하는 역할을 합니다.
 */
-class Presenter
+class Presenter : public HasApp
 {
     /*
         View 클래스는 Presenter 클래스의 _view 멤버 변수에 접근할 수 있습니다.
