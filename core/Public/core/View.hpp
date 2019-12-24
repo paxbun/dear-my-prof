@@ -12,8 +12,8 @@
 #include <string>
 
 /*
-    View 클래스는 하나의 뷰를 표현합니다. 주어진 이벤트를 알맞은 Presenter에게
-    전달해주는 역할을 합니다.
+    View 인터페이스는 하나의 뷰를 표현합니다. 주어진 이벤트를 알맞은
+   Presenter에게 전달해주는 역할을 합니다.
 */
 class View : public HasApp
 {
@@ -33,6 +33,13 @@ class View : public HasApp
     {}
 
     virtual ~View() {}
+
+  public:
+    /*
+        Start는 App이 뷰를 표시하기 시작했을 때 호출합니다. Presenter의 바인딩은
+        이 함수의 구현에서 이루어져야 합니다.
+    */
+    virtual void Start() = 0;
 
   public:
     /*
