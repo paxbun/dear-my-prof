@@ -60,6 +60,11 @@ vcpkg install nlohmann-json:x86-linux
 vcpkg install nlohmann-json:x86-osx
 vcpkg install nlohmann-json:x86-windows
 ```
+`nlohmann-json` 대신 `boost`에 대해서도 동일하게 진행합니다. 예를 들어,
+```
+vpckg install boost:x64-windows
+```
+처럼 해주세요.
 
 이 저장소를 로컬로 복사합니다.
 
