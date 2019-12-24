@@ -4,6 +4,8 @@
 # Sources
 set(DEAR_MY_PROF_BIND_SOURCES
     Source/Bind.cpp
+    Source/Conversions.cpp
+    Source/ElectronApp.cpp
 )
 
 # Build Script Output Path
