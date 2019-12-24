@@ -48,6 +48,14 @@ class App
     virtual void NewWindow(View* new_view, View* parent_view = nullptr) = 0;
 
     /*
+        주어진 뷰를 닫습니다.
+
+        Parameters
+        current_view: 닫고 싶은 창에 표시되고 있는 뷰입니다.
+    */
+    virtual void Close(View* current_view) = 0;
+
+    /*
         Parameters
         view_id: 뷰의 ID입니다.
 
