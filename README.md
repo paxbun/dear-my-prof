@@ -41,12 +41,24 @@ CMake는 Visual Studio의 Extension을 활용하는 것이 편합니다.
 * [CMake 3.13](https://cmake.org/download/)
 * [Node.js 13](https://nodejs.org/)
 * [Python 3](https://www.python.org/downloads/release)
+* [vcpkg](https://github.com/microsoft/vcpkg)
 
 Node.js를 설치한 후, 콘솔에서 다음 명령어를 입력해주세요. 리눅스에선 루트 권한이 필요할
 수도 있습니다.
 
 ```
 npm install -g node-gyp
+```
+
+vcpkg를 설치한 후, 사용하시는 플렛폼에 따라 다음 명령어 중 하나를 콘솔에서 입력해주세요. 이
+명령어는 [nlohmann-json](https://github.com/nlohmann/json) 을 설치하는 명령어입니다.
+```
+vcpkg install nlohmann-json:x64-linux
+vcpkg install nlohmann-json:x64-osx
+vcpkg install nlohmann-json:x64-windows
+vcpkg install nlohmann-json:x86-linux
+vcpkg install nlohmann-json:x86-osx
+vcpkg install nlohmann-json:x86-windows
 ```
 
 이 저장소를 로컬로 복사합니다.
