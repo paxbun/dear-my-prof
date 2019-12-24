@@ -4,11 +4,13 @@
 #ifndef __H_CORE_APP__
 #define __H_CORE_APP__
 
+#include <core/Args.hpp>
 #include <core/HasApp.hpp>
 #include <core/View.hpp>
 
 #include <cstddef>
 #include <memory>
+#include <string>
 #include <unordered_map>
 
 /*
@@ -84,6 +86,16 @@ class App
     */
     virtual void Start() = 0;
 
+    /*
+        해당 View 객체에 대응되는 뷰에게 해당 답변을 전달합니다. 이 함수는 View
+        객체들에 의해 호출됩니다.
+    */
+    virtual void Output(View*              view,
+                        std::string const& response_name,
+                        Args const&        response_args)
+        = 0;
+
+  public:
     /*
         주어진 HasApp 객체에 이 객체를 등록합니다. App이 필요한 객체가 잘못된
         App 객체에 접근하는 것을 막기 위한 함수입니다.
