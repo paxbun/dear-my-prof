@@ -81,12 +81,6 @@ class App
     virtual ViewId GetIdByView(View* view) = 0;
 
     /*
-        애플리케이션이 실행되었을 때, 초기 뷰를 설정하기 위해 실행됩니다. 이
-        함수는 NewWindow 함수를 통해 표시될 뷰 객체를 등록하여야합니다.
-    */
-    virtual void Start() = 0;
-
-    /*
         해당 View 객체에 대응되는 뷰에게 해당 답변을 전달합니다. 이 함수는 View
         객체들에 의해 호출됩니다.
     */
@@ -107,6 +101,12 @@ class App
     {
         has_app->_app = this;
     }
+
+    /*
+        애플리케이션이 실행되었을 때, 초기 뷰를 설정하기 위해 실행됩니다. 이
+        함수는 NewWindow 함수를 통해 표시될 뷰 객체를 등록하여야합니다.
+    */
+    void Start();
 };
 
 #endif
