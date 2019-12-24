@@ -34,6 +34,9 @@ void ElectronApp::NewWindow(View* new_view, View* parent_view)
     {
         Napi::Value new_win;
 
+        UseApp(new_view);
+        new_view->Start();
+
         auto it = _view2id.find(parent_view);
         if (it == _view2id.end())
         {
