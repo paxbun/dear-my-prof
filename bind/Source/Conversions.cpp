@@ -5,7 +5,7 @@
 
 Napi::Object Conversions::ConvertArgs(Napi::Env env, Args const& args)
 {
-    return Napi::Object();
+    return Napi::Object::New(env);
 }
 
 Args Conversions::ConvertObject(Napi::Env env, Napi::Object obj)
