@@ -9,10 +9,12 @@ add_library(dear-my-prof-core STATIC
 target_link_libraries(dear-my-prof-core
     PUBLIC dear-my-prof-plat-defs
     PUBLIC nlohmann_json nlohmann_json::nlohmann_json
+    PRIVATE ${Boost_LIBRARIES}
 )
 target_include_directories(dear-my-prof-core
     PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/Public
     PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/Private
+    PRIVATE ${Boost_INCLUDE_DIRS}
 )
 set_target_properties(dear-my-prof-core PROPERTIES
     POSITION_INDEPENDENT_CODE ON

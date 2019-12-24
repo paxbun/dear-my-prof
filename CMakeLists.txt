@@ -52,6 +52,12 @@ find_package(Python 3 EXACT REQUIRED COMPONENTS
 # Find nlohmann-json
 find_package(nlohmann_json CONFIG REQUIRED)
 
+# Find Boost
+find_package(boost 1.71 REQUIRED COMPONENTS
+    regex
+    locale
+)
+
 add_subdirectory(core)
 add_subdirectory(bind)
 add_subdirectory(gui)
