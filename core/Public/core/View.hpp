@@ -28,7 +28,7 @@ class View : public HasApp
         return _viewName;
     }
 
-    Args const& creationFlags()
+    Args const& creationArgs()
     {
         return _creationArgs;
     }
