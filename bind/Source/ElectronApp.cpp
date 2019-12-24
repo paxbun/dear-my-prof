@@ -109,7 +109,13 @@ Napi::Object ElectronApp::Init(Napi::Env env, Napi::Object exports)
 {
     Napi::HandleScope scope(env);
 
-    Napi::Function func = DefineClass(env, "CppImpl", {});
+    Napi::Function func
+        = DefineClass(env,
+                      "CppImpl",
+                      {
+                          InstanceMethod("start", &ElectronApp::_Start),
+                          InstanceMethod("input", &ElectronApp::_Input),
+                      });
 
     _ctor = Napi::Persistent(func);
     _ctor.SuppressDestruct();
