@@ -12,7 +12,7 @@
 class HasApp
 {
     /*
-        App 클래스는 HasApp 클래스의 App 멤버 변수에 접근할 수 있습니다.
+        App 클래스는 HasApp 클래스의 _app 멤버 변수에 접근할 수 있습니다.
     */
     friend class App;
 
