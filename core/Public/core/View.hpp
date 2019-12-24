@@ -29,7 +29,7 @@ class View : public HasApp
         creation_args: 뷰를 생성할 때 추가로 넘길 인자입니다.
     */
     View(std::string const& view_name, Args const& creation_args)
-        : _viewName(view_name), _creatonArgs(creation_args)
+        : _viewName(view_name), _creationArgs(creation_args)
     {}
 
     virtual ~View() {}
