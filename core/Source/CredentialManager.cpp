@@ -10,5 +10,5 @@ bool CredentialManager::TryLogin(std::string const& id,
                                  std::string const& sid,
                                  std::string const& name) noexcept
 {
-    return false;
+    return !(id.empty() || pw.empty() || sid.empty() || name.empty());
 }
