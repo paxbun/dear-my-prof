@@ -3,6 +3,8 @@
 
 #include <core/EmailList.hpp>
 
+EmailList EmailList::_singleton;
+
 std::vector<Email> EmailList::FetchInbox(size_t num_emails)
 {
     // TODO
