@@ -4,6 +4,8 @@
 #ifndef __H_CORE_EMAIL__
 #define __H_CORE_EMAIL__
 
+#include <core/Address.hpp>
+
 #include <cstddef>
 #include <string>
 #include <vector>
@@ -17,21 +19,21 @@ class Email
     using EmailId = size_t;
 
   public:
-    EmailId                  id;
-    std::string              subject;
-    std::string              from;
-    std::string              to;
-    std::vector<std::string> cc;
-    std::vector<std::string> bcc;
-    std::string              content;
+    EmailId              id;
+    std::string          subject;
+    Address              from;
+    Address              to;
+    std::vector<Address> cc;
+    std::vector<Address> bcc;
+    std::string          content;
 
   public:
     template <typename SubjectT = std::string,
-              typename FromT    = std::string,
-              typename ToT      = std::string,
+              typename FromT    = Address,
+              typename ToT      = Address,
               typename ContentT = std::string,
-              typename CcT      = std::vector<std::string>,
-              typename BccT     = std::vector<std::string>>
+              typename CcT      = std::vector<Address>,
+              typename BccT     = std::vector<Address>>
     Email(SubjectT&& subject,
           FromT&&    from,
           ToT&&      to,
