@@ -19,10 +19,10 @@ struct TestCase
     }
 
 TestCase testCases[] = {
-    TEST_CASE(가방, 이, 가방이),
-    TEST_CASE(기차, 이, 기차가),
-    TEST_CASE(가방, 가, 가방이),
-    TEST_CASE(기차, 가, 기차가),
+    TEST_CASE(가방, 이, 가방이), TEST_CASE(기차, 이, 기차가),
+    TEST_CASE(가방, 가, 가방이), TEST_CASE(기차, 가, 기차가),
+    TEST_CASE(가방, 은, 가방은), TEST_CASE(기차, 은, 기차는),
+    TEST_CASE(가방, 는, 가방은), TEST_CASE(기차, 는, 기차는),
 };
 
 int main()
