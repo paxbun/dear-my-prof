@@ -24,10 +24,10 @@ window.onload = function () {
 
 ipcRenderer.on('mail-refresh-reply', (event, arg) => {
     for (let i in arg) {
-        let item = common.ItemThree_new(arg[i].title, arg[i].subtitle, arg[i].body);
+        let item = common.ItemThree_new(arg[i].subject, arg[i].from, arg[i].content);
         item.addEventListener('click', (event) => {
             ipcRenderer.send('create-detail-window',  {
-                dataId: arg[i].dataId
+                id: arg[i].id
             });
         });
         mailList_dom.appendChild(item);
