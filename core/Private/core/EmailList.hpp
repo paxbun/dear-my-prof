@@ -6,6 +6,7 @@
 
 #include <core/Email.hpp>
 
+#include <unordered_map>
 #include <vector>
 
 /*
@@ -26,12 +27,15 @@ class EmailList
     }
 
   private:
-    std::vector<Email> _inbox;
+    std::unordered_map<Email::EmailId, Email> _inbox;
 
   public:
-    std::vector<Email> const& inbox()
+    std::vector<Email> inbox()
     {
-        return _inbox;
+        std::vector<Email> rtn;
+        rtn.reserve(_inbox.size());
+        for (auto& [_, value] : _inbox) rtn.push_back(value);
+        return rtn;
     }
 
   public:
@@ -42,7 +46,7 @@ class EmailList
          Return Valeu
          최근 이메일을 num_emails만큼 반환합니다.
     */
-    std::vector<Email> const& FetchInbox(size_t num_emails);
+    std::vector<Email> FetchInbox(size_t num_emails);
 
   private:
     void _FetchInbox(size_t num_emails);
