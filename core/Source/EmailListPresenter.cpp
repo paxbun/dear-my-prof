@@ -7,7 +7,7 @@
 
 void EmailListPresenter::Input(std::string const& event_name, Args const& args)
 {
-    auto const& inbox = EmailList::GetInstance()->FetchInbox(/* TODO */5);
+    auto const inbox = EmailList::GetInstance()->FetchInbox(/* TODO */ 5);
 
     Args new_args = Args::array();
     for (auto const& email : inbox)
