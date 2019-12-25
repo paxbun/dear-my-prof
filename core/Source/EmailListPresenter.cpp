@@ -1,19 +1,19 @@
 // Copyright (c) 2019 Dear My Professor Authors
 // Author: paxbun
 
+#include <core/EmailList.hpp>
 #include <core/EmailListPresenter.hpp>
 #include <core/View.hpp>
 
 void EmailListPresenter::Input(std::string const& event_name, Args const& args)
 {
-    // TODO
+    auto const& inbox = EmailList::GetInstance()->FetchInbox(/* TODO */5);
+
     Args new_args = Args::array();
-    for (int i = 0; i < 5; ++i)
-        new_args.push_back({
-            { "title", u8"제목" },
-            { "subtitle", u8"부제목" },
-            { "body", u8"내용" },
-            { "id", 12345 },
-        });
+    for (auto const& email : inbox)
+        new_args.push_back({ { "subject", email.subject },
+                             { "from", email.from },
+                             { "content", email.content },
+                             { "id", email.id } });
     view()->Output("mail-refresh-reply", new_args);
 }
