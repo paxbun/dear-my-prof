@@ -7,13 +7,13 @@
 #include <core/EmailListPresenter.hpp>
 #include <core/OpenDetailPresenter.hpp>
 #include <core/OpenNewEmailPresenter.hpp>
-#include <core/OpenTemplatePresenter.hpp>
+#include <core/OpenTemplateListPresenter.hpp>
 #include <core/View.hpp>
 
 class RootView : public View
 {
   private:
-    OpenTemplateListPresetner _openTemplateList;
+    OpenTemplateListPresenter _openTemplateList;
     OpenNewEmailPresenter     _openNewEmail;
     EmailListPresenter        _emailList;
     OpenDetailPresenter       _openDetail;
