@@ -7,7 +7,7 @@
 #include <core/CodaStringTransform.hpp>
 
 /*
-    ThemeStringTransform 클래스는 조사 이/가를 붙이는 문자열 변환 함수입니다.
+    ThemeStringTransform 클래스는 조사 은/는를 붙이는 문자열 변환 함수입니다.
 */
 class ThemeStringTransform : public CodaStringTransform
 {
@@ -17,9 +17,9 @@ class ThemeStringTransform : public CodaStringTransform
         try
         {
             if (_EndsWithCoda(input))
-                return input + u8"이";
+                return input + u8"은";
             else
-                return input + u8"가";
+                return input + u8"는";
         }
         catch (...)
         {
