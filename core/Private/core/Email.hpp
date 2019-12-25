@@ -26,8 +26,6 @@ class Email
     std::string              content;
 
   public:
-    Email() : id(0) {}
-
     template <typename SubjectT = std::string,
               typename FromT    = std::string,
               typename ToT      = std::string,
