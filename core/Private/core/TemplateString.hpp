@@ -7,21 +7,22 @@
 #include <core/StringTransform.hpp>
 #include <core/StringTransformFactory.hpp>
 #include <string>
+#include <tuple>
 #include <unordered_map>
 #include <vector>
-#include <tuple>
 
-class TemplateString : public StringTransform, public StringTransformFactory
+class TemplateString : public StringTransform
 {
   private:
-    std::string                                _base;
+    std::string                                                 _base;
     std::vector<std::tuple<int, std::string, StringTransform*>> _param;
 
   public:
     TemplateString ParseFrom(std::string const&);
-    TemplateString(std::string const&,
-                   std::vector<std::tuple<int, std::string, StringTransform*>> const&);
-    std::string Generate(std::unordered_map<std::string, std::string> const&);
+    TemplateString(
+        std::string const&,
+        std::vector<std::tuple<int, std::string, StringTransform*>> const&);
+    std::string Generate(std::unordered_map<std::string, std::string>);
 };
 
 #endif // __H_CORE_TEMPLATE_STRING__

@@ -29,7 +29,7 @@ TemplateString TemplateString::ParseFrom(std::string const& original_string)
             _param.push_back(std::make_tuple(
                 pos_begin,
                 _base.substr(pos_begin + 2, pos_mid - pos_begin - 2),
-                GetTransform(
+                StringTransformFactory::GetTransform(
                     _base.substr(pos_mid + 1, pos_end - pos_mid - 1))));
         }
         else
@@ -39,7 +39,7 @@ TemplateString TemplateString::ParseFrom(std::string const& original_string)
                 _base.substr(pos_begin + 2, pos_end - pos_begin - 2),
                 nullptr));
         }
-        _base.replace(pos_begin, pos_end - pos_begin+1, "");
+        _base.replace(pos_begin, pos_end - pos_begin + 1, "");
     }
 
     return *this;
@@ -52,7 +52,7 @@ TemplateString::TemplateString(
 {}
 
 std::string TemplateString::Generate(
-    std::unordered_map<std::string, std::string> const& transformMap)
+    std::unordered_map<std::string, std::string> transformMap)
 {
     std::string base = _base;
     for (auto s : _param)
@@ -61,7 +61,7 @@ std::string TemplateString::Generate(
         auto param     = std::get<1>(s);
         auto transform = std::get<2>(s);
 
-        std::string replaced_string = transformMap[param];
+        auto replaced_string = transformMap[param];
         if (transform != nullptr)
         {
             replaced_string = transform->Transform(replaced_string);
