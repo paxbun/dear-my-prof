@@ -33,7 +33,7 @@ function newWindow(newViewName, args, parent) {
             additionalArguments: args
         },
         minWidth: 500,
-        minHeight: 600,
+        minHeight: 800,
         parent: windows[parent],
         x: pos.x,
         y: pos.y,
