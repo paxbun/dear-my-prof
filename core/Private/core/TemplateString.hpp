@@ -15,12 +15,12 @@ class TemplateString : public StringTransform, public StringTransformFactory
 {
   private:
     std::string                                _base;
-    vector<std::tuple<int, std::string, StringTransform*>> _param;
+    std::vector<std::tuple<int, std::string, StringTransform*>> _param;
 
   public:
     TemplateString ParseFrom(std::string const&);
     TemplateString(std::string const&,
-                   vector<std::tuple<int, std::string, StringTransform*>> const&);
+                   std::vector<std::tuple<int, std::string, StringTransform*>> const&);
     std::string Generate(std::unordered_map<std::string, std::string> const&);
 };
 
