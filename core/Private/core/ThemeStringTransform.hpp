@@ -9,7 +9,7 @@
 /*
     ThemeStringTransform 클래스는 조사 이/가를 붙이는 문자열 변환 함수입니다.
 */
-class ThemeStringTransform
+class ThemeStringTransform : public CodaStringTransform
 {
   public:
     virtual std::string Transform(std::string const& input) noexcept override
