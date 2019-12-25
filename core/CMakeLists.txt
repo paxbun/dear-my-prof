@@ -26,3 +26,24 @@ add_custom_command(TARGET dear-my-prof-core POST_BUILD
             $<TARGET_FILE:dear-my-prof-core>
             ${CMAKE_BINARY_DIR}/core_out/$<TARGET_FILE_NAME:dear-my-prof-core>
 )
+
+# Add header-only llibrary for tests
+add_library(dear-my-prof-core-tests INTERFACE)
+target_include_directories(dear-my-prof-core-tests
+    INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/Private
+)
+
+# Tests
+
+# StringTransformTest
+add_executable(dear-my-prof-core-string-transform-test
+    Test/StringTransformTest.cpp
+)
+target_link_libraries(dear-my-prof-core-string-transform-test
+    PUBLIC dear-my-prof-core
+    PUBLIC dear-my-prof-core-tests
+)
+add_test(
+    NAME core-string-transform-test
+    COMMAND dear-my-prof-core-string-transform-test
+)
