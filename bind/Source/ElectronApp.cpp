@@ -6,6 +6,11 @@
 
 Napi::FunctionReference ElectronApp::_ctor;
 
+ElectronApp::~ElectronApp()
+{
+    for (auto const& pair : _id2view) delete pair.second;
+}
+
 void ElectronApp::Navigate(View* current_view, View* new_view)
 {
     auto it = _view2id.find(current_view);

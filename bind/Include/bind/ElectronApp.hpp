@@ -50,11 +50,13 @@ class ElectronApp : public App, public Napi::ObjectWrap<ElectronApp>
 
     Napi::Env _env;
 
-    std::unordered_map<ViewId, View*>        _id2view;
-    std::unordered_map<View*, ViewId>        _view2id;
+    std::unordered_map<ViewId, View*> _id2view;
+    std::unordered_map<View*, ViewId> _view2id;
 
   public:
     ElectronApp(Napi::CallbackInfo const& info);
+
+    virtual ~ElectronApp();
 
   private:
     /*
