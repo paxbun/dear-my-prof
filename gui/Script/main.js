@@ -41,6 +41,8 @@ function newWindow(newViewName, args, parent) {
     });
     let id = win.webContents.id;
     win.webContents.on('ipc-message', function (event, channel, arg) {
+        if (arg === undefined)
+            arg = {};
         binding.input(id, channel, arg);
     });
     windows[id] = win;
