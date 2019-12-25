@@ -51,6 +51,8 @@ find_package(Python 3 EXACT REQUIRED COMPONENTS
 
 # Find nlohmann-json
 find_package(nlohmann_json CONFIG REQUIRED)
+get_target_property(nlohmann_json_INCLUDE_DIRS
+    nlohmann_json::nlohmann_json INTERFACE_INCLUDE_DIRECTORIES)
 
 # Find Boost
 find_package(boost 1.71 REQUIRED COMPONENTS
