@@ -36,6 +36,8 @@ class Presenter : public HasApp
   public:
     Presenter() : _view(nullptr) {}
 
+    virtual ~Presenter() {}
+
   public:
     /*
         이 함수는 View 객체에 의해 뷰에서 이 프리젠터가 바인딩된 이벤트가

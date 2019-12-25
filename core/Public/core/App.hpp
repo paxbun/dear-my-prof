@@ -93,6 +93,8 @@ class App
                         Args const&        response_args = Args())
         = 0;
 
+    virtual ~App() {};
+
   public:
     /*
         주어진 HasApp 객체에 이 객체를 등록합니다. App이 필요한 객체가 잘못된
