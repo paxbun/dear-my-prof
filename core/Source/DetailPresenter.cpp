@@ -1,14 +1,29 @@
 // Copyright (c) 2019 Dear My Professor Authors
 // Author: paxbun
 
+#include <core/App.hpp>
 #include <core/DetailPresenter.hpp>
+#include <core/EmailList.hpp>
 #include <core/View.hpp>
 
 void DetailPresenter::Input(std::string const& event_name, Args const& args)
 {
-    // TODO
-    view()->Output("detail-refresh-reply",
-                   { { "title", u8"제목" },
-                     { "subtitle", u8"부제목" },
-                     { "body", u8"내용" } });
+    auto id_it = args.find("id");
+    if (id_it != args.end())
+    {
+        try
+        {
+            auto email = EmailList::GetInstance()->GetEmailById(
+                std::stoi(id_it->get<std::string>()));
+
+            view()->Output("detail-refresh-reply",
+                           { { "subject", email.subject },
+                             { "from", email.from },
+                             { "content", email.content } });
+        }
+        catch (...)
+        {
+            app()->Close(view());
+        }
+    }
 }
