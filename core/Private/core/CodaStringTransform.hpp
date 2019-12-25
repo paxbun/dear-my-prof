@@ -23,6 +23,6 @@ class CodaStringTransform : public StringTransform
         종성으로 끝나면 true, 아니면 false를 반환합니다.
     */
     bool _EndsWithCoda(std::string const& input);
-}
+};
 
 #endif
