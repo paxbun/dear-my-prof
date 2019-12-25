@@ -18,7 +18,7 @@ function getDataId() {
 function refreshDetail() {
     common.setLoading();
     ipcRenderer.send('detail-refresh', {
-        dataId: getDataId()
+        id: getDataId()
     });
 }
 
@@ -32,8 +32,8 @@ window.onload = function() {
 
 ipcRenderer.on('detail-refresh-reply', (event, arg) => {
     common.unsetLoading();
-    common.setTitle('Dear My Professor - ' + arg.title);
-    emailTitle_dom.innerText = arg.title;
-    emailSubtitle_dom.innerText = arg.subtitle;
-    emailBody_dom.innerText = arg.body;
+    common.setTitle('Dear My Professor - ' + arg.subject);
+    emailTitle_dom.innerText = arg.subject;
+    emailSubtitle_dom.innerText = arg.from;
+    emailBody_dom.innerText = arg.content;
 });
