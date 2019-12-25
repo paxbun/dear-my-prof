@@ -16,7 +16,7 @@ add_library(dear-my-prof-core STATIC
     Source/StringTransformFactory.cpp
     Source/View.cpp
     Source/TemplateListPresenter.cpp
-    Source/TemplateString.cpp
+    # Source/TemplateString.cpp
 )
 target_link_libraries(dear-my-prof-core
     PUBLIC dear-my-prof-plat-defs
@@ -45,16 +45,32 @@ target_include_directories(dear-my-prof-core-tests
 )
 
 # Tests
+if(CMAKE_BUILD_TYPE MATCHES "Debug")
 
-# StringTransformTest
-add_executable(dear-my-prof-core-string-transform-test
-    Test/StringTransformTest.cpp
-)
-target_link_libraries(dear-my-prof-core-string-transform-test
-    PUBLIC dear-my-prof-core
-    PUBLIC dear-my-prof-core-tests
-)
-add_test(
-    NAME core-string-transform-test
-    COMMAND dear-my-prof-core-string-transform-test
-)
+    # StringTransformTest
+    add_executable(dear-my-prof-core-string-transform-test
+        Test/StringTransformTest.cpp
+    )
+    target_link_libraries(dear-my-prof-core-string-transform-test
+        PUBLIC dear-my-prof-core
+        PUBLIC dear-my-prof-core-tests
+    )
+    add_test(
+        NAME core-string-transform-test
+        COMMAND dear-my-prof-core-string-transform-test
+    )
+    
+    #ObserverTest
+    add_executable(dear-my-prof-core-observer-test
+        Test/ObserverTest.cpp
+    )
+    target_link_libraries(dear-my-prof-core-observer-test
+        PUBLIC dear-my-prof-core
+        PUBLIC dear-my-prof-core-tests
+    )
+    add_test(
+        NAME core-observer-test
+        COMMAND dear-my-prof-core-observer-test
+    )
+
+endif()
