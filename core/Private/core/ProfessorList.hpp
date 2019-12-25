@@ -58,6 +58,12 @@ class ProfessorList
     */
     std::vector<Address> GetProfBySubjects(std::string const& name);
 
+    /*
+        Return Value
+        저장되어있는 모든 교수님들의 목록을 반환합니다.
+    */
+    std::vector<Address> GetAllProfessors();
+
   private:
     /*
         주어진 파일에서 교수님 목록을 읽습니다.

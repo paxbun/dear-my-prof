@@ -32,6 +32,16 @@ std::vector<Address> ProfessorList::GetProfBySubjects(std::string const& name)
     return rtn;
 }
 
+std::vector<Address> ProfessorList::GetAllProfessors()
+{
+    std::vector<Address> rtn;
+    rtn.reserve(_profList.size());
+
+    for (auto const& prof : _profList) rtn.push_back(prof.addr);
+
+    return rtn;
+}
+
 void ProfessorList::_ReadFrom(std::filesystem::path const& path)
 {
     std::ifstream ifs(path);
