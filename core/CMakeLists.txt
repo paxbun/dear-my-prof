@@ -6,6 +6,7 @@ add_library(dear-my-prof-core STATIC
     Source/CodaStringTransform.cpp
     Source/CredentialManager.cpp
     Source/DetailPresenter.cpp
+    Source/EmailList.cpp
     Source/EmailListPresenter.cpp
     Source/LoginPresenter.cpp
     Source/OpenDetailPresenter.cpp
