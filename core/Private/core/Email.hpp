@@ -19,6 +19,7 @@ class Email
   public:
     EmailId                  id;
     std::string              subject;
+    std::string              from;
     std::string              to;
     std::vector<std::string> cc;
     std::vector<std::string> bcc;
@@ -28,11 +29,13 @@ class Email
     Email() {}
 
     template <typename SubjectT = std::string,
+              typename FromT    = std::string,
               typename ToT      = std::string,
               typename ContentT = std::string,
               typename CcT      = std::vector<std::string>,
               typename BccT     = std::vector<std::string>>
     Email(SubjectT&& subject,
+          FromT&&    from,
           ToT&&      to,
           ContentT&& content,
           CcT&&      cc  = CcT(),
@@ -40,6 +43,7 @@ class Email
           EmailId    id  = EmailId(0))
         : id(id),
           subject(std::forward<SubjectT>(subject)),
+          from(std::forward<FromT>(form)),
           to(std::forward<ToT>(to)),
           cc(std::forward<CcT>(cc)),
           bcc(std::forward<BccT>(bcc)),
