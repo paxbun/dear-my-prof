@@ -25,7 +25,7 @@ class Address
                                              std::remove_reference_t<EmailT>>,
                                          Address>,
                          int> = 0>
-    Address(EmailT&& email, RealNameT&& realName = RealNameT())
+    Address(EmailT&& email = EmailT(), RealNameT&& realName = RealNameT())
         : email(std::forward<EmailT>(email)),
           realName(std::forward<RealNameT>(realName))
     {}
