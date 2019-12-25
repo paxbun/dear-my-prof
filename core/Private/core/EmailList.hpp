@@ -20,9 +20,18 @@ class EmailList
     static EmailList _singleton;
 
   public:
-    EmailList* GetInstance()
+    static EmailList* GetInstance()
     {
         return &_singleton;
+    }
+
+  private:
+    std::vector<Email> _inbox;
+
+  public:
+    std::vector<Email> const& inbox()
+    {
+        return _inbox;
     }
 
   public:
@@ -34,6 +43,9 @@ class EmailList
          최근 이메일을 num_emails만큼 반환합니다.
     */
     std::vector<Email> const& FetchInbox(size_t num_emails);
+
+  private:
+    void _FetchInbox(size_t num_emails);
 };
 
 #endif
