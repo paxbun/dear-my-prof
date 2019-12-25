@@ -7,6 +7,7 @@ add_library(dear-my-prof-core STATIC
     Source/CredentialManager.cpp
     Source/DetailPresenter.cpp
     Source/LoginPresenter.cpp
+    Source/OpenDetailPresenter.cpp
     Source/StringTransformFactory.cpp
     Source/View.cpp
 )
