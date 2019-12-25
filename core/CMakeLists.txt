@@ -4,6 +4,7 @@
 add_library(dear-my-prof-core STATIC
     Source/App.cpp
     Source/CodaStringTransform.cpp
+    Source/CredentialManager.cpp
     Source/StringTransformFactory.cpp
     Source/View.cpp
 )
