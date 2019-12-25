@@ -4,6 +4,7 @@
 #ifndef __H_CORE_EMAIL__
 #define __H_CORE_EMAIL__
 
+#include <cstddef>
 #include <string>
 #include <vector>
 
@@ -13,6 +14,10 @@
 class Email
 {
   public:
+    using EmailId = size_t;
+
+  public:
+    EmailId                  id;
     std::string              subject;
     std::string              to;
     std::vector<std::string> cc;
@@ -31,8 +36,10 @@ class Email
           ToT&&      to,
           ContentT&& content,
           CcT&&      cc  = CcT(),
-          BccT&      bcc = BccT())
-        : subject(std::forward<SubjectT>(subject)),
+          BccT&      bcc = BccT(),
+          EmailId    id  = EmailId(0))
+        : id(id),
+          subject(std::forward<SubjectT>(subject)),
           to(std::forward<ToT>(to)),
           cc(std::forward<CcT>(cc)),
           bcc(std::forward<BccT>(bcc)),
