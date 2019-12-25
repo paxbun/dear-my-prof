@@ -7,13 +7,13 @@
 void EmailListPresenter::Input(std::string const& event_name, Args const& args)
 {
     // TODO
-    Args args = Args::array();
+    Args new_args = Args::array();
     for (int i = 0; i < 5; ++i)
-        args.push_back({
+        new_args.push_back({
             { "title", u8"제목" },
             { "subtitle", u8"부제목" },
             { "body", u8"내용" },
             { "id", 12345 },
         });
-    view()->Output("mail-refresh-reply", args);
+    view()->Output("mail-refresh-reply", new_args);
 }
