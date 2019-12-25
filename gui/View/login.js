@@ -36,7 +36,7 @@ function login() {
     }
 }
 
-window.onload = function() {
+window.onload = function () {
     loginId_dom = document.getElementById('login-id');
     loginPw_dom = document.getElementById('login-pw');
     loginName_dom = document.getElementById('login-name');
@@ -53,7 +53,7 @@ window.onload = function() {
     common.Field_invokeWithEnter(loginSid_dom, login);
 
     common.setTitle('Dear My Professor - 로그인');
-}
+};
 
 ipcRenderer.on('login-failed', (event, arg) => {
     common.Field_setInvalid(loginId_dom);
