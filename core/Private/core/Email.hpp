@@ -43,7 +43,7 @@ class Email
           EmailId    id  = EmailId(0))
         : id(id),
           subject(std::forward<SubjectT>(subject)),
-          from(std::forward<FromT>(form)),
+          from(std::forward<FromT>(from)),
           to(std::forward<ToT>(to)),
           cc(std::forward<CcT>(cc)),
           bcc(std::forward<BccT>(bcc)),
