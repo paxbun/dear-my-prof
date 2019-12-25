@@ -52,6 +52,7 @@ function newWindow(newViewName, args, parent) {
 
 function close(currentWin) {
     windows[currentWin].close();
+    delete windows[currentWin];
 }
 
 function output(currentWin, responseName, responseArgs) {
