@@ -14,6 +14,6 @@ void EmailListPresenter::Input(std::string const& event_name, Args const& args)
         new_args.push_back({ { "subject", email.subject },
                              { "from", email.from },
                              { "content", email.content },
-                             { "id", email.id } });
+                             { "id", std::to_string(email.id) } });
     view()->Output("mail-refresh-reply", new_args);
 }

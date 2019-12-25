@@ -48,6 +48,18 @@ class EmailList
     */
     std::vector<Email> FetchInbox(size_t num_emails);
 
+    /*
+        Parameters
+        id: 이메일의 아이디입니다.
+
+        Return Value
+        주어진 id를 가진 이메일을 반환합니다.
+
+        Exception
+        주어진 id를 가진 이메일이 없을 경우, std::out_of_range를 던집니다.
+    */
+    Email const& GetEmailById(Email::EmailId id);
+
   private:
     void _FetchInbox(size_t num_emails);
 };

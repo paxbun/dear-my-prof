@@ -72,7 +72,7 @@ void ElectronApp::Close(View* current_view)
         _id2view.erase(id);
         delete current_view;
 
-        _navigate.Call({ Napi::Number::New(_env, id) });
+        _close.Call({ Napi::Number::New(_env, id) });
     }
 }
 
