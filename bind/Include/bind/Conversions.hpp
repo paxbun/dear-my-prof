@@ -20,19 +20,19 @@ class Conversions
         args: 변환할 Args 객체입니다.
 
         Return Value
-        변환된 Napi::Object 객체를 반환합니다.
+        변환된 Napi::Value 객체를 반환합니다.
     */
-    static Napi::Object ConvertArgs(Napi::Env env, Args const& args);
+    static Napi::Value ConvertArgs(Napi::Env env, Args const& args);
 
     /*
         Parameters
         env: 자바스크립트 환경 핸들입니다.
-        obj: 변환할 Napi::Object 객체입니다.
+        val: 변환할 Napi::Value 객체입니다.
 
         Return Value
         변환된 Args 객체를 반환합니다.
     */
-    static Args ConvertObject(Napi::Env env, Napi::Object obj);
+    static Args ConvertObject(Napi::Env env, Napi::Value val);
 };
 
 #endif
