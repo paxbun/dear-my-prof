@@ -15,6 +15,7 @@ add_library(dear-my-prof-core STATIC
     Source/ProfessorList.cpp
     Source/StringTransformFactory.cpp
     Source/View.cpp
+    Source/TemplateListPresenter.cpp
     Source/TemplateString.cpp
 )
 target_link_libraries(dear-my-prof-core
