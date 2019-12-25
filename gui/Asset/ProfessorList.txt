@@ -1,5 +1,5 @@
 4
-홍길동 honggil 2 다변수미적분학 선형대수학
-홍길서 hongseo 1 전자기학
-홍길남 hongnam 3 물질의이해 기초화학실험 화학반응의이해
-홍길북 hongbuk 1 분자와생명현상
+홍길동 honggil@dgist.ac.kr 2 다변수미적분학 선형대수학
+홍길서 hongseo@dgist.ac.kr 1 전자기학
+홍길남 hongnam@dgist.ac.kr 3 물질의이해 기초화학실험 화학반응의이해
+홍길북 hongbuk@dgist.ac.kr 1 분자와생명현상
