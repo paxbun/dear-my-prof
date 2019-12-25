@@ -5,6 +5,7 @@
 #define __H_CORE_PRESENTER__
 
 #include <core/Args.hpp>
+#include <core/HasApp.hpp>
 
 #include <string>
 
