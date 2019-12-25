@@ -9,5 +9,5 @@
 
 void OpenDetailPresenter::Input(std::string const& event_name, Args const& args)
 {
-    app()->Navigate(view(), new DetailView(args));
+    app()->Navigate(view(), new DetailView(Args(args)));
 }
