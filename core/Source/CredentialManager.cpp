@@ -8,7 +8,7 @@ CredentialManager CredentialManager::_singleton;
 bool CredentialManager::TryLogin(std::string const& id,
                                  std::string const& pw,
                                  std::string const& sid,
-                                 std::string const& name)
+                                 std::string const& name) noexcept
 {
     return false;
 }
