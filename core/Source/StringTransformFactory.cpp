@@ -15,8 +15,7 @@ SubjectStringTransform _subject;
 } // namespace
 
 std::unordered_map<std::string, StringTransform*>
-    StringTransformFactory::_transformMap = { { { "", &_default },
-                                                { u8"은", &_theme },
+    StringTransformFactory::_transformMap = { { { u8"은", &_theme },
                                                 { u8"는", &_theme },
                                                 { u8"이", &_subject },
                                                 { u8"가", &_subject } } };
@@ -27,5 +26,5 @@ StringTransformFactory::GetTransform(std::string const& transform_name)
     if (auto it = _transformMap.find(transform_name); it != _transformMap.end())
         return it->second;
     else
-        return nullptr;
+        return &_default;
 }
