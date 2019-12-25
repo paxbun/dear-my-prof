@@ -7,7 +7,8 @@
 #include <string>
 
 /*
-    StringTransform 인터페이스는 문자열 변환 함수의 추상화입니다.
+    StringTransform 인터페이스는 문자열 변환 함수의 추상화입니다. 문자열 변환의
+    기본 구현은 아무 변환도 하지 않습니다.
 */
 class StringTransform
 {
@@ -19,7 +20,10 @@ class StringTransform
         Return Value
         주어진 문자열에 대한 변환 결과를 반환합니다.
     */
-    virtual std::string Transform(std::string const& input) noexcept = 0;
+    virtual std::string Transform(std::string const& input) noexcept
+    {
+        return input;
+    }
 };
 
 #endif

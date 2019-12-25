@@ -12,8 +12,10 @@ add_library(dear-my-prof-core STATIC
     Source/OpenDetailPresenter.cpp
     Source/OpenNewEmailPresenter.cpp
     Source/OpenTemplateListPresenter.cpp
+    Source/ProfessorList.cpp
     Source/StringTransformFactory.cpp
     Source/View.cpp
+    Source/TemplateString.cpp
 )
 target_link_libraries(dear-my-prof-core
     PUBLIC dear-my-prof-plat-defs
