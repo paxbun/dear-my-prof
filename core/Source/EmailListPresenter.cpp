@@ -12,7 +12,7 @@ void EmailListPresenter::Input(std::string const& event_name, Args const& args)
     Args new_args = Args::array();
     for (auto const& email : inbox)
         new_args.push_back({ { "subject", email.subject },
-                             { "from", email.from },
+                             { "from", email.from.email },
                              { "content", email.content },
                              { "id", std::to_string(email.id) } });
     view()->Output("mail-refresh-reply", new_args);

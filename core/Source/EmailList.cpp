@@ -24,8 +24,8 @@ void EmailList::_FetchInbox(size_t num_emails)
                                            "foo@dgist.ac.kr",
                                            "bar@dgist.ac.kr",
                                            u8"내용",
-                                           std::vector<std::string> {},
-                                           std::vector<std::string> {},
+                                           std::vector<Address> {},
+                                           std::vector<Address> {},
                                            i)));
 }
 

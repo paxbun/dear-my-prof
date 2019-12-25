@@ -18,7 +18,7 @@ void DetailPresenter::Input(std::string const& event_name, Args const& args)
 
             view()->Output("detail-refresh-reply",
                            { { "subject", email.subject },
-                             { "from", email.from },
+                             { "from", email.from.email },
                              { "content", email.content } });
         }
         catch (...)
