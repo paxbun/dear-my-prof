@@ -42,13 +42,12 @@ class EmailList : public Subject
 
   public:
     /*
+        최근 받은 이메일을 갱신합니다.
+
         Parameters
         num_emails: 불러오고 싶은 이메일의 개수입니다.
-
-        Return Value
-        최근 받은 이메일을 num_emails만큼 반환합니다.
     */
-    std::vector<Email> FetchInbox(size_t num_emails);
+    void FetchInbox(size_t num_emails);
 
     /*
         Parameters
@@ -81,9 +80,6 @@ class EmailList : public Subject
         성공시 true, 실패시 false를 반환합니다.
     */
     bool TrySend(Email&& email);
-
-  private:
-    void _FetchInbox(size_t num_emails);
 };
 
 #endif
