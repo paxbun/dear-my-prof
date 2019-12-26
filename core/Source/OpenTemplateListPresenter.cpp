@@ -10,5 +10,6 @@
 void OpenTemplateListPresenter::Input(std::string const& event_name,
                                       Args const&        args)
 {
-    app()->NewWindow(new TemplateListView, view());
+    if (app()->GetNumberOfViews() == 1)
+        app()->NewWindow(new TemplateListView, view());
 }

@@ -10,5 +10,6 @@
 void OpenSelectTemplatePresenter::Input(std::string const& event_name,
                                         Args const&        args)
 {
-    app()->NewWindow(new SelectTemplateView, view());
+    if (app()->GetNumberOfViews() == 1)
+        app()->NewWindow(new SelectTemplateView, view());
 }

@@ -10,5 +10,6 @@
 
 void OpenDetailPresenter::Input(std::string const& event_name, Args const& args)
 {
-    app()->NewWindow(new DetailView(Args(args)), view());
+    if (app()->GetNumberOfViews() == 1)
+        app()->NewWindow(new DetailView(Args(args)), view());
 }
