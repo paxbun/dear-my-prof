@@ -7,6 +7,7 @@ let templateContent_dom = null;
 let initialized = false;
 let paramMap = {};
 let data = null;
+let environment = null;
 let fillSent = false;
 
 function loadParams() {
@@ -26,6 +27,10 @@ function fillTemplate() {
     }
 }
 
+function newEmail() {
+    ipcRenderer.send('create-new-email', loadParams());
+}
+
 window.onload = function () {
     templateParamsList_dom = document.getElementById('template-params-list');
     templateSubject_dom = document.getElementById('template-subject');
@@ -38,6 +43,9 @@ window.onload = function () {
 ipcRenderer.on('data-reply', (event, arg) => {
     data = arg;
     common.setTitle('Dear My Professor - ' + data.theme);
+    ipcRenderer.send('environment');
+}).on('environment-reply', (event, arg) => {
+    environment = arg;
     ipcRenderer.send('template-init');
 }).on('template-out', (event, arg) => {
     fillSent = false;
@@ -53,10 +61,13 @@ ipcRenderer.on('data-reply', (event, arg) => {
         let param_dom = common.ItemTwoEditable_new(param_name);
         paramMap[param_name] = param_dom;
         let value_dom = common.ItemTwoEditable_getValueDom(param_dom);
+        if (environment[param_name] != undefined)
+            value_dom.innerText = environment[param_name];
         value_dom.addEventListener('input', (event) => {
             fillTemplate();
         });
         templateParamsList_dom.appendChild(param_dom);
+        ipcRenderer.send('template-fill', environment);
     }
     common.unsetLoading();
 })
