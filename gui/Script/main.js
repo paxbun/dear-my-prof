@@ -24,13 +24,12 @@ function navigate(currentWin, newViewName) {
     windows[currentWin].loadFile(`./View/${newViewName}`)
 }
 
-function newWindow(newViewName, args, parent) {
+function newWindow(newViewName, parent) {
     let pos = newPosition();
     let win = new BrowserWindow({
         webPreferences: {
             devTools: false,
-            nodeIntegration: true,
-            additionalArguments: args
+            nodeIntegration: true
         },
         minWidth: 500,
         minHeight: 800,
