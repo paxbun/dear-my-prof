@@ -10,6 +10,7 @@ void View::Start()
     {
         app()->UseApp(binding.second);
         binding.second->_view = this;
+        binding.second->Start();
     }
 }
 

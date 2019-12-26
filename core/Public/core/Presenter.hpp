@@ -41,6 +41,11 @@ class Presenter : public HasApp
 
   public:
     /*
+        Start는 이 객체에 View가 바인딩되었을 때 호출됩니다.
+    */
+    virtual void Start() {}
+
+    /*
         이 함수는 View 객체에 의해 뷰에서 이 프리젠터가 바인딩된 이벤트가
         발생되었을 때 호출됩니다.
 
