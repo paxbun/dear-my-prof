@@ -7,7 +7,6 @@
 #include <core/Args.hpp>
 #include <core/EnvironmentPresenter.hpp>
 #include <core/OpenNewEmailPresenter.hpp>
-#include <core/ProfessorPresenter.hpp>
 #include <core/TemplatePresenter.hpp>
 #include <core/View.hpp>
 
@@ -17,7 +16,6 @@ class FillTemplateView : public View
     TemplatePresenter     _template;
     EnvironmentPresenter  _environment;
     OpenNewEmailPresenter _openNewEmail;
-    ProfessorPresenter    _professor;
 
   public:
     FillTemplateView(Args&& args)
@@ -26,8 +24,7 @@ class FillTemplateView : public View
                  { "template-params", &_template },
                  { "template-fill", &_template },
                  { "environment", &_environment },
-                 { "create-new-email", &_openNewEmail },
-                 { "professor", &_professor } },
+                 { "create-new-email", &_openNewEmail } },
                std::move(args))
     {}
 };
