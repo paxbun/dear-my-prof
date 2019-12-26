@@ -13,6 +13,11 @@ Template Template::ParseFrom(std::istream& is)
         std::getline(is, line);
     } while (line != "BEGIN");
 
+    // Read Theme
+    std::getline(is, line);
+    auto theme = std::move(line);
+    line       = std::string();
+
     // Read subject
     std::getline(is, line);
     auto subject = TemplateString::ParseFrom(line);
@@ -29,7 +34,7 @@ Template Template::ParseFrom(std::istream& is)
     }
     auto content = TemplateString::ParseFrom(content);
 
-    return Template(std::move(subject), std::move(content));
+    return Template(std::move(subject), std::move(content), std::move(theme));
 }
 
 Template
