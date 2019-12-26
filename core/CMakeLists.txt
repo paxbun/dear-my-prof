@@ -15,10 +15,11 @@ add_library(dear-my-prof-core STATIC
     Source/ProfessorList.cpp
     Source/StringTransformFactory.cpp
     Source/Subject.cpp
-    Source/View.cpp
     Source/Template.cpp
+    Source/TemplateList.cpp
     Source/TemplateListPresenter.cpp
     Source/TemplateString.cpp
+    Source/View.cpp
 )
 target_link_libraries(dear-my-prof-core
     PUBLIC dear-my-prof-plat-defs
