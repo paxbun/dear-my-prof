@@ -5,6 +5,11 @@
 #include <core/EmailListPresenter.hpp>
 #include <core/View.hpp>
 
+void EmailListPresenter::Start()
+{
+    EmailList::GetInstance()->AddObserver(this);
+}
+
 void EmailListPresenter::Input(std::string const& event_name, Args const& args)
 {
     UpdateEmail();
@@ -13,6 +18,11 @@ void EmailListPresenter::Input(std::string const& event_name, Args const& args)
 void EmailListPresenter::Update()
 {
     UpdateEmail();
+}
+
+EmailListPresenter::~EmailListPresenter()
+{
+    EmailList::GetInstance()->RemoveObserver(this);
 }
 
 void EmailListPresenter::UpdateEmail()
