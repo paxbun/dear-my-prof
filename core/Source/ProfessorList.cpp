@@ -84,7 +84,7 @@ void ProfessorList::_ReadFrom(std::filesystem::path const& path)
                         ifs >> new_subjects[j];
 
                     new_prof_list.push_back(
-                        { Address { std::move(realName), std::move(id) },
+                        { Address { std::move(id), std::move(realName) },
                           std::move(new_subjects) });
                 }
                 else
