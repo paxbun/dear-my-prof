@@ -15,6 +15,8 @@ void OpenNewEmailPresenter::Input(std::string const& event_name,
     new_args.push_back(
         std::string("---subject=" + args.at("subject").get<std::string>()));
     new_args.push_back(
+        std::string("---to=" + args.at("to").get<std::string>()));
+    new_args.push_back(
         std::string("---content=" + args.at("content").get<std::string>()));
 
     app()->Navigate(view(), new NewEmailView(std::move(new_args)));
