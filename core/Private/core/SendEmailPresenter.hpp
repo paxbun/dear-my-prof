@@ -5,6 +5,7 @@
 #define __H_CORE_SEND_EMAIL_PRESENTER__
 
 #include <core/Presenter.hpp>
+#include <core/Address.hpp>
 
 class SendEmailPresenter : public Presenter
 {
