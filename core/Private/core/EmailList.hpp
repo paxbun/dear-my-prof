@@ -7,7 +7,7 @@
 #include <core/Email.hpp>
 #include <core/Subject.hpp>
 
-#include <unordered_map>
+#include <map>
 #include <vector>
 
 /*
@@ -28,7 +28,7 @@ class EmailList : public Subject
     }
 
   private:
-    std::unordered_map<Email::EmailId, Email> _inbox;
+    std::map<Email::EmailId, Email> _inbox;
     // std::unordered_map<Email::EmailId, Email> _sent;
 
   public:
