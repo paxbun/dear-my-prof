@@ -39,6 +39,10 @@ function newWindow(newViewName, parent) {
         frame: false
     });
     let id = win.webContents.id;
+    win.on('close', function (event) {
+        binding.close(id);
+        delete windows[id];
+    });
     win.webContents.on('ipc-message', function (event, channel, arg) {
         if (arg === undefined)
             arg = {};
