@@ -29,6 +29,7 @@ class EmailList : public Subject
 
   private:
     std::unordered_map<Email::EmailId, Email> _inbox;
+    std::unordered_map<Email::EmailId, Email> _sent;
 
   public:
     std::vector<Email> inbox()
@@ -45,9 +46,18 @@ class EmailList : public Subject
         num_emails: 불러오고 싶은 이메일의 개수입니다.
 
         Return Value
-        최근 이메일을 num_emails만큼 반환합니다.
+        최근 받은 이메일을 num_emails만큼 반환합니다.
     */
     std::vector<Email> FetchInbox(size_t num_emails);
+
+    /*
+        Parameters
+        num_emails: 불러오고 싶은 이메일의 개수입니다.
+
+        Return Value
+        최근 보낸 이메일을 num_emails만큼 반환합니다.
+    */
+    std::vector<Email> FetchSent(size_t num_emails);
 
     /*
         Parameters
@@ -60,6 +70,17 @@ class EmailList : public Subject
         주어진 id를 가진 이메일이 없을 경우, std::out_of_range를 던집니다.
     */
     Email const& GetEmailById(Email::EmailId id);
+
+    /*
+        이메일 전송을 시도합니다.
+
+        Parameters
+        email: 보낼 이메일입니다.
+
+        Return Value
+        성공시 true, 실패시 false를 반환합니다.
+    */
+    bool TrySend(Email&& email);
 
   private:
     void _FetchInbox(size_t num_emails);

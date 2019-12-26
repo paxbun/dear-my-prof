@@ -33,3 +33,8 @@ Email const& EmailList::GetEmailById(Email::EmailId id)
 {
     return _inbox.at(id);
 }
+
+bool EmailList::TrySend(Email&& email)
+{
+    return false;
+}
