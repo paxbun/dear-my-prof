@@ -17,7 +17,13 @@ void EmailListPresenter::Input(std::string const& event_name, Args const& args)
 
 void EmailListPresenter::Update()
 {
-    UpdateEmail();
+    Args new_args = Args::array();
+    for (auto const& email : EmailList::GetInstance()->inbox())
+        new_args.push_back({ { "subject", email.subject },
+                             { "from", email.from.email },
+                             { "content", email.content },
+                             { "id", std::to_string(email.id) } });
+    view()->Output("mail-refresh-reply", new_args);
 }
 
 EmailListPresenter::~EmailListPresenter()
@@ -27,13 +33,5 @@ EmailListPresenter::~EmailListPresenter()
 
 void EmailListPresenter::UpdateEmail()
 {
-    auto const inbox = EmailList::GetInstance()->FetchInbox(/* TODO */ 5);
-
-    Args new_args = Args::array();
-    for (auto const& email : inbox)
-        new_args.push_back({ { "subject", email.subject },
-                             { "from", email.from.email },
-                             { "content", email.content },
-                             { "id", std::to_string(email.id) } });
-    view()->Output("mail-refresh-reply", new_args);
+    EmailList::GetInstance()->FetchInbox(/* TODO */ 5);
 }
