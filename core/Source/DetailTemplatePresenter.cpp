@@ -9,8 +9,9 @@
 void DetailTemplatePresenter::Input(std::string const& event_name,
                                     Args const&        args)
 {
-    auto theme_it = args.find("theme");
-    if (theme_it != args.end())
+    auto const& creation_args = view()->creationArgs();
+    auto        theme_it      = creation_args.find("theme");
+    if (theme_it != creation_args.end())
     {
         try
         {

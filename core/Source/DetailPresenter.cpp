@@ -8,8 +8,9 @@
 
 void DetailPresenter::Input(std::string const& event_name, Args const& args)
 {
-    auto id_it = args.find("id");
-    if (id_it != args.end())
+    auto const& creation_args = view()->creationArgs();
+    auto        id_it         = creation_args.find("id");
+    if (id_it != creation_args.end())
     {
         try
         {

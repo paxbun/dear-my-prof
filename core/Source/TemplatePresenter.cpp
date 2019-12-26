@@ -22,7 +22,8 @@ void TemplatePresenter::Input(std::string const& event_name, Args const& args)
 
 void TemplatePresenter::_InitTemplate(Args const& args)
 {
-    if (auto it = args.find("theme"); it != args.end())
+    auto const& creation_args = view()->creationArgs();
+    if (auto it = creation_args.find("theme"); it != creation_args.end())
     {
         auto theme = it->get<std::string>();
         _temp      = TemplateList::GetInstance()->GetTemplateByTheme(theme);
@@ -39,7 +40,7 @@ void TemplatePresenter::_GetParameters(Args const& args)
 
     for (auto const& str : params) new_args.push_back(str);
 
-    view()->Output("template-params-reply", params);
+    view()->Output("template-params-reply", std::move(new_args));
 }
 
 void TemplatePresenter::_FillTemplate(Args const& args)
