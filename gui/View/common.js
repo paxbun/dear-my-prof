@@ -134,3 +134,10 @@ function setTitle(new_title) {
     document.getElementById('title-bar-body').innerText = new_title;
 }
 module.exports.setTitle = setTitle;
+
+function clearChild(elem) {
+    while (elem.firstChild) {
+        elem.removeChild(elem.firstChild);
+    }
+}
+module.exports.clearChild = clearChild;
