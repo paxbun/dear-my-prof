@@ -30,7 +30,7 @@ window.onload = function() {
     refreshDetail();
 }
 
-ipcRenderer.on('detail-refresh-reply', (event, arg) => {
+ipcRenderer.on('detail-template-refresh-reply', (event, arg) => {
     common.unsetLoading();
     common.setTitle('Dear My Professor - ' + arg.theme);
     templateTitle_dom.innerText = arg.theme;
