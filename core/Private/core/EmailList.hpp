@@ -29,7 +29,7 @@ class EmailList : public Subject
 
   private:
     std::unordered_map<Email::EmailId, Email> _inbox;
-    std::unordered_map<Email::EmailId, Email> _sent;
+    // std::unordered_map<Email::EmailId, Email> _sent;
 
   public:
     std::vector<Email> inbox()
@@ -57,7 +57,7 @@ class EmailList : public Subject
         Return Value
         최근 보낸 이메일을 num_emails만큼 반환합니다.
     */
-    std::vector<Email> FetchSent(size_t num_emails);
+    // std::vector<Email> FetchSent(size_t num_emails);
 
     /*
         Parameters
