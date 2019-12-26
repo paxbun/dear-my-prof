@@ -5,21 +5,9 @@ let emailTitle_dom = null;
 let emailSubtitle_dom = null;
 let emailBody_dom = null;
 
-function getDataId() {
-    const prefix = '---data-id=';
-    for (let i in window.process.argv) {
-        let str = window.process.argv[i];
-        if (str.startsWith(prefix))
-            return str.substring(prefix.length);
-    }
-    return 'null';
-}
-
 function refreshDetail() {
     common.setLoading();
-    ipcRenderer.send('detail-refresh', {
-        id: getDataId()
-    });
+    ipcRenderer.send('detail-refresh');
 }
 
 window.onload = function() {

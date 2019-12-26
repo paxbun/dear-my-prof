@@ -5,21 +5,9 @@ let templateTitle_dom = null;
 let templateSubtitle_dom = null;
 let templateBody_dom = null;
 
-function getTemplateTheme() {
-    const prefix = '---template-theme=';
-    for (let i in window.process.argv) {
-        let str = window.process.argv[i];
-        if (str.startsWith(prefix))
-            return str.substring(prefix.length);
-    }
-    return 'null';
-}
-
 function refreshDetail() {
     common.setLoading();
-    ipcRenderer.send('detail-template-refresh', {
-        theme: getTemplateTheme()
-    });
+    ipcRenderer.send('detail-template-refresh');
 }
 
 window.onload = function() {
