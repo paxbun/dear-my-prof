@@ -1,74 +1,84 @@
 // Copyright (c) 2019 Dear My Professor Authors
 // Author: sp301415
 
-#include <algorithm>
 #include <core/StringTransform.hpp>
 #include <core/StringTransformFactory.hpp>
 #include <core/TemplateString.hpp>
-#include <string>
-#include <tuple>
-#include <unordered_map>
-#include <vector>
 
-TemplateString TemplateString::ParseFrom(std::string const& original_string)
+#include <map>
+#include <regex>
+#include <stdexcept>
+
+std::string TemplateString::_Parameter::ToString()
 {
-    _base                 = original_string;
-    std::size_t pos_begin = 0, pos_end = 0, pos_mid = 0;
-
-    while (true)
-    {
-        pos_begin = _base.find("${", pos_begin);
-        if (pos_begin == std::string::npos)
-            break;
-
-        pos_end = _base.find('}', pos_begin);
-        pos_mid = _base.find('.', pos_begin);
-
-        if (pos_mid != std::string::npos)
-        {
-            _param.push_back(std::make_tuple(
-                pos_begin,
-                _base.substr(pos_begin + 2, pos_mid - pos_begin - 2),
-                StringTransformFactory::GetTransform(
-                    _base.substr(pos_mid + 1, pos_end - pos_mid - 1))));
-        }
-        else
-        {
-            _param.push_back(std::make_tuple(
-                pos_begin,
-                _base.substr(pos_begin + 2, pos_end - pos_begin - 2),
-                nullptr));
-        }
-        _base.replace(pos_begin, pos_end - pos_begin + 1, "");
-    }
-
-    return *this;
+    if (transformName.empty())
+        return "${" + name + "}";
+    else
+        return "${" + name + "." + transformName + "}";
 }
 
-TemplateString::TemplateString(
-    std::string const&                                                 base,
-    std::vector<std::tuple<int, std::string, StringTransform*>> const& param)
-    : _base { base }, _param { param }
-{}
-
-std::string TemplateString::Generate(
-    std::unordered_map<std::string, std::string> transformMap)
+TemplateString TemplateString::ParseFrom(std::string const& str)
 {
-    std::string base = _base;
-    for (auto s : _param)
+    std::regex expr(R"~(\$\s*\{\s*([^\.\s]*)\s*\.\s*([^\.\s]*)\s*\})~");
+    std::vector<std::string> new_base;
+    std::vector<_Parameter>  new_param;
+
+    size_t begin = 0;
+    for (std::sregex_iterator it(str.begin(), str.end(), expr), e; it != e;
+         ++it)
     {
-        auto pos       = std::get<0>(s);
-        auto param     = std::get<1>(s);
-        auto transform = std::get<2>(s);
-
-        auto replaced_string = transformMap[param];
-        if (transform != nullptr)
-        {
-            replaced_string = transform->Transform(replaced_string);
-        }
-
-        base.insert(pos, replaced_string);
+        auto const& match = *it;
+        new_base.push_back(str.substr(begin, match.position() - begin));
+        new_param.push_back({ match[1],
+                              match[2],
+                              StringTransformFactory::GetTransform(match[2]) });
+        begin = match.position() + match.length();
     }
+    new_base.push_back(str.substr(begin));
 
-    return base;
+    return TemplateString(std::move(new_base), std::move(new_param));
+}
+
+TemplateString TemplateString::Generate(
+    std::unordered_map<std::string, std::string> const& map)
+{
+    std::string              on_synthesize;
+    std::vector<std::string> new_base;
+    std::vector<_Parameter>  new_param;
+
+    for (size_t i = 0, l = _param.size(); i < l; ++i)
+    {
+        on_synthesize.append(_base[i]);
+
+        if (auto it = map.find(_param[i].name); it != map.end())
+            on_synthesize.append(_param[i].transform->Transform(it->second));
+        else
+        {
+            size_t length = on_synthesize.size();
+
+            new_base.push_back(std::move(on_synthesize));
+            new_param.push_back(_param[i]);
+
+            on_synthesize = std::string();
+            on_synthesize.reserve(length);
+        }
+    }
+    on_synthesize.append(_base.back());
+    new_base.push_back(std::move(on_synthesize));
+
+    return TemplateString(std::move(new_base), std::move(new_param));
+}
+
+std::string TemplateString::ToString()
+{
+    std::string rtn;
+
+    for (size_t i = 0, l = _param.size(); i < l; ++i)
+    {
+        rtn.append(_base[i]);
+        rtn.append(_param[i].ToString());
+    }
+    rtn.append(_base.back());
+
+    return rtn;
 }

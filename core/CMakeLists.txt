@@ -16,7 +16,7 @@ add_library(dear-my-prof-core STATIC
     Source/StringTransformFactory.cpp
     Source/View.cpp
     Source/TemplateListPresenter.cpp
-    # Source/TemplateString.cpp
+    Source/TemplateString.cpp
 )
 target_link_libraries(dear-my-prof-core
     PUBLIC dear-my-prof-plat-defs
