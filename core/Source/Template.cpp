@@ -44,19 +44,19 @@ bool Template::ReadFrom(std::istream& is, Template& out)
     return true;
 }
 
-Template
-Template::Generate(std::unordered_map<std::string, std::string> const& map)
+Template Template::Generate(
+    std::unordered_map<std::string, std::string> const& map) const
 {
     return Template(_subject.Generate(map), _content.Generate(map));
 }
 
-Email Template::ToEmail()
+Email Template::ToEmail() const
 {
     return Email(
         _subject.ToString(), Address(), Address(), _content.ToString());
 }
 
-std::set<std::string> Template::GetAllParameters()
+std::set<std::string> Template::GetAllParameters() const
 {
     std::set<std::string> rtn;
 
@@ -66,7 +66,7 @@ std::set<std::string> Template::GetAllParameters()
     return rtn;
 }
 
-void Template::WriteTo(std::ostream& os)
+void Template::WriteTo(std::ostream& os) const
 {
     os << "BEGIN\n"
        << _theme << '\n'

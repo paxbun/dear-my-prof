@@ -9,7 +9,7 @@
 #include <regex>
 #include <stdexcept>
 
-std::string TemplateString::_Parameter::ToString()
+std::string TemplateString::_Parameter::ToString() const
 {
     if (transformName.empty())
         return "${" + name + "}";
@@ -40,7 +40,7 @@ TemplateString TemplateString::ParseFrom(std::string const& str)
 }
 
 TemplateString TemplateString::Generate(
-    std::unordered_map<std::string, std::string> const& map)
+    std::unordered_map<std::string, std::string> const& map) const
 {
     std::string              on_synthesize;
     std::vector<std::string> new_base;
@@ -69,7 +69,7 @@ TemplateString TemplateString::Generate(
     return TemplateString(std::move(new_base), std::move(new_param));
 }
 
-std::string TemplateString::ToString()
+std::string TemplateString::ToString() const
 {
     std::string rtn;
 

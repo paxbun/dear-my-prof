@@ -32,7 +32,7 @@ class TemplateString : public StringTransform
             이 _Parameter를 순수한 문자열로 반환합니다. 이 문자열은 다시
             파싱할 수 있습니다.
         */
-        std::string ToString();
+        std::string ToString() const;
     };
 
   private:
@@ -40,12 +40,12 @@ class TemplateString : public StringTransform
     std::vector<_Parameter>  _param;
 
   public:
-    std::vector<std::string> const& base()
+    std::vector<std::string> const& base() const
     {
         return _base;
     }
 
-    std::vector<_Parameter> const& param()
+    std::vector<_Parameter> const& param() const
     {
         return _param;
     }
@@ -79,14 +79,14 @@ class TemplateString : public StringTransform
         주어진 맵에 따라 변수를 집어넣은 결과를 반환합니다.
     */
     TemplateString
-    Generate(std::unordered_map<std::string, std::string> const& map);
+    Generate(std::unordered_map<std::string, std::string> const& map) const;
 
     /*
         Return Value
         이 TemplateString을 순수한 문자열로 반환합니다. 이 문자열은 다시 파싱할
         수 있습니다.
     */
-    std::string ToString();
+    std::string ToString() const;
 };
 
 #endif

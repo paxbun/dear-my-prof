@@ -25,7 +25,7 @@ class Template
     TemplateString _content;
 
   public:
-    std::string const& theme()
+    std::string const& theme() const
     {
         return _theme;
     }
@@ -36,7 +36,7 @@ class Template
     template <typename SubjectT = TemplateString,
               typename ContentT = TemplateString,
               typename ThemeT   = std::string>
-    Template(SubjectT&& subject, ContentT&& content, ThemeT&& id = ThemeT())
+    Template(SubjectT&& subject, ContentT&& content, ThemeT&& theme = ThemeT())
         : _subject(std::forward<SubjectT>(subject)),
           _content(std::forward<ContentT>(content)),
           _theme(std::forward<ThemeT>(theme))
@@ -50,20 +50,21 @@ class Template
         Return Value
         주어진 맵에 따라 변수를 집어넣은 결과를 반환합니다.
     */
-    Template Generate(std::unordered_map<std::string, std::string> const& map);
+    Template
+    Generate(std::unordered_map<std::string, std::string> const& map) const;
 
     /*
         Return Value
         이 템플릿을 Email 객체로 변환합니다. 채워지지 않은 매개변수는 ${}의
         형태로 나타납니다.
     */
-    Email ToEmail();
+    Email ToEmail() const;
 
     /*
         Return Value
         이 템플릿의 모든 매개변수 이름의 목록을 반환합니다.
     */
-    std::set<std::string> GetAllParameters();
+    std::set<std::string> GetAllParameters() const;
 
     /*
         이 템플릿을 해당 스트림에 출력합니다.
@@ -71,7 +72,7 @@ class Template
         Parameters
         os: 출력할 스트림입니다.
     */
-    void WriteTo(std::ostream& os);
+    void WriteTo(std::ostream& os) const;
 };
 
 #endif
