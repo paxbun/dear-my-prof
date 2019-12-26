@@ -68,6 +68,9 @@ class TemplateString : public StringTransform
     {}
 
   public:
+    TemplateString() : _base(1, std::string()) {}
+
+  public:
     /*
         Parameters
         map: 매개변수의 이름과 들어갈 값을 대응시킨 맵입니다.
