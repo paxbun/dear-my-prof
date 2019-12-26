@@ -14,14 +14,14 @@ function splitAndTrim(arr) {
     for (let i in split) {
         let trim = split[i].trim();
         if (trim)
-            rtn.push([trim, '']);
+            rtn.push(trim);
     }
     return rtn;
 }
 
 function sendEmail() {
     let subject = common.Field_getValue(subjectField_dom);
-    let to = [common.Field_getValue(toField_dom), ''];
+    let to = common.Field_getValue(toField_dom);
     let cc = splitAndTrim(common.Field_getValue(ccField_dom));
     let bcc = splitAndTrim(common.Field_getValue(bccField_dom));
     let content = common.Field_getValue(contentField_dom);
