@@ -10,11 +10,16 @@
 class TemplateListPresenter : public Presenter, public Observer
 {
   public:
+    virtual void Start() override;
+
     virtual void Input(std::string const& event_name,
                        Args const&        args) override;
 
     virtual void Update() override;
 
+    virtual ~TemplateListPresenter();
+
+  public:
     void UpdateTemplates();
 };
 

@@ -6,6 +6,11 @@
 #include <core/TemplateListPresenter.hpp>
 #include <core/View.hpp>
 
+void TemplateListPresenter::Start()
+{
+    TemplateList::GetInstance()->AddObserver(this);
+}
+
 void TemplateListPresenter::Input(std::string const& event_name,
                                   Args const&        args)
 {
@@ -15,6 +20,11 @@ void TemplateListPresenter::Input(std::string const& event_name,
 void TemplateListPresenter::Update()
 {
     UpdateTemplates();
+}
+
+TemplateListPresenter::~TemplateListPresenter()
+{
+    TemplateList::GetInstance()->RemoveObserver(this);
 }
 
 void TemplateListPresenter::UpdateTemplates()
