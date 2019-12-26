@@ -7,6 +7,7 @@
 #include <core/Address.hpp>
 
 #include <filesystem>
+#include <fstream>
 #include <vector>
 
 /*
@@ -15,11 +16,7 @@
 class ProfessorList
 {
   public:
-    static ProfessorList* GetInstance()
-    {
-        static ProfessorList singleton("./Asset/ProfessorList.txt");
-        return &singleton;
-    }
+    static ProfessorList* GetInstance();
 
   private:
     struct _Professor
@@ -35,6 +32,11 @@ class ProfessorList
     ProfessorList(std::filesystem::path const& path)
     {
         _ReadFrom(path);
+    }
+
+    ProfessorList(std::istream& is)
+    {
+        _ReadFrom(is);
     }
 
   public:
@@ -81,7 +83,13 @@ class ProfessorList
         Paramters
         path: 교수님 목록 파일이 있는 경로입니다.
     */
-    void _ReadFrom(std::filesystem::path const& path);
+    void _ReadFrom(std::filesystem::path const& path)
+    {
+        std::ifstream ifs(path);
+        _ReadFrom(ifs);
+    }
+
+    void _ReadFrom(std::istream& is);
 };
 
 #endif

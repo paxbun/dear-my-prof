@@ -8,6 +8,7 @@
 #include <core/Template.hpp>
 
 #include <filesystem>
+#include <fstream>
 #include <string>
 #include <unordered_map>
 
@@ -17,13 +18,8 @@
 */
 class TemplateList : public Subject
 {
-  private:
   public:
-    static TemplateList* GetInstance()
-    {
-        static TemplateList singleton("./Asset/Templates.txt");
-        return &singleton;
-    }
+    static TemplateList* GetInstance();
 
   private:
     std::unordered_map<std::string, Template> _templateList;
@@ -39,6 +35,11 @@ class TemplateList : public Subject
     TemplateList(std::filesystem::path const& path) : _path(path)
     {
         _ReadFrom(path);
+    }
+
+    TemplateList(std::istream& is)
+    {
+        _ReadFrom(is);
     }
 
   public:
@@ -70,7 +71,8 @@ class TemplateList : public Subject
     void AddTemplate(Template&& temp);
 
     /*
-        정해진 파일로부터 템플릿 목록을 읽습니다. 읽은 후에는 옵저버들에게 통지합니다.
+        정해진 파일로부터 템플릿 목록을 읽습니다. 읽은 후에는 옵저버들에게
+       통지합니다.
     */
     void LoadList()
     {
@@ -79,7 +81,13 @@ class TemplateList : public Subject
     }
 
   private:
-    void _ReadFrom(std::filesystem::path const& path);
+    void _ReadFrom(std::filesystem::path const& path)
+    {
+        std::ifstream ifs(path);
+        _ReadFrom(ifs);
+    }
+
+    void _ReadFrom(std::istream& is);
 
     void _WriteTo(std::filesystem::path const& path);
 };

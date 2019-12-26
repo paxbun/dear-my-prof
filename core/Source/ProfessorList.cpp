@@ -5,7 +5,25 @@
 
 #include <algorithm>
 #include <fstream>
+#include <sstream>
 #include <string_view>
+
+namespace
+{
+
+static std::string const professorListString = R"~(4
+홍길동 honggil@dgist.ac.kr 2 다변수미적분학 선형대수학
+홍길서 hongseo@dgist.ac.kr 1 전자기학
+홍길남 hongnam@dgist.ac.kr 3 물질의이해 기초화학실험 화학반응의이해
+홍길북 hongbuk@dgist.ac.kr 1 분자와생명현상)~";
+
+}
+
+ProfessorList* ProfessorList::GetInstance()
+{
+    static ProfessorList singleton { std::istringstream(professorListString) };
+    return &singleton;
+}
 
 std::vector<Address> ProfessorList::GetProfByName(std::string const& name)
 {
@@ -55,16 +73,14 @@ std::vector<Address> ProfessorList::GetAllProfessors()
     return rtn;
 }
 
-void ProfessorList::_ReadFrom(std::filesystem::path const& path)
+void ProfessorList::_ReadFrom(std::istream& is)
 {
-    std::ifstream ifs(path);
-
-    if (ifs)
+    if (is)
     {
         size_t num = 0;
-        ifs >> num;
+        is >> num;
 
-        if (!ifs.fail())
+        if (!is.fail())
         {
             std::vector<_Professor> new_prof_list;
             new_prof_list.reserve(num);
@@ -72,16 +88,16 @@ void ProfessorList::_ReadFrom(std::filesystem::path const& path)
             for (size_t i = 0; i < num; ++i)
             {
                 std::string realName, id;
-                ifs >> realName >> id;
+                is >> realName >> id;
                 size_t subject_num = 0;
-                ifs >> subject_num;
+                is >> subject_num;
 
-                if (!ifs.fail())
+                if (!is.fail())
                 {
                     std::vector<std::string> new_subjects;
                     new_subjects.resize(subject_num);
                     for (size_t j = 0; j < subject_num; ++j)
-                        ifs >> new_subjects[j];
+                        is >> new_subjects[j];
 
                     new_prof_list.push_back(
                         { Address { std::move(id), std::move(realName) },
