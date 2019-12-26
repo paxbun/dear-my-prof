@@ -22,16 +22,12 @@ class Template
   public:
     using TemplateId = size_t;
 
+  public:
+    TemplateId id;
+
   private:
-    TemplateId     _id;
     TemplateString _subject;
     TemplateString _content;
-
-  public:
-    TemplateId id()
-    {
-        return _id;
-    }
 
   public:
     template <typename SubjectT = TemplateString,
