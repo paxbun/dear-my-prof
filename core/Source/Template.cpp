@@ -31,6 +31,7 @@ Template Template::ParseFrom(std::istream& is)
 
     return Template(std::move(subject), std::move(content));
 }
+
 Template
 Template::Generate(std::unordered_map<std::string, std::string> const& map)
 {
