@@ -13,6 +13,7 @@ add_library(dear-my-prof-core STATIC
     Source/LoginPresenter.cpp
     Source/OpenDetailPresenter.cpp
     Source/OpenDetailTemplatePresenter.cpp
+    Source/OpenFillTemplatePresenter.cpp
     Source/OpenNewEmailPresenter.cpp
     Source/OpenSelectTemplatePresenter.cpp
     Source/OpenNewTemplatePresenter.cpp
