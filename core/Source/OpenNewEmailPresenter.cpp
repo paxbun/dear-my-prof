@@ -2,6 +2,7 @@
 // Author: paxbun
 
 #include <core/App.hpp>
+#include <core/Args.hpp>
 #include <core/HasApp.hpp>
 #include <core/NewEmailView.hpp>
 #include <core/OpenNewEmailPresenter.hpp>
@@ -10,5 +11,11 @@
 void OpenNewEmailPresenter::Input(std::string const& event_name,
                                   Args const&        args)
 {
-    app()->NewWindow(new NewEmailView, view());
+    Args new_args = Args::array();
+    new_args.push_back(
+        std::string("---subject=" + args.at("subject").get<std::string>()));
+    new_args.push_back(
+        std::string("---content=" + args.at("content").get<std::string>()));
+
+    app()->NewWindow(new NewEmailView(std::move(new_args)), view());
 }

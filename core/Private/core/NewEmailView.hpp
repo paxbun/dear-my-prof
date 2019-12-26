@@ -12,7 +12,7 @@ class NewEmailView : public View
     // TODO
 
   public:
-    NewEmailView() : View("newemail.html", {}) {}
+    NewEmailView(Args&& args) : View("newemail.html", {}, std::move(args)) {}
 };
 
 #endif
