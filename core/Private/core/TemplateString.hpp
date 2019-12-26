@@ -57,9 +57,6 @@ class TemplateString : public StringTransform
 
         Return Value
         주어진 문자열을 파싱한 결과를 반환합니다.
-
-        Exception
-        파싱에 실패할 경우, std::invalid_argument를 던집니다.
     */
     static TemplateString ParseFrom(std::string const& str);
 
