@@ -22,6 +22,7 @@ add_library(dear-my-prof-core STATIC
     Source/Template.cpp
     Source/TemplateList.cpp
     Source/TemplateListPresenter.cpp
+    Source/TemplatePresenter.cpp
     Source/TemplateString.cpp
     Source/View.cpp
 )
