@@ -45,7 +45,8 @@ class ProfessorList
         name: 교수님의 성함입니다.
 
         Return Value
-        주어진 성함의 교수님들의 메일 목록을 반환합니다.
+        주어진 문자열로 시작하는 성함을 가지신 교수님들의 메일 목록을
+        반환합니다.
     */
     std::vector<Address> GetProfByName(std::string const& name);
 
@@ -54,9 +55,20 @@ class ProfessorList
         name: 과목의 이름입니다.
 
         Return Value
-        주어진 이름의 과목을 맡으신 교수님들의 메일 목록을 반환합니다.
+        주어진 문자열을 포함하는 이름의 과목을 맡으신 교수님들의 메일 목록을
+        반환합니다.
     */
     std::vector<Address> GetProfBySubjects(std::string const& name);
+
+    /*
+        Parameters
+        addr: 이메일입니다.
+
+        Return Value
+        주어진 문자열로 시작하는 이메일을 가지신 교수님들의 메일 목록을
+        반환합니다.
+    */
+    std::vector<Address> GetProfByAddress(std::string const& addr);
 
     /*
         Return Value

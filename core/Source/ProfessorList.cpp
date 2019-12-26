@@ -5,6 +5,7 @@
 
 #include <algorithm>
 #include <fstream>
+#include <string_view>
 
 ProfessorList ProfessorList::_singleton
     = ProfessorList("./Asset/ProfessorList.txt");
@@ -14,7 +15,7 @@ std::vector<Address> ProfessorList::GetProfByName(std::string const& name)
     std::vector<Address> rtn;
 
     for (auto const& prof : _profList)
-        if (prof.addr.realName == name)
+        if (prof.addr.realName.rfind(name, 0) == 0)
             rtn.push_back(prof.addr);
 
     return rtn;
@@ -25,8 +26,23 @@ std::vector<Address> ProfessorList::GetProfBySubjects(std::string const& name)
     std::vector<Address> rtn;
 
     for (auto const& prof : _profList)
-        if (std::find(prof.subjects.begin(), prof.subjects.end(), name)
+        if (std::find_if(prof.subjects.begin(),
+                         prof.subjects.end(),
+                         [&name](std::string const& subject) {
+                             return subject.find(name) != std::string::npos;
+                         })
             != prof.subjects.end())
+            rtn.push_back(prof.addr);
+
+    return rtn;
+}
+
+std::vector<Address> ProfessorList::GetProfByAddress(std::string const& addr)
+{
+    std::vector<Address> rtn;
+
+    for (auto const& prof : _profList)
+        if (prof.addr.email.rfind(addr, 0) == 0)
             rtn.push_back(prof.addr);
 
     return rtn;
