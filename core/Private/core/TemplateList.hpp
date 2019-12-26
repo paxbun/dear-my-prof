@@ -49,8 +49,25 @@ class TemplateList : public Subject
     }
 
   public:
+    /*
+        Parameters
+        theme: 템플릿의 테마입니다.
+
+        Return Value
+        주어진 테마를 가진 이메일을 반환합니다.
+
+        Exception
+        주어진 테마를 가진 이메일이 없을 경우, std::out_of_range를 던집니다.
+    */
     Template const& GetTemplateByTheme(std::string const& theme);
 
+    /*
+        주어진 템플릿을 템플릿 목록에 추가합니다. 만약 같은 테마를 가진 템플릿이
+        목록에 있다면, 그 템플릿에 덮어쓰기 합니다.
+
+        Parameters
+        temp: 추가할 템플릿입니다.
+    */
     void AddTemplate(Template&& temp);
 
   private:
