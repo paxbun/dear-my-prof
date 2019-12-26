@@ -55,7 +55,7 @@ class TemplateList : public Subject
         Return Value
         주어진 테마를 가진 이메일을 반환합니다.
 
-        Exception
+        Exceptionpublic Observer
         주어진 테마를 가진 이메일이 없을 경우, std::out_of_range를 던집니다.
     */
     Template const& GetTemplateByTheme(std::string const& theme);
@@ -68,6 +68,15 @@ class TemplateList : public Subject
         temp: 추가할 템플릿입니다.
     */
     void AddTemplate(Template&& temp);
+
+    /*
+        정해진 파일로부터 템플릿 목록을 읽습니다. 읽은 후에는 옵저버들에게 통지합니다.
+    */
+    void LoadList()
+    {
+        _ReadFrom(_path);
+        _NotifyObservers();
+    }
 
   private:
     void _ReadFrom(std::filesystem::path const& path);

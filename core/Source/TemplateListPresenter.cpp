@@ -19,17 +19,6 @@ void TemplateListPresenter::Input(std::string const& event_name,
 
 void TemplateListPresenter::Update()
 {
-    UpdateTemplates();
-}
-
-TemplateListPresenter::~TemplateListPresenter()
-{
-    TemplateList::GetInstance()->RemoveObserver(this);
-}
-
-void TemplateListPresenter::UpdateTemplates()
-{
-
     auto const temps = TemplateList::GetInstance()->templateList();
 
     Args new_args = Args::array();
@@ -42,4 +31,14 @@ void TemplateListPresenter::UpdateTemplates()
     }
 
     view()->Output("template-refresh-reply", new_args);
+}
+
+TemplateListPresenter::~TemplateListPresenter()
+{
+    TemplateList::GetInstance()->RemoveObserver(this);
+}
+
+void TemplateListPresenter::UpdateTemplates()
+{
+    TemplateList::GetInstance()->LoadList();
 }
