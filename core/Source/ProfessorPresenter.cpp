@@ -20,12 +20,7 @@ void ProfessorPresenter::Input(std::string const& event_name, Args const& args)
     Args new_arg = Args::array();
     for (auto const& addrs : addrss)
         for (auto const& addr : addrs)
-        {
-            if (!addr.realName.empty())
-                new_arg.push_back(Args::array({ addr.email, addr.realName }));
-            else if (!addr.email.empty())
-                new_arg.push_back(addr.email);
-        }
+            new_arg.push_back(Args::array({ addr.email, addr.realName }));
 
     view()->Output("professor-reply", new_arg);
 }
