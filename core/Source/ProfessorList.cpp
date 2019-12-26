@@ -7,9 +7,6 @@
 #include <fstream>
 #include <string_view>
 
-ProfessorList ProfessorList::_singleton
-    = ProfessorList("./Asset/ProfessorList.txt");
-
 std::vector<Address> ProfessorList::GetProfByName(std::string const& name)
 {
     std::vector<Address> rtn;

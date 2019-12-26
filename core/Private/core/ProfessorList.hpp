@@ -14,13 +14,11 @@
 */
 class ProfessorList
 {
-  private:
-    static ProfessorList _singleton;
-
   public:
     static ProfessorList* GetInstance()
     {
-        return &_singleton;
+        static ProfessorList singleton("./Asset/ProfessorList.txt");
+        return &singleton;
     }
 
   private:
