@@ -17,6 +17,7 @@ bool CredentialManager::TryLogin(std::string const& id,
         _pw   = pw;
         _sid  = sid;
         _name = name;
+        return true;
     }
     else
         return false;
