@@ -17,10 +17,9 @@ void ProfessorPresenter::Input(std::string const& event_name, Args const& args)
                                       list->GetProfBySubjects(query),
                                       list->GetProfByAddress(query) };
 
-    Args new_arg = Args::array();
+    Args new_arg;
     for (auto const& addrs : addrss)
-        for (auto const& addr : addrs)
-            new_arg.push_back(Args::array({ addr.email, addr.realName }));
+        for (auto const& addr : addrs) new_arg[addr.email] = addr.realName;
 
     view()->Output("professor-reply", new_arg);
 }
