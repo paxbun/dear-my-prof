@@ -5,8 +5,8 @@ let templateTitle_dom = null;
 let templateSubtitle_dom = null;
 let templateBody_dom = null;
 
-function getDataId() {
-    const prefix = '---data-id=';
+function getTemplateTheme() {
+    const prefix = '---template-theme=';
     for (let i in window.process.argv) {
         let str = window.process.argv[i];
         if (str.startsWith(prefix))
@@ -18,7 +18,7 @@ function getDataId() {
 function refreshDetail() {
     common.setLoading();
     ipcRenderer.send('detail-template-refresh', {
-        id: getDataId()
+        theme: getTemplateTheme()
     });
 }
 
