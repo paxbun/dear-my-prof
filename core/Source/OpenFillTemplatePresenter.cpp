@@ -10,9 +10,5 @@
 void OpenFillTemplatePresenter::Input(std::string const& event_name,
                                       Args const&        args)
 {
-    Args new_args = Args::array();
-    new_args.push_back(std::string("---theme=")
-                       + args.at("theme").get<std::string>());
-
-    app()->Navigate(view(), new FillTemplateView(std::move(new_args)));
+    app()->Navigate(view(), new FillTemplateView(Args(args)));
 }

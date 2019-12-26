@@ -10,9 +10,5 @@
 
 void OpenDetailTemplatePresenter::Input(std::string const& event_name, Args const& args)
 {
-    Args new_args = Args::array();
-    new_args.push_back(std::string("---template-theme=")
-                       + args.at("theme").get<std::string>());
-
-    app()->NewWindow(new DetailTemplateView(std::move(new_args)), view());
+    app()->NewWindow(new DetailTemplateView(Args(args)), view());
 }
