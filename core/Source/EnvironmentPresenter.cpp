@@ -10,6 +10,11 @@ void EnvironmentPresenter::Input(std::string const& event_name,
                                  Args const&        args)
 {
     auto cred = CredentialManager::GetInstance();
-    view()->Output("environment",
-                   { { u8"이름", cred->name() }, { u8"학번", cred->sid() } });
+
+    view()->Output(
+        "environment-reply",
+        { { u8"이름", cred->name() },
+          { u8"학번", cred->sid() },
+          { u8"교수님성함",
+            view()->creationArgs().at("name").get<std::string>() } });
 }
