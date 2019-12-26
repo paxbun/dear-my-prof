@@ -46,13 +46,11 @@ void ElectronApp::NewWindow(View* new_view, View* parent_view)
         if (it == _view2id.end())
         {
             new_win = _newWindow.Call(
-                { Napi::String::New(_env, new_view->viewName()),
-                  Conversions::ConvertArgs(_env, new_view->creationArgs()) });
+                { Napi::String::New(_env, new_view->viewName()) });
         }
         else
             new_win = _newWindow.Call(
                 { Napi::String::New(_env, new_view->viewName()),
-                  Conversions::ConvertArgs(_env, new_view->creationArgs()),
                   Napi::Number::New(_env, it->second) });
 
         auto new_id = static_cast<ViewId>(new_win.ToNumber().Int64Value());
