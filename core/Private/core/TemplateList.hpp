@@ -18,12 +18,11 @@
 class TemplateList : public Subject
 {
   private:
-    static TemplateList _singleton;
-
   public:
     static TemplateList* GetInstance()
     {
-        return &_singleton;
+        static TemplateList singleton("./Asset/Templates.txt");
+        return &singleton;
     }
 
   private:

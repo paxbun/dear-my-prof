@@ -5,8 +5,6 @@
 
 #include <fstream>
 
-TemplateList TemplateList::_singleton = TemplateList("./Asset/Templates.txt");
-
 Template const& TemplateList::GetTemplateByTheme(std::string const& theme)
 {
     return _templateList.at(theme);
