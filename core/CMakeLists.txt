@@ -99,4 +99,17 @@ if(CMAKE_BUILD_TYPE MATCHES "Debug")
         COMMAND dear-my-prof-core-template-string-test
     )
 
+    # TemplateTest
+    add_executable(dear-my-prof-core-template-test
+        Test/TemplateTest.cpp
+    )
+    target_link_libraries(dear-my-prof-core-template-test
+        PUBLIC dear-my-prof-core
+        PUBLIC dear-my-prof-core-tests
+    )
+    add_test(
+        NAME core-template-test
+        COMMAND dear-my-prof-core-template-test
+    )
+
 endif()
