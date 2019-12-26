@@ -12,7 +12,7 @@
     UpeerStringTransform 클래스는 영문을 첫 글자만 대문자로 바꾸는 문자열 변환
    함수입니다.
 */
-class PascalStringTransform : public CodaStringTransform
+class PascalStringTransform : public StringTransform
 {
   public:
     virtual std::string Transform(std::string const& input) noexcept override

@@ -12,7 +12,7 @@
     UpeerStringTransform 클래스는 영문을 모두 소문자로 바꾸는 문자열 변환
    함수입니다.
 */
-class LowerStringTransform : public CodaStringTransform
+class LowerStringTransform : public StringTransform
 {
   public:
     virtual std::string Transform(std::string const& input) noexcept override
