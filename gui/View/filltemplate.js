@@ -72,6 +72,11 @@ ipcRenderer.on('data-reply', (event, arg) => {
         value_dom.addEventListener('input', (event) => {
             fillTemplate();
         });
+        value_dom.addEventListener('keydown', (event) => {
+            if (event.keyCode === 13) {
+                event.preventDefault();
+            }
+        });
         templateParamsList_dom.appendChild(param_dom);
         ipcRenderer.send('template-fill', environment);
     }
