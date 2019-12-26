@@ -19,16 +19,29 @@ class Template
   public:
     static Template ParseFrom(std::istream& is);
 
+  public:
+    using TemplateId = size_t;
+
   private:
+    TemplateId     _id;
     TemplateString _subject;
     TemplateString _content;
 
   public:
+    TemplateId id()
+    {
+        return _id;
+    }
+
+  public:
     template <typename SubjectT = TemplateString,
               typename ContentT = TemplateString>
-    Template(SubjectT&& subject, ContentT&& content)
+    Template(SubjectT&& subject,
+             ContentT&& content,
+             TemplateId id = TemplateId(0))
         : _subject(std::forward<SubjectT>(subject)),
-          _content(std::forward<ContentT>(content))
+          _content(std::forward<ContentT>(content)),
+          _id(id)
     {}
 
   public:
