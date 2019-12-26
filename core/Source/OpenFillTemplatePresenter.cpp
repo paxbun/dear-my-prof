@@ -10,5 +10,8 @@
 void OpenFillTemplatePresenter::Input(std::string const& event_name,
                                       Args const&        args)
 {
-    app()->Navigate(view(), new FillTemplateView(Args(args)));
+    auto new_args = view()->creationArgs();
+    for (auto it = args.begin(); it != args.end(); ++it)
+        new_args[it.key()] = it.value();
+    app()->Navigate(view(), new FillTemplateView(std::move(new_args)));
 }
