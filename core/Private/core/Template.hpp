@@ -64,6 +64,14 @@ class Template
         이 템플릿의 모든 매개변수 이름의 목록을 반환합니다.
     */
     std::set<std::string> GetAllParameters();
+
+    /*
+        이 템플릿을 해당 스트림에 출력합니다.
+
+        Parameters
+        os: 출력할 스트림입니다.
+    */
+    void WriteTo(std::ostream& os);
 };
 
 #endif

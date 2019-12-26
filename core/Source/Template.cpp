@@ -36,9 +36,11 @@ bool Template::ReadFrom(std::istream& is, Template& out)
         content.append(line);
         content.push_back('\n');
     }
-    auto content = TemplateString::ParseFrom(content);
+    content.pop_back();
+    auto parsed_content = TemplateString::ParseFrom(content);
 
-    out = Template(std::move(subject), std::move(content), std::move(theme));
+    out = Template(
+        std::move(subject), std::move(parsed_content), std::move(theme));
     return true;
 }
 
@@ -62,4 +64,13 @@ std::set<std::string> Template::GetAllParameters()
     for (auto const& param : _content.param()) rtn.insert(param.name);
 
     return rtn;
+}
+
+void Template::WriteTo(std::ostream& os)
+{
+    os << "BEGIN\n"
+       << _theme << '\n'
+       << _subject.ToString() << '\n'
+       << _content.ToString() << '\n'
+       << "END\n";
 }
