@@ -41,6 +41,12 @@ window.onload = function () {
     bccField_dom = document.getElementById('bcc-field');
     contentField_dom = document.getElementById('content-field');
 
+    common.Field_addTransition(subjectField_dom);
+    common.Field_addTransition(toField_dom);
+    common.Field_addTransition(ccField_dom);
+    common.Field_addTransition(bccField_dom);
+    common.Field_addTransition(contentField_dom);
+
     common.Field_preventMultiline(subjectField_dom);
     common.Field_preventMultiline(toField_dom);
     common.Field_preventMultiline(ccField_dom);
@@ -57,5 +63,9 @@ ipcRenderer.on('data-reply', (event, arg) => {
     common.Field_getValueDom(contentField_dom).innerText = data.content;
     common.unsetLoading();
 }).on('send-email-failed', (event, arg) => {
-    alert('전송에 실패하였습니다.');
+    common.Field_setInvalid(subjectField_dom);
+    common.Field_setInvalid(toField_dom);
+    common.Field_setInvalid(ccField_dom);
+    common.Field_setInvalid(bccField_dom);
+    common.Field_setInvalid(contentField_dom);
 })
