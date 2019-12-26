@@ -162,6 +162,10 @@ body {
   padding: 15px;
 }
 
+#content.form>.body {
+  height: calc(100% - 210px);
+}
+
 #content>.body::-webkit-scrollbar {
   width: 0px;
   display: hidden;
@@ -173,7 +177,7 @@ body {
   background-position: center;
 }
 
-.form .title {
+.form .withmargin {
   margin: 20px 0px 40px 0px;
   height: 160px;
 }
@@ -290,6 +294,7 @@ body {
 .content-list .item-three * {
   display: block;
   overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 .content-list .item-three .inner {
@@ -339,6 +344,7 @@ body {
     display: inline-block;
     vertical-align: middle;
     margin: 0px 5px 0px 5px;
+    max-height: 1.25em;
   }
 
   .content-list .item-three .title {
@@ -355,6 +361,11 @@ body {
     width: calc(60% - 48px);
   }
 
+  .content-list .item-two .subtitle {
+    width: calc(80% - 48px);
+    max-width: 9999px;
+  }
+
 }
 
 .asset-icon {
@@ -363,6 +374,14 @@ body {
 
 .asset-plus {
   background-image: url('../Asset/Plus.png');
+}
+
+.asset-template {
+  background-image: url('../Asset/Template.png');
+}
+
+.asset-send {
+  background-image: url('../Asset/Send.png');
 }
 
 .asset-background {
