@@ -1,8 +1,10 @@
 // Copyright (c) 2019 Dear My Professor Authors
 // Author: paxbun
 
+#include <core/Args.hpp>
 #include <core/CredentialManager.hpp>
 #include <core/EnvironmentPresenter.hpp>
+#include <core/View.hpp>
 
 void EnvironmentPresenter::Input(std::string const& event_name,
                                  Args const&        args)
