@@ -92,6 +92,11 @@ ElectronApp::ViewId ElectronApp::GetIdByView(View* view)
         return InvalidId;
 }
 
+size_t ElectronApp::GetNumberOfViews()
+{
+    return _winnum.Call({}).ToNumber().Int64Value();
+}
+
 void ElectronApp::Output(View*              view,
                          std::string const& response_name,
                          Args const&        response_args)
@@ -133,6 +138,7 @@ ElectronApp::ElectronApp(Napi::CallbackInfo const& info)
     _newWindow = Napi::Persistent(obj.Get("newWindow").As<Napi::Function>());
     _close     = Napi::Persistent(obj.Get("close").As<Napi::Function>());
     _output    = Napi::Persistent(obj.Get("output").As<Napi::Function>());
+    _winnum    = Napi::Persistent(obj.Get("winnum").As<Napi::Function>());
 }
 
 Napi::Value ElectronApp::_Start(Napi::CallbackInfo const& info)

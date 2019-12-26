@@ -85,6 +85,12 @@ class App
     virtual ViewId GetIdByView(View* view) = 0;
 
     /*
+        Return Value
+        뷰의 개수를 반환합니다.
+    */
+    virtual size_t GetNumberOfViews() = 0;
+
+    /*
         해당 View 객체에 대응되는 뷰에게 해당 답변을 전달합니다. 이 함수는 View
         객체들에 의해 호출됩니다.
     */

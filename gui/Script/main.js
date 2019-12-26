@@ -7,7 +7,8 @@ let binding = new bind.CppImpl({
     "navigate": navigate,
     "newWindow": newWindow,
     "close": close,
-    "output": output
+    "output": output,
+    "winnum": winnum
 });
 
 function newPosition() {
@@ -60,6 +61,10 @@ function close(currentWin) {
 
 function output(currentWin, responseName, responseArgs) {
     windows[currentWin].webContents.send(responseName, responseArgs);
+}
+
+function winnum() {
+    return Object.keys(windows).length;
 }
 
 app.on('ready', function (event, arg) {

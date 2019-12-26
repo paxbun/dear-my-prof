@@ -38,6 +38,7 @@ class ElectronApp : public App, public Napi::ObjectWrap<ElectronApp>
     virtual void   Close(View* current_view) override;
     virtual View*  GetViewById(ViewId view_id) override;
     virtual ViewId GetIdByView(View* view) override;
+    virtual size_t GetNumberOfViews() override;
     virtual void   Output(View*              view,
                           std::string const& response_name,
                           Args const&        response_args) override;
@@ -47,6 +48,7 @@ class ElectronApp : public App, public Napi::ObjectWrap<ElectronApp>
     Napi::FunctionReference _newWindow;
     Napi::FunctionReference _close;
     Napi::FunctionReference _output;
+    Napi::FunctionReference _winnum;
 
     Napi::Env _env;
 
