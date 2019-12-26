@@ -4,13 +4,18 @@
 #ifndef __H_CORE_EMAIL_LIST_PRESENTER__
 #define __H_CORE_EMAIL_LIST_PRESENTER__
 
+#include <core/Observer.hpp>
 #include <core/Presenter.hpp>
 
-class EmailListPresenter : public Presenter
+class EmailListPresenter : public Presenter, public Observer
 {
   public:
     virtual void Input(std::string const& event_name,
                        Args const&        args) override;
+
+    virtual void Update() override;
+
+    void UpdateEmail();
 };
 
 #endif

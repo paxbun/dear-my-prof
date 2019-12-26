@@ -7,6 +7,16 @@
 
 void EmailListPresenter::Input(std::string const& event_name, Args const& args)
 {
+    UpdateEmail();
+}
+
+void EmailListPresenter::Update()
+{
+    UpdateEmail();
+}
+
+void EmailListPresenter::UpdateEmail()
+{
     auto const inbox = EmailList::GetInstance()->FetchInbox(/* TODO */ 5);
 
     Args new_args = Args::array();
