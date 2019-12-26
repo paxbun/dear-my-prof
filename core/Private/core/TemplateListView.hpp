@@ -5,17 +5,21 @@
 #define __H_CORE_TEMPLATE_LIST_VIEW__
 
 #include <core/Args.hpp>
+#include <core/OpenDetailTemplatePresenter.hpp>
 #include <core/TemplateListPresenter.hpp>
 #include <core/View.hpp>
 
 class TemplateListView : public View
 {
     // TODO
-    TemplateListPresenter _templateList;
+    OpenDetailTemplatePresenter _openDetailTemplate;
+    TemplateListPresenter       _templateList;
 
   public:
     TemplateListView()
-        : View("template.html", { { "template-refresh", &_templateList } })
+        : View("template.html",
+               { { "template-refresh", &_templateList },
+                 { "create-detail-template-window", &_openDetailTemplate } })
     {}
 };
 
