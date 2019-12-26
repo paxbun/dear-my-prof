@@ -19,7 +19,7 @@ std::string TemplateString::_Parameter::ToString() const
 
 TemplateString TemplateString::ParseFrom(std::string const& str)
 {
-    std::regex expr(R"~(\$\s*\{\s*([^\.\s]*)\s*\.\s*([^\.\s]*)\s*\})~");
+    std::regex expr(R"~(\$\s*\{\s*([^\.\s]*)\s*(\.\s*([^\.\s]*))?\s*\})~");
     std::vector<std::string> new_base;
     std::vector<_Parameter>  new_param;
 
@@ -30,8 +30,8 @@ TemplateString TemplateString::ParseFrom(std::string const& str)
         auto const& match = *it;
         new_base.push_back(str.substr(begin, match.position() - begin));
         new_param.push_back({ match[1],
-                              match[2],
-                              StringTransformFactory::GetTransform(match[2]) });
+                              match[3],
+                              StringTransformFactory::GetTransform(match[3]) });
         begin = match.position() + match.length();
     }
     new_base.push_back(str.substr(begin));
