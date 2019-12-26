@@ -11,13 +11,11 @@
 */
 class CredentialManager
 {
-  private:
-    static CredentialManager _singleton;
-
   public:
     static CredentialManager* GetInstance()
     {
-        return &_singleton;
+        static CredentialManager singleton;
+        return &singleton;
     }
 
   private:

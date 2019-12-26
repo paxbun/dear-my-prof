@@ -18,13 +18,11 @@ class EmailList : public Subject
 {
     // TODO
 
-  private:
-    static EmailList _singleton;
-
   public:
     static EmailList* GetInstance()
     {
-        return &_singleton;
+        static EmailList singleton;
+        return &singleton;
     }
 
   private:

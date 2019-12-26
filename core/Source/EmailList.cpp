@@ -4,8 +4,6 @@
 #include <core/CredentialManager.hpp>
 #include <core/EmailList.hpp>
 
-EmailList EmailList::_singleton;
-
 void EmailList::FetchInbox(size_t num_emails)
 {
     // TODO
