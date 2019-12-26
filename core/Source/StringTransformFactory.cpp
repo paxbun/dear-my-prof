@@ -5,7 +5,8 @@
 #include <core/StringTransformFactory.hpp>
 #include <core/SubjectStringTransform.hpp>
 #include <core/ThemeStringTransform.hpp>
-
+#include <core/UpperStringTransform.hpp>
+#include <core/LowerStringTransform.hpp>
 namespace
 {
 
@@ -13,6 +14,8 @@ StringTransform        _default;
 ThemeStringTransform   _theme;
 SubjectStringTransform _subject;
 ObjectStringTransform  _object;
+UpperStringTransform   _uppercase;
+LowerStringTransform   _lowercase;
 
 } // namespace
 
@@ -24,6 +27,8 @@ std::unordered_map<std::string, StringTransform*>
         { u8"가", &_subject },
         { u8"을", &_object },
         { u8"를", &_object },
+		{ u8"upp", &_uppercase},
+		{ u8"low", &_lowercase},
     } };
 
 StringTransform*
