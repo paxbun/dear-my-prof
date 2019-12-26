@@ -3,7 +3,7 @@ const common = require('./common.js');
 
 let templateList_dom = null;
 
-function refreshMailList() {
+function refreshTemplateList() {
     common.setLoading();
     ipcRenderer.send('template-refresh');
 }
@@ -11,7 +11,7 @@ function refreshMailList() {
 window.onload = function () {
     templateList_dom = document.getElementById('template-list');
     common.setTitle('Dear My Professor - 템플릿 목록');
-    refreshMailList();
+    refreshTemplateList();
 }
 
 ipcRenderer.on('template-refresh-reply', (event, arg) => {
