@@ -6,20 +6,22 @@
 
 #include <core/Args.hpp>
 #include <core/OpenDetailTemplatePresenter.hpp>
+#include <core/OpenNewTemplatePresenter.hpp>
 #include <core/TemplateListPresenter.hpp>
 #include <core/View.hpp>
 
 class TemplateListView : public View
 {
-    // TODO
+    OpenNewTemplatePresenter    _openNewTemplate;
     OpenDetailTemplatePresenter _openDetailTemplate;
     TemplateListPresenter       _templateList;
 
   public:
     TemplateListView()
         : View("template.html",
-               { { "template-refresh", &_templateList },
-                 { "create-detail-template-window", &_openDetailTemplate } })
+               { { "create-new-template-window", &_openNewTemplate },
+                 { "create-detail-template-window", &_openDetailTemplate },
+                 { "template-refresh", &_templateList } })
     {}
 };
 
