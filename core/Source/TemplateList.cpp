@@ -16,6 +16,7 @@ void TemplateList::AddTemplate(Template&& temp)
 {
     auto const theme = temp.theme();
     _templateList.insert(std::make_pair(theme, std::move(temp)));
+    _WriteTo(_path);
     _NotifyObservers();
 }
 
