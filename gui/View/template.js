@@ -19,7 +19,7 @@ ipcRenderer.on('template-refresh-reply', (event, arg) => {
         let item = common.ItemThree_new(arg[i].theme, arg[i].subject, arg[i].content);
         item.addEventListener('click', (event) => {
             ipcRenderer.send('create-detail-template-window',  {
-                id: arg[i].id
+                theme: arg[i].theme
             });
         });
         templateList_dom.appendChild(item);

@@ -5,14 +5,18 @@
 #define __H_CORE_TEMPLATE_LIST_VIEW__
 
 #include <core/Args.hpp>
+#include <core/TemplateListPresenter.hpp>
 #include <core/View.hpp>
 
 class TemplateListView : public View
 {
     // TODO
+    TemplateListPresenter _templateList;
 
   public:
-    TemplateListView() : View("template.html", {}) {}
+    TemplateListView()
+        : View("template.html", { { "template-refresh", &_templateList } })
+    {}
 };
 
 #endif

@@ -31,5 +31,5 @@ void TemplateListPresenter::UpdateTemplates()
                              { "content", email.content } });
     }
 
-    view()->Output("emplate-refresh-reply", new_args);
+    view()->Output("template-refresh-reply", new_args);
 }
