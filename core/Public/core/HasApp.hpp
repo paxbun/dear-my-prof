@@ -9,7 +9,7 @@ class App;
 /*
     HasApp 클래스는 App을 멤버 변수로 가지고, getter를 제공하는 클래스입니다.
     View, Presenter 등 App 객체에 접근해야 하는 클래스는 이 클래스를
-    상속하여야합니다.
+    상속하여야 합니다.
 */
 class HasApp
 {
