@@ -16,7 +16,9 @@ void View::Start()
 
 void View::Input(std::string const& event_name, Args const& event_args)
 {
-    if (auto it = _bindMap.find(event_name); it != _bindMap.end())
+    if (event_name == "data")
+        Output("data-reply", _creationArgs);
+    else if (auto it = _bindMap.find(event_name); it != _bindMap.end())
         it->second->Input(event_name, event_args);
 }
 

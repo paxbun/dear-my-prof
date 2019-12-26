@@ -39,7 +39,7 @@ void TemplatePresenter::_GetParameters(Args const& args)
 
     for (auto const& str : params) new_args.push_back(str);
 
-    view()->Output("template-params", params);
+    view()->Output("template-params-reply", params);
 }
 
 void TemplatePresenter::_FillTemplate(Args const& args)

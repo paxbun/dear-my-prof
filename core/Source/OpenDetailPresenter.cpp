@@ -10,9 +10,5 @@
 
 void OpenDetailPresenter::Input(std::string const& event_name, Args const& args)
 {
-    Args new_args = Args::array();
-    new_args.push_back(std::string("---data-id=")
-                       + args.at("id").get<std::string>());
-
-    app()->NewWindow(new DetailView(std::move(new_args)), view());
+    app()->NewWindow(new DetailView(Args(args)), view());
 }
