@@ -6,23 +6,23 @@
 
 #include <core/EmailListPresenter.hpp>
 #include <core/OpenDetailPresenter.hpp>
-#include <core/OpenNewEmailPresenter.hpp>
+#include <core/OpenSelectTemplatePresenter.hpp>
 #include <core/OpenTemplateListPresenter.hpp>
 #include <core/View.hpp>
 
 class RootView : public View
 {
   private:
-    OpenTemplateListPresenter _openTemplateList;
-    OpenNewEmailPresenter     _openNewEmail;
-    EmailListPresenter        _emailList;
-    OpenDetailPresenter       _openDetail;
+    OpenTemplateListPresenter   _openTemplateList;
+    OpenSelectTemplatePresenter _openSelectTemplate;
+    EmailListPresenter          _emailList;
+    OpenDetailPresenter         _openDetail;
 
   public:
     RootView()
         : View("root.html",
                { { "create-templates-window", &_openTemplateList },
-                 { "create-new-email-window", &_openNewEmail },
+                 { "create-new-email-window", &_openSelectTemplate },
                  { "mail-refresh", &_emailList },
                  { "create-detail-window", &_openDetail } })
     {}
