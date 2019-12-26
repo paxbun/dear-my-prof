@@ -17,7 +17,7 @@
 class Template
 {
   public:
-    static Template ParseFrom(std::istream& is);
+    static bool ReadFrom(std::istream& is, Template& out);
 
   private:
     std::string    _theme;
@@ -31,6 +31,8 @@ class Template
     }
 
   public:
+    Template() {}
+
     template <typename SubjectT = TemplateString,
               typename ContentT = TemplateString,
               typename ThemeT   = std::string>

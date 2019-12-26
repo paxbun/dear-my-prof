@@ -5,7 +5,7 @@
 
 #include <string>
 
-Template Template::ParseFrom(std::istream& is)
+bool Template::ReadFrom(std::istream& is, Template& out)
 {
     std::string line;
     do
@@ -15,11 +15,15 @@ Template Template::ParseFrom(std::istream& is)
 
     // Read Theme
     std::getline(is, line);
+    if (line == "END")
+        return false;
     auto theme = std::move(line);
     line       = std::string();
 
     // Read subject
     std::getline(is, line);
+    if (line == "END")
+        return false;
     auto subject = TemplateString::ParseFrom(line);
 
     // Read content
@@ -34,7 +38,8 @@ Template Template::ParseFrom(std::istream& is)
     }
     auto content = TemplateString::ParseFrom(content);
 
-    return Template(std::move(subject), std::move(content), std::move(theme));
+    out = Template(std::move(subject), std::move(content), std::move(theme));
+    return true;
 }
 
 Template
