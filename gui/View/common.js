@@ -25,7 +25,7 @@ function Field_getValueDom(field) {
 module.exports.Field_getValueDom = Field_getValueDom;
 
 function Field_getValue(field) {
-    return Field_getValueDom(field).innerHTML;
+    return Field_getValueDom(field).innerText;
 }
 module.exports.Field_getValue = Field_getValue;
 
@@ -96,6 +96,38 @@ function ItemThree_new(title, subtitle, body) {
     );
 }
 module.exports.ItemThree_new = ItemThree_new;
+
+function ItemTwo_new(title, body) {
+    return newElemWithClass('li', 'item-three item-two',
+        [newElemWithClass('div', 'inner', [
+            newElemWithClass('span', 'title', title),
+            newElemWithClass('span', 'subtitle', body)
+        ])]
+    );
+}
+module.exports.ItemTwo_new = ItemTwo_new;
+
+function ItemTwoEditable_new(title) {
+    let body = newElemWithClass('span', 'subtitle');
+    body.setAttribute('contenteditable', 'true');
+    return newElemWithClass('li', 'item-three item-two',
+        [newElemWithClass('div', 'inner', [
+            newElemWithClass('span', 'title', title),
+            body
+        ])]
+    );
+}
+module.exports.ItemTwoEditable_new = ItemTwoEditable_new;
+
+function ItemTwoEditable_getValueDom(elem) {
+    return elem.lastElementChild.lastElementChild;
+}
+module.exports.ItemTwoEditable_getValueDom = ItemTwoEditable_getValueDom;
+
+function ItemTwoEditable_getValue(elem) {
+    return ItemTwoEditable_getValueDom(elem).innerText;
+}
+module.exports.ItemTwoEditable_getValue = ItemTwoEditable_getValue;
 
 function setTitle(new_title) {
     document.title = new_title;
