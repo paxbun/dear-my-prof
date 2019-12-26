@@ -5,21 +5,21 @@
 #define __H_CORE_SELECT_TEMPLATE_VIEW__
 
 #include <core/Args.hpp>
-#include <core/OpenNewEmailPresenter.hpp>
+#include <core/OpenFillTemplatePresenter.hpp>
 #include <core/TemplateListPresenter.hpp>
 #include <core/View.hpp>
 
 class SelectTemplateView : public View
 {
   private:
-    TemplateListPresenter _templateList;
-    OpenNewEmailPresenter _openNewEmail;
+    TemplateListPresenter     _templateList;
+    OpenFillTemplatePresenter _openFillTemplate;
 
   public:
     SelectTemplateView()
         : View("selecttemplate.html",
                { { "template-refresh", &_templateList },
-                 { "new-email", &_openNewEmail } })
+                 { "create-fill-template", &_openFillTemplate } })
     {}
 };
 
