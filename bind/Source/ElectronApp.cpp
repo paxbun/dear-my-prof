@@ -113,10 +113,9 @@ Napi::Object ElectronApp::Init(Napi::Env env, Napi::Object exports)
     Napi::Function func
         = DefineClass(env,
                       "CppImpl",
-                      {
-                          InstanceMethod("start", &ElectronApp::_Start),
-                          InstanceMethod("input", &ElectronApp::_Input),
-                      });
+                      { InstanceMethod("start", &ElectronApp::_Start),
+                        InstanceMethod("input", &ElectronApp::_Input),
+                        InstanceMethod("close", &ElectronApp::_Close) });
 
     _ctor = Napi::Persistent(func);
     _ctor.SuppressDestruct();
@@ -151,5 +150,18 @@ Napi::Value ElectronApp::_Input(Napi::CallbackInfo const& info)
     auto event_args = Conversions::ConvertObject(_env, info[2]);
 
     view->Input(event_name, event_args);
+    return Napi::Value();
+}
+
+Napi::Value ElectronApp::_Close(Napi::CallbackInfo const& info)
+{
+    auto it = _id2view.find(info[0].ToNumber().Int64Value());
+    if (it != _id2view.end())
+    {
+        auto id = it->second;
+        _id2view.erase(it);
+        _view2id.erase(id);
+        delete id;
+    }
     return Napi::Value();
 }

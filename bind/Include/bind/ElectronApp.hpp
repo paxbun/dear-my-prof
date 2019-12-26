@@ -68,6 +68,11 @@ class ElectronApp : public App, public Napi::ObjectWrap<ElectronApp>
         자바스크립트에서 이벤트가 발생했을 때 호출하는 함수입니다.
     */
     Napi::Value _Input(Napi::CallbackInfo const& info);
+
+    /*
+        사용자에 의해 창이 닫혔을 때 호출하는 함수입니다.
+    */
+    Napi::Value _Close(Napi::CallbackInfo const& info);
 };
 
 #endif
