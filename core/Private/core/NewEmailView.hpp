@@ -5,14 +5,20 @@
 #define __H_CORE_NEW_EMAIL_VIEW__
 
 #include <core/Args.hpp>
+#include <core/SendEmailPresenter.hpp>
 #include <core/View.hpp>
 
 class NewEmailView : public View
 {
-    // TODO
+  private:
+    SendEmailPresenter _sendEmail;
 
   public:
-    NewEmailView(Args&& args) : View("newemail.html", {}, std::move(args)) {}
+    NewEmailView(Args&& args)
+        : View("newemail.html",
+               { { "send-email", &_sendEmail } },
+               std::move(args))
+    {}
 };
 
 #endif
