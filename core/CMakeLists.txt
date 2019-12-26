@@ -19,6 +19,7 @@ add_library(dear-my-prof-core STATIC
     Source/OpenNewTemplatePresenter.cpp
     Source/OpenTemplateListPresenter.cpp
     Source/ProfessorList.cpp
+    Source/ProfessorPresenter.cpp
     Source/SaveTemplatePresenter.cpp
     Source/SendEmailPresenter.cpp
     Source/StringTransformFactory.cpp
