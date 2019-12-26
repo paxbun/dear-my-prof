@@ -7,6 +7,7 @@
 #include <core/ThemeStringTransform.hpp>
 #include <core/UpperStringTransform.hpp>
 #include <core/LowerStringTransform.hpp>
+#include <core/PascalStringTransform.hpp>
 namespace
 {
 
@@ -16,6 +17,7 @@ SubjectStringTransform _subject;
 ObjectStringTransform  _object;
 UpperStringTransform   _uppercase;
 LowerStringTransform   _lowercase;
+PascalStringTransform  _pascalcase;
 
 } // namespace
 
@@ -29,6 +31,7 @@ std::unordered_map<std::string, StringTransform*>
         { u8"를", &_object },
 		{ u8"upp", &_uppercase},
 		{ u8"low", &_lowercase},
+		{ u8"pas", &_pascalcase},
     } };
 
 StringTransform*

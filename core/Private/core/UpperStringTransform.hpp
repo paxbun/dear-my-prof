@@ -21,7 +21,7 @@ class UpperStringTransform : public CodaStringTransform
         {
             std::string out = input;
             std::transform(input.begin(), input.end(), out.begin(), toupper);
-
+            return out;
 
         }
         catch (...)
