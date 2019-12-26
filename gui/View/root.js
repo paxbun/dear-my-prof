@@ -23,6 +23,8 @@ window.onload = function () {
 }
 
 ipcRenderer.on('mail-refresh-reply', (event, arg) => {
+    common.clearChild(mailList_dom);
+
     for (let i in arg) {
         let item = common.ItemThree_new(arg[i].subject, arg[i].from, arg[i].content);
         item.addEventListener('click', (event) => {

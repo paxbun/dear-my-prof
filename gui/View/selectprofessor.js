@@ -25,9 +25,7 @@ window.onload = function () {
 let data = null;
 
 ipcRenderer.on('professor-reply', (event, arg) => {
-    while (professorList_dom.firstChild) {
-        professorList_dom.removeChild(professorList_dom.firstChild);
-    }
+    common.clearChild(professorList_dom);
 
     if (Object.keys(arg).length == 0) {
         common.Field_setInvalid(professorSearch_dom);

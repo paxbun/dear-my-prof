@@ -15,6 +15,8 @@ window.onload = function () {
 }
 
 ipcRenderer.on('template-refresh-reply', (event, arg) => {
+    common.clearChild(templateList_dom);
+
     for (let i in arg) {
         let item = common.ItemThree_new(arg[i].theme, arg[i].subject, arg[i].content);
         item.addEventListener('click', (event) => {
