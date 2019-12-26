@@ -14,7 +14,7 @@ class DetailTemplateView : public View
     DetailTemplatePresenter _detailTemplate;
 
   public:
-    DetailView(Args&& args)
+    DetailTemplateView(Args&& args)
         : View("detailtemplate.html",
                { { "detail-template-refresh", &_detailTemplate } },
                std::move(args))
