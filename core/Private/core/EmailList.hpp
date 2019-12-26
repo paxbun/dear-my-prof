@@ -41,11 +41,11 @@ class EmailList : public Subject
 
   public:
     /*
-         Parameters
-         num_emails: 불러오고 싶은 이메일의 개수입니다.
+        Parameters
+        num_emails: 불러오고 싶은 이메일의 개수입니다.
 
-         Return Valeu
-         최근 이메일을 num_emails만큼 반환합니다.
+        Return Value
+        최근 이메일을 num_emails만큼 반환합니다.
     */
     std::vector<Email> FetchInbox(size_t num_emails);
 
