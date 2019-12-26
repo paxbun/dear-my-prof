@@ -61,7 +61,7 @@ if(CMAKE_BUILD_TYPE MATCHES "Debug")
         COMMAND dear-my-prof-core-string-transform-test
     )
     
-    #ObserverTest
+    # ObserverTest
     add_executable(dear-my-prof-core-observer-test
         Test/ObserverTest.cpp
     )
@@ -72,6 +72,19 @@ if(CMAKE_BUILD_TYPE MATCHES "Debug")
     add_test(
         NAME core-observer-test
         COMMAND dear-my-prof-core-observer-test
+    )
+
+    # TemplateStringTest
+    add_executable(dear-my-prof-core-template-string-test
+        Test/TemplateStringTest.cpp
+    )
+    target_link_libraries(dear-my-prof-core-template-string-test
+        PUBLIC dear-my-prof-core
+        PUBLIC dear-my-prof-core-tests
+    )
+    add_test(
+        NAME core-template-string-test
+        COMMAND dear-my-prof-core-template-string-test
     )
 
 endif()
