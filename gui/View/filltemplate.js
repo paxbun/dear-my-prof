@@ -9,6 +9,8 @@ let paramMap = {};
 let data = null;
 let environment = null;
 let fillSent = false;
+let subject = null;
+let content = null;
 
 function loadParams() {
     let rtn = {};
@@ -28,7 +30,11 @@ function fillTemplate() {
 }
 
 function newEmail() {
-    ipcRenderer.send('create-new-email', loadParams());
+    ipcRenderer.send('create-new-email', {
+        to: data.to,
+        subject: subject,
+        content: content
+    });
 }
 
 window.onload = function () {
@@ -49,8 +55,8 @@ ipcRenderer.on('data-reply', (event, arg) => {
     ipcRenderer.send('template-init');
 }).on('template-out', (event, arg) => {
     fillSent = false;
-    templateSubject_dom.innerText = arg.subject;
-    templateContent_dom.innerText = arg.content;
+    templateSubject_dom.innerText = subject = arg.subject;
+    templateContent_dom.innerText = content = arg.content;
     if (!initialized) {
         ipcRenderer.send('template-params');
         initialized = true;
