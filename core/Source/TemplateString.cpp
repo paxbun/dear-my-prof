@@ -29,9 +29,16 @@ TemplateString TemplateString::ParseFrom(std::string const& str)
     {
         auto const& match = *it;
         new_base.push_back(str.substr(begin, match.position() - begin));
-        new_param.push_back({ match[1],
-                              match[3],
-                              StringTransformFactory::GetTransform(match[3]) });
+        if (match.size() < 4)
+            new_param.push_back(
+                { match[1],
+                  "",
+                  StringTransformFactory::GetTransform(match[3]) });
+        else
+            new_param.push_back(
+                { match[1],
+                  match[3],
+                  StringTransformFactory::GetTransform(match[3]) });
         begin = match.position() + match.length();
     }
     new_base.push_back(str.substr(begin));
